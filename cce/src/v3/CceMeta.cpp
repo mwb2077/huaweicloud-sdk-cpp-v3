@@ -31,6 +31,15 @@ HttpRequestDef CceMeta::genRequestDefForAwakeCluster() {
     return reqDefBuilder;
 }
 
+HttpRequestDef CceMeta::genRequestDefForBatchCreateAddonPrecheck() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef CceMeta::genRequestDefForBatchCreateClusterTags() {
     HttpRequestDef reqDefBuilder;
     FieldDef bodyParam;
@@ -56,6 +65,15 @@ HttpRequestDef CceMeta::genRequestDefForBatchSyncNodes() {
 
 HttpRequestDef CceMeta::genRequestDefForContinueUpgradeClusterTask() {
     HttpRequestDef reqDefBuilder;
+    return reqDefBuilder;
+}
+
+HttpRequestDef CceMeta::genRequestDefForCreateAccessPolicy() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
     return reqDefBuilder;
 }
 
@@ -176,6 +194,11 @@ HttpRequestDef CceMeta::genRequestDefForCreateUpgradeWorkFlow() {
     return reqDefBuilder;
 }
 
+HttpRequestDef CceMeta::genRequestDefForDeleteAccessPolicy() {
+    HttpRequestDef reqDefBuilder;
+    return reqDefBuilder;
+}
+
 HttpRequestDef CceMeta::genRequestDefForDeleteAddonInstance() {
     HttpRequestDef reqDefBuilder;
     reqDefBuilder.withRequestField(FieldDef().withName("ClusterId")
@@ -267,6 +290,9 @@ HttpRequestDef CceMeta::genRequestDefForDeleteNodePool() {
 
 HttpRequestDef CceMeta::genRequestDefForDeleteRelease() {
     HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("ShowResources")
+                  .withJsonTag("show_resources")
+                  .withLocationType(Query_));
     return reqDefBuilder;
 }
 
@@ -275,8 +301,70 @@ HttpRequestDef CceMeta::genRequestDefForDownloadChart() {
     return reqDefBuilder;
 }
 
+HttpRequestDef CceMeta::genRequestDefForGetAccessPolicy() {
+    HttpRequestDef reqDefBuilder;
+    return reqDefBuilder;
+}
+
+HttpRequestDef CceMeta::genRequestDefForGetAvaliableZone() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Locale")
+                  .withJsonTag("locale")
+                  .withLocationType(Query_));
+    reqDefBuilder.withResponseField(FieldDef().
+            withName("Body").
+            withLocationType(Body_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef CceMeta::genRequestDefForGetClusterFlavorSpecs() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("ClusterType")
+                  .withJsonTag("clusterType")
+                  .withLocationType(Query_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef CceMeta::genRequestDefForGetClusterLongAkskConfig() {
+    HttpRequestDef reqDefBuilder;
+    return reqDefBuilder;
+}
+
+HttpRequestDef CceMeta::genRequestDefForGetClusterQuota() {
+    HttpRequestDef reqDefBuilder;
+    return reqDefBuilder;
+}
+
+HttpRequestDef CceMeta::genRequestDefForGetCustomizeTags() {
+    HttpRequestDef reqDefBuilder;
+    return reqDefBuilder;
+}
+
+HttpRequestDef CceMeta::genRequestDefForGetLabels() {
+    HttpRequestDef reqDefBuilder;
+    return reqDefBuilder;
+}
+
+HttpRequestDef CceMeta::genRequestDefForGetLongAkskConfig() {
+    HttpRequestDef reqDefBuilder;
+    return reqDefBuilder;
+}
+
+HttpRequestDef CceMeta::genRequestDefForGetResourceTags() {
+    HttpRequestDef reqDefBuilder;
+    return reqDefBuilder;
+}
+
 HttpRequestDef CceMeta::genRequestDefForHibernateCluster() {
     HttpRequestDef reqDefBuilder;
+    return reqDefBuilder;
+}
+
+HttpRequestDef CceMeta::genRequestDefForListAccessPolicy() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("ClusterId")
+                  .withJsonTag("cluster_id")
+                  .withLocationType(Query_));
     return reqDefBuilder;
 }
 
@@ -287,6 +375,20 @@ HttpRequestDef CceMeta::genRequestDefForListAddonInstances() {
                   .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("ClusterId")
                   .withJsonTag("cluster_id")
+                  .withLocationType(Query_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef CceMeta::genRequestDefForListAddonPrecheckTasks() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Type")
+                  .withJsonTag("type")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("TaskId")
+                  .withJsonTag("task_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("AddonInstanceId")
+                  .withJsonTag("addon_instance_id")
                   .withLocationType(Query_));
     return reqDefBuilder;
 }
@@ -354,6 +456,20 @@ HttpRequestDef CceMeta::genRequestDefForListClusters() {
     return reqDefBuilder;
 }
 
+HttpRequestDef CceMeta::genRequestDefForListHyperNodes() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
+                  .withLocationType(Query_));
+    reqDefBuilder.withResponseField(FieldDef().
+            withName("Body").
+            withLocationType(Body_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef CceMeta::genRequestDefForListNodePools() {
     HttpRequestDef reqDefBuilder;
     reqDefBuilder.withRequestField(FieldDef().withName("ErrorStatus")
@@ -417,6 +533,15 @@ HttpRequestDef CceMeta::genRequestDefForLockNodepoolNodeScaleDown() {
 }
 
 HttpRequestDef CceMeta::genRequestDefForMigrateNode() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef CceMeta::genRequestDefForMigrateToNodePool() {
     HttpRequestDef reqDefBuilder;
     FieldDef bodyParam;
     reqDefBuilder.withRequestField(bodyParam.
@@ -531,7 +656,7 @@ HttpRequestDef CceMeta::genRequestDefForShowClusterConfig() {
 
 HttpRequestDef CceMeta::genRequestDefForShowClusterConfigurationDetails() {
     HttpRequestDef reqDefBuilder;
-    reqDefBuilder.WithResponseField(FieldDef().
+    reqDefBuilder.withResponseField(FieldDef().
                 withName("Body").
                 withLocationType(Body_));
     return reqDefBuilder;
@@ -544,25 +669,30 @@ HttpRequestDef CceMeta::genRequestDefForShowClusterEndpoints() {
 
 HttpRequestDef CceMeta::genRequestDefForShowClusterSupportConfiguration() {
     HttpRequestDef reqDefBuilder;
-    reqDefBuilder.withRequestField(FieldDef().withName("ClusterId")
-                  .withJsonTag("cluster_id")
-                  .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("ClusterType")
-                  .withJsonTag("cluster_type")
+                  .withJsonTag("clusterType")
                   .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("ClusterVersion")
-                  .withJsonTag("cluster_version")
+                  .withJsonTag("clusterVersion")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("ClusterID")
+                  .withJsonTag("clusterID")
                   .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("NetworkMode")
-                  .withJsonTag("network_mode")
+                  .withJsonTag("networkMode")
                   .withLocationType(Query_));
-    reqDefBuilder.WithResponseField(FieldDef().
+    reqDefBuilder.withResponseField(FieldDef().
                 withName("Body").
                 withLocationType(Body_));
     return reqDefBuilder;
 }
 
 HttpRequestDef CceMeta::genRequestDefForShowClusterUpgradeInfo() {
+    HttpRequestDef reqDefBuilder;
+    return reqDefBuilder;
+}
+
+HttpRequestDef CceMeta::genRequestDefForShowFeatureGates() {
     HttpRequestDef reqDefBuilder;
     return reqDefBuilder;
 }
@@ -585,7 +715,7 @@ HttpRequestDef CceMeta::genRequestDefForShowNodePool() {
 
 HttpRequestDef CceMeta::genRequestDefForShowNodePoolConfigurationDetails() {
     HttpRequestDef reqDefBuilder;
-    reqDefBuilder.WithResponseField(FieldDef().
+    reqDefBuilder.withResponseField(FieldDef().
                 withName("Body").
                 withLocationType(Body_));
     return reqDefBuilder;
@@ -613,6 +743,9 @@ HttpRequestDef CceMeta::genRequestDefForShowQuotas() {
 
 HttpRequestDef CceMeta::genRequestDefForShowRelease() {
     HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("ShowResources")
+                  .withJsonTag("show_resources")
+                  .withLocationType(Query_));
     return reqDefBuilder;
 }
 
@@ -645,6 +778,15 @@ HttpRequestDef CceMeta::genRequestDefForSyncNode() {
 }
 
 HttpRequestDef CceMeta::genRequestDefForUnlockNodepoolNodeScaleDown() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef CceMeta::genRequestDefForUpdateAccessPolicy() {
     HttpRequestDef reqDefBuilder;
     FieldDef bodyParam;
     reqDefBuilder.withRequestField(bodyParam.
@@ -692,6 +834,24 @@ HttpRequestDef CceMeta::genRequestDefForUpdateClusterLogConfig() {
     return reqDefBuilder;
 }
 
+HttpRequestDef CceMeta::genRequestDefForUpdateClusterLongAkskConfig() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef CceMeta::genRequestDefForUpdateLongAkskConfig() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef CceMeta::genRequestDefForUpdateNode() {
     HttpRequestDef reqDefBuilder;
     reqDefBuilder.withRequestField(FieldDef().withName("ErrorStatus")
@@ -727,6 +887,9 @@ HttpRequestDef CceMeta::genRequestDefForUpdatePartition() {
 
 HttpRequestDef CceMeta::genRequestDefForUpdateRelease() {
     HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("ShowResources")
+                  .withJsonTag("show_resources")
+                  .withLocationType(Query_));
     FieldDef bodyParam;
     reqDefBuilder.withRequestField(bodyParam.
         withName("Body").
@@ -1071,12 +1234,25 @@ HttpRequestDef CceMeta::genRequestDefForShowAutopilotCluster() {
     return reqDefBuilder;
 }
 
+HttpRequestDef CceMeta::genRequestDefForShowAutopilotClusterConfig() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Type")
+                  .withJsonTag("type")
+                  .withLocationType(Query_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef CceMeta::genRequestDefForShowAutopilotClusterEndpoints() {
     HttpRequestDef reqDefBuilder;
     return reqDefBuilder;
 }
 
 HttpRequestDef CceMeta::genRequestDefForShowAutopilotClusterUpgradeInfo() {
+    HttpRequestDef reqDefBuilder;
+    return reqDefBuilder;
+}
+
+HttpRequestDef CceMeta::genRequestDefForShowAutopilotFeatureGates() {
     HttpRequestDef reqDefBuilder;
     return reqDefBuilder;
 }

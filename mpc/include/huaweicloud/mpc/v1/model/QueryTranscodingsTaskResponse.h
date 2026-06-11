@@ -11,11 +11,14 @@
 
 #include <huaweicloud/mpc/v1/model/AvParameters.h>
 #include <huaweicloud/mpc/v1/model/ObsObjInfo.h>
+#include <huaweicloud/mpc/v1/model/FileMetaData.h>
 #include <huaweicloud/mpc/v1/model/TranscodeDetail.h>
 #include <string>
 #include <huaweicloud/mpc/v1/model/AdditionalManifests.h>
+#include <huaweicloud/mpc/v1/model/ThumbnailsInfo.h>
 #include <huaweicloud/mpc/v1/model/PicInfo.h>
 #include <vector>
+#include <huaweicloud/mpc/v1/model/ImageSpriteInfo.h>
 
 namespace HuaweiCloud {
 namespace Sdk {
@@ -198,6 +201,24 @@ public:
     void setPicInfo(const std::vector<PicInfo>& value);
 
     /// <summary>
+    /// 截图文件信息。 
+    /// </summary>
+
+    std::vector<ThumbnailsInfo>& getThumbnailsInfo();
+    bool thumbnailsInfoIsSet() const;
+    void unsetthumbnailsInfo();
+    void setThumbnailsInfo(const std::vector<ThumbnailsInfo>& value);
+
+    /// <summary>
+    /// 雪碧图信息，数组，最多支持20个成员。 
+    /// </summary>
+
+    std::vector<ImageSpriteInfo>& getImageSpriteInfo();
+    bool imageSpriteInfoIsSet() const;
+    void unsetimageSpriteInfo();
+    void setImageSpriteInfo(const std::vector<ImageSpriteInfo>& value);
+
+    /// <summary>
     /// 转码参数。  若同时设置“trans_template_id”和此参数，则优先使用此参数进行转码。 
     /// </summary>
 
@@ -214,6 +235,15 @@ public:
     bool additionalManifestsIsSet() const;
     void unsetadditionalManifests();
     void setAdditionalManifests(const std::vector<AdditionalManifests>& value);
+
+    /// <summary>
+    /// 输出文件的metadata信息 
+    /// </summary>
+
+    std::vector<FileMetaData>& getMetadata();
+    bool metadataIsSet() const;
+    void unsetmetadata();
+    void setMetadata(const std::vector<FileMetaData>& value);
 
 
 protected:
@@ -251,10 +281,16 @@ protected:
     bool thumbnailOutputnameIsSet_;
     std::vector<PicInfo> picInfo_;
     bool picInfoIsSet_;
+    std::vector<ThumbnailsInfo> thumbnailsInfo_;
+    bool thumbnailsInfoIsSet_;
+    std::vector<ImageSpriteInfo> imageSpriteInfo_;
+    bool imageSpriteInfoIsSet_;
     std::vector<AvParameters> avParameters_;
     bool avParametersIsSet_;
     std::vector<AdditionalManifests> additionalManifests_;
     bool additionalManifestsIsSet_;
+    std::vector<FileMetaData> metadata_;
+    bool metadataIsSet_;
 
 };
 

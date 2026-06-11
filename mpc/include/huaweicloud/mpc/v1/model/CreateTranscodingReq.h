@@ -11,7 +11,9 @@
 
 #include <huaweicloud/mpc/v1/model/Thumbnail.h>
 #include <huaweicloud/mpc/v1/model/VideoProcess.h>
+#include <huaweicloud/mpc/v1/model/FileMetaData.h>
 #include <string>
+#include <huaweicloud/mpc/v1/model/TransIdTemplate.h>
 #include <vector>
 #include <huaweicloud/mpc/v1/model/WatermarkRequest.h>
 #include <huaweicloud/mpc/v1/model/AvParameters.h>
@@ -21,6 +23,7 @@
 #include <huaweicloud/mpc/v1/model/Subtitle.h>
 #include <huaweicloud/mpc/v1/model/AdditionalManifests.h>
 #include <huaweicloud/mpc/v1/model/AudioTrack.h>
+#include <huaweicloud/mpc/v1/model/ImageSprite.h>
 #include <huaweicloud/mpc/v1/model/MultiAudio.h>
 #include <huaweicloud/mpc/v1/model/Encryption.h>
 
@@ -79,6 +82,15 @@ public:
     void setTransTemplateId(std::vector<int32_t> value);
 
     /// <summary>
+    /// 转码模板数组 
+    /// </summary>
+
+    std::vector<TransIdTemplate>& getTransTemplateList();
+    bool transTemplateListIsSet() const;
+    void unsettransTemplateList();
+    void setTransTemplateList(const std::vector<TransIdTemplate>& value);
+
+    /// <summary>
     /// 转码参数。  若同时设置“trans_template_id”和此参数，则优先使用此参数进行转码，不带trans_template_id时，该参数必选。 
     /// </summary>
 
@@ -131,6 +143,24 @@ public:
     bool thumbnailIsSet() const;
     void unsetthumbnail();
     void setThumbnail(const Thumbnail& value);
+
+    /// <summary>
+    /// 多截图任务，数组，最多支持20个成员。 
+    /// </summary>
+
+    std::vector<Thumbnail>& getThumbnails();
+    bool thumbnailsIsSet() const;
+    void unsetthumbnails();
+    void setThumbnails(const std::vector<Thumbnail>& value);
+
+    /// <summary>
+    /// 雪碧图参数，数组，最多支持20个成员。 
+    /// </summary>
+
+    std::vector<ImageSprite>& getImageSprites();
+    bool imageSpritesIsSet() const;
+    void unsetimageSprites();
+    void setImageSprites(const std::vector<ImageSprite>& value);
 
     /// <summary>
     /// 任务优先级，取值如下： - 9代表高优先级。 - 6代表中优先级，默认为6。  暂时只支持6和9。 
@@ -204,6 +234,15 @@ public:
     void unsetaudioProcess();
     void setAudioProcess(const AudioProcess& value);
 
+    /// <summary>
+    /// metadata设置，默认只支持AIGC 
+    /// </summary>
+
+    std::vector<FileMetaData>& getMetadata();
+    bool metadataIsSet() const;
+    void unsetmetadata();
+    void setMetadata(const std::vector<FileMetaData>& value);
+
 
 protected:
     ObsObjInfo input_;
@@ -212,6 +251,8 @@ protected:
     bool outputIsSet_;
     std::vector<int32_t> transTemplateId_;
     bool transTemplateIdIsSet_;
+    std::vector<TransIdTemplate> transTemplateList_;
+    bool transTemplateListIsSet_;
     std::vector<AvParameters> avParameters_;
     bool avParametersIsSet_;
     std::vector<AdditionalManifests> additionalManifests_;
@@ -224,6 +265,10 @@ protected:
     bool watermarksIsSet_;
     Thumbnail thumbnail_;
     bool thumbnailIsSet_;
+    std::vector<Thumbnail> thumbnails_;
+    bool thumbnailsIsSet_;
+    std::vector<ImageSprite> imageSprites_;
+    bool imageSpritesIsSet_;
     int32_t priority_;
     bool priorityIsSet_;
     Subtitle subtitle_;
@@ -240,6 +285,8 @@ protected:
     bool videoProcessIsSet_;
     AudioProcess audioProcess_;
     bool audioProcessIsSet_;
+    std::vector<FileMetaData> metadata_;
+    bool metadataIsSet_;
 
 };
 

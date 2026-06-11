@@ -47,6 +47,7 @@ public:
     static HttpRequestDef genRequestDefForDeleteRedisDisabledCommands();
     static HttpRequestDef genRequestDefForExpandInstanceNode();
     static HttpRequestDef genRequestDefForListAvailableFlavorInfos();
+    static HttpRequestDef genRequestDefForListBackups();
     static HttpRequestDef genRequestDefForListCassandraSlowLogs();
     static HttpRequestDef genRequestDefForListConfigurationDatastores();
     static HttpRequestDef genRequestDefForListConfigurationTemplates();
@@ -82,6 +83,8 @@ public:
     static HttpRequestDef genRequestDefForListRestoreTables();
     static HttpRequestDef genRequestDefForListRestoreTime();
     static HttpRequestDef genRequestDefForListSlowLogs();
+    static HttpRequestDef genRequestDefForListSslCertDownloadAddresses();
+    static HttpRequestDef genRequestDefForModifyAutoNodeExpansionPolicy();
     static HttpRequestDef genRequestDefForModifyDbUserPrivilege();
     static HttpRequestDef genRequestDefForModifyEpsQuotas();
     static HttpRequestDef genRequestDefForModifyInstanceMaintenanceWindow();
@@ -98,6 +101,7 @@ public:
     static HttpRequestDef genRequestDefForResizeInstanceVolume();
     static HttpRequestDef genRequestDefForRestartInstance();
     static HttpRequestDef genRequestDefForRestoreExistingInstance();
+    static HttpRequestDef genRequestDefForRestoreRedisData();
     static HttpRequestDef genRequestDefForRestoreRedisPitr();
     static HttpRequestDef genRequestDefForSaveLtsConfigs();
     static HttpRequestDef genRequestDefForSaveRedisDisabledCommands();
@@ -112,6 +116,7 @@ public:
     static HttpRequestDef genRequestDefForShowApplicableInstances();
     static HttpRequestDef genRequestDefForShowApplyHistory();
     static HttpRequestDef genRequestDefForShowAutoEnlargePolicy();
+    static HttpRequestDef genRequestDefForShowAutoNodeExpansionPolicy();
     static HttpRequestDef genRequestDefForShowBackupPolicies();
     static HttpRequestDef genRequestDefForShowBackupPolicy();
     static HttpRequestDef genRequestDefForShowConfigurationDetail();
@@ -152,6 +157,7 @@ public:
     static HttpRequestDef genRequestDefForUpdateHighRiskCommands();
     static HttpRequestDef genRequestDefForUpdateInstanceConfiguration();
     static HttpRequestDef genRequestDefForUpdateInstanceConfigurations();
+    static HttpRequestDef genRequestDefForUpdateInstanceLb();
     static HttpRequestDef genRequestDefForUpdateInstanceName();
     static HttpRequestDef genRequestDefForUpdatePasswordlessConfig();
     static HttpRequestDef genRequestDefForUpdateSecurityGroup();

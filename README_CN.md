@@ -6,11 +6,19 @@
 
 <h1 align="center">华为云开发者 C++ 软件开发工具包（C++ SDK）</h1>
 
+[![GitHub Release](https://img.shields.io/github/v/release/huaweicloud/huaweicloud-sdk-cpp-v3)](https://github.com/huaweicloud/huaweicloud-sdk-cpp-v3/releases)
+[![License](https://img.shields.io/badge/license-Apache--2.0-green)](https://www.apache.org/licenses/LICENSE-2.0)
+
 欢迎使用华为云 C++ SDK。
 
 华为云 C++ SDK 让您无需关心请求细节即可快速使用弹性云服务器（ECS）、虚拟私有云（VPC）等多个华为云服务。
 
 这里将向您介绍如何获取并使用华为云 C++ SDK 。
+
+## 项目说明
+
+- 当前SDK主体代码由华为云内部团队通过开源组件（openapi-generator）自动生成，并由华为云团队直接提交到Github社区，基于实现方案一致性以及版本兼容性考虑，暂时无法接受开发者PR
+- 我们正在研究SDK按开源社区标准方式运作的可行性，需要一些时间，同时我们会及时响应并处理开发者提的Issue
 
 ## 使用前提
 
@@ -22,13 +30,26 @@
 
 - 华为云 C++ SDK 支持 **C++ 14** 及以上版本，要求安装 **CMake 3.10** 及以上版本。
 
+## 隐私声明
+
+- 收集信息：
+  为完成华为云服务开放API调用的必要校验，SDK需要使用由华为云控制台下载的用户访问密钥（AK）进行签名，该过程不会上传您的私有密钥（SK）。
+
+- 数据处理方式：当您使用本工具提供的服务开放API功能时，您的相关数据（如上传的文件、提交的文本内容）将通过加密传输通道（HTTPS） 直接发送至华为云服务端进行处理。
+
+- 该过程由华为云服务端完成计算、存储或分析，数据不会在本应用客户端本地处理或持久化存储。
+
+- 华为云将根据其服务协议和隐私政策作为数据处理方独立处理这些数据，我们仅作为控制方发起API请求。数据处理结果将返回至本工具供您使用。
+
+- 华为云官方隐私声明：https://www.huaweicloud.com/declaration/sa_prp.html
+
 ## SDK 获取和安装
 
 您可以通过 [SDK中心](https://console.huaweicloud.com/apiexplorer/#/sdkcenter?language=C%2B%2B) 或 [Github Releases](https://github.com/huaweicloud/huaweicloud-sdk-cpp-v3/releases?page=1) 查询SDK版本信息。
 
 ### 依赖的第三方库
 
-`curl`、`boost`、`cpprestsdk`、`spdlog`、`openssl`
+`curl`、`boost`、`cpprestsdk`、`spdlog`、`openssl`、`rttr`
 
 ### 在 Linux 系统上安装 SDK
 
@@ -39,17 +60,17 @@
 例如基于 Debian/Ubuntu 的系统
 
 ``` bash
-sudo apt-get install libcurl4-openssl-dev libboost-all-dev libssl-dev libcpprest-dev
+sudo apt-get install libcurl4-openssl-dev libboost-all-dev libssl-dev libcpprest-dev librttr-dev cmake g++
 ```
 
-spdlog 需要从源码进行安装
+spdlog 需要从源码进行安装, 生成对应的动态库，推荐使用v1.17.0版本，如果您本地安装其他版本的spdlog，建议参考官网文档进行源码安装 https://github.com/gabime/spdlog 。
 
 ``` bash
-git clone https://github.com/gabime/spdlog.git
+git clone -b v1.17.0 https://github.com/gabime/spdlog.git
 cd spdlog
 mkdir build
 cd build
-cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..  // 用以生成动态库
+cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DBUILD_SHARED_LIBS=ON .. 
 make
 sudo make install
 ```
@@ -60,19 +81,249 @@ sudo apt-get install libbson-1.0
 ```
 
 #### Step 2：编译安装
-
+默认构建一个服务，以下以cce服务的v3版本为例
 ``` bash
 git clone https://github.com/huaweicloud/huaweicloud-sdk-cpp-v3.git
 cd huaweicloud-sdk-cpp-v3
 mkdir build
 cd build
-cmake ..
+cmake -DBUILD_SERVICE=cce -DSERVICE_VERSION=v3 ..
 make
 sudo make install
 ```
 
 完成上述操作后，**C++ SDK 安装目录为 `/usr/local`**。
+#### 特殊说明
+产物中的`libcore`可能会与其他动态库名字发生冲突，可以在源码中手动改名后再构建，以避免冲突。
+以下以编译vpc包为例，产物改名为`core_change_name_demo`
 
+1、修改`/huaweicloud-sdk-cpp-v3/core/CMakeLists.txt`中的`core`为`core_change_name_demo`，涉及改动点已通过注释标明。
+``` cmake
+cmake_minimum_required (VERSION 3.10)
+
+project(core)
+
+if(CMAKE_HOST_WIN32)
+    add_compile_options(-bigobj)
+else()
+    set(cxx_base_flags "${cxx_base_flags} -bigobj")
+    set(cpprestsdk_DIR /usr/lib/${CMAKE_LIBRARY_ARCHITECTURE}/cmake/)
+endif()
+
+set(CMAKE_BUILD_TYPE Debug)
+
+find_package(OpenSSL REQUIRED)
+find_package(spdlog REQUIRED)
+find_package(cpprestsdk REQUIRED)
+find_package(CURL REQUIRED)
+# Update require components as necessary
+if(CMAKE_HOST_WIN32)
+    find_package(Boost REQUIRED COMPONENTS ${Boost_THREAD_LIBRARY} ${Boost_SYSTEM_LIBRARY} ${Boost_REGEX_LIBRARY} ${Boost_DATE_TIME_LIBRARY} ${Boost_PROGRAM_OPTIONS_LIBRARY} ${Boost_FILESYSTEM_LIBRARY})
+else()
+    find_package(Boost REQUIRED COMPONENTS filesystem thread system regex date_time program_options)
+endif()
+
+if(ENABLE_BSON)
+    file(GLOB source_file "src/*.cpp" "src/auth/*.cpp" "src/http/*.cpp" "src/utils/*.cpp" "src/exception/*.cpp" "src/bson/*.cpp" "src/bson/impl/*.cpp")
+    file(GLOB core_bson_header ${CMAKE_CURRENT_SOURCE_DIR}/include/huaweicloud/core/bson/*.h)
+    file(GLOB core_bson_impl_header ${CMAKE_CURRENT_SOURCE_DIR}/include/huaweicloud/core/bson/impl/*.h)
+else()
+    file(GLOB source_file "src/*.cpp" "src/auth/*.cpp" "src/http/*.cpp" "src/utils/*.cpp" "src/exception/*.cpp")
+endif ()
+file(GLOB core_header ${CMAKE_CURRENT_SOURCE_DIR}/include/huaweicloud/core/*.h)
+file(GLOB core_auth_header ${CMAKE_CURRENT_SOURCE_DIR}/include/huaweicloud/core/auth/*.h)
+file(GLOB core_exception_header ${CMAKE_CURRENT_SOURCE_DIR}/include/huaweicloud/core/exception/*.h)
+file(GLOB core_http_header ${CMAKE_CURRENT_SOURCE_DIR}/include/huaweicloud/core/http/*.h)
+file(GLOB core_utils_header ${CMAKE_CURRENT_SOURCE_DIR}/include/huaweicloud/core/utils/*.h)
+
+if(ENABLE_BSON)
+    # 改动点1
+    add_library(core_change_name_demo ${LIB_TYPE}
+            ${source_file}
+            ${core_header}
+            ${core_auth_header}
+            ${core_exception_header}
+            ${core_http_header}
+            ${core_utils_header}
+            ${core_bson_header}
+            ${core_bson_impl_header}
+            )
+else()
+    # 改动点2
+    add_library(core_change_name_demo ${LIB_TYPE}
+            ${source_file}
+            ${core_header}
+            ${core_auth_header}
+            ${core_exception_header}
+            ${core_http_header}
+            ${core_utils_header}
+            )
+endif()
+# 改动点3
+set_target_properties(core_change_name_demo
+        PROPERTIES
+        LINKER_LANGUAGE CXX
+        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
+        LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+        #改动点4
+        OUTPUT_NAME core_change_name_demo
+        )
+
+if(${LIB_TYPE} STREQUAL "SHARED")
+    # 改动点5
+    set_target_properties(core_change_name_demo
+            PROPERTIES
+            DEFINE_SYMBOL HUAWEICLOUD_CORE_SHARED)
+endif()
+
+
+if(ENABLE_BSON)
+    if(NOT LIBBSON_DIR)
+        message(FATAL_ERROR "Please manual set variable LIBBSON_DIR for search libbson root dir")
+    endif()
+    set(LIBBSON_LIBRARY_DIR ${LIBBSON_DIR}/lib)
+    set(LIBBSON_INCLUDE_DIR ${LIBBSON_DIR}/include/libbson-1.0)
+    # 改动点6
+    target_include_directories(core_change_name_demo PUBLIC ${LIBBSON_INCLUDE_DIR})
+    target_link_libraries(core_change_name_demo PUBLIC bson-1.0)
+    target_link_directories(core_change_name_demo PUBLIC ${LIBBSON_LIBRARY_DIR})
+endif()
+# 改动点7
+target_include_directories(core_change_name_demo PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+        )
+# 改动点8
+if(CMAKE_HOST_WIN32)
+    target_link_libraries(core_change_name_demo PUBLIC
+            spdlog::spdlog
+            OpenSSL::SSL
+            bcrypt
+            ${Boost_LIBRARIES}
+            ${CURL_LIBRARIES}
+            cpprestsdk::cpprest
+            )
+else()
+# 改动点9
+    target_link_libraries(core_change_name_demo PUBLIC
+            spdlog::spdlog
+            OpenSSL::SSL
+            crypto
+            ${Boost_LIBRARIES}
+            ${CURL_LIBRARIES}
+            cpprest
+            )
+endif()
+
+install(FILES ${core_header}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/huaweicloud/core)
+install(FILES ${core_auth_header}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/huaweicloud/core/auth)
+install(FILES ${core_exception_header}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/huaweicloud/core/exception)
+install(FILES ${core_http_header}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/huaweicloud/core/http)
+install(FILES ${core_utils_header}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/huaweicloud/core/utils)
+# 改动点10
+install(TARGETS core_change_name_demo
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        )
+if(ENABLE_BSON)
+install(FILES ${core_bson_header}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/huaweicloud/core/bson)
+install(FILES ${core_bson_impl_header}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/huaweicloud/core/bson/impl)
+endif()
+
+```
+
+2、修改/huaweicloud-sdk-cpp-v3/vpc/src/v2/CMakeLists.txt，将链接的库名从`core`修改为`core_change_name_demo`，修改点已用注释标明。
+
+``` cmake
+cmake_minimum_required (VERSION 3.10)
+
+#PROJECT's NAME
+project(vpc_v2)
+
+if(CMAKE_HOST_WIN32)
+    add_compile_options(-bigobj)
+else()
+    set(cxx_base_flags "${cxx_base_flags} -bigobj")
+endif()
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBOOST_UUID_FORCE_AUTO_LINK")
+
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+
+#HEADER FILES
+file(GLOB service_client_header
+        ${CMAKE_SOURCE_DIR}/vpc/include/huaweicloud/vpc/v2/*.h)
+file(GLOB service_model_header
+        ${CMAKE_SOURCE_DIR}/vpc/include/huaweicloud/vpc/v2/model/*.h)
+#SOURCE FILES
+file(GLOB source_file
+        ${CMAKE_SOURCE_DIR}/vpc/src/v2/*.cpp
+        ${CMAKE_SOURCE_DIR}/vpc/src/v2/model/*.cpp)
+
+add_library(vpc_v2 ${LIB_TYPE}
+        ${source_file}
+        ${service_client_header}
+        ${service_model_header})
+
+set_target_properties(vpc_v2
+        PROPERTIES
+        LINKER_LANGUAGE CXX
+        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
+        LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+        OUTPUT_NAME vpc_v2
+        )
+
+if(CMAKE_HOST_WIN32)
+    if(${LIB_TYPE} STREQUAL "SHARED")
+        set_target_properties(vpc_v2
+            PROPERTIES
+            DEFINE_SYMBOL HUAWEICLOUD_VPC_V2_SHARED)
+    endif()
+else()
+    if(${LIB_TYPE} STREQUAL "SHARED")
+        set_target_properties(vpc_v2
+            PROPERTIES
+            DEFINE_SYMBOL HUAWEICLOUD_VPC_V2_EXPORT)
+    endif()
+endif()
+
+target_include_directories(vpc_v2 PUBLIC
+        ${CMAKE_SOURCE_DIR}/vpc/include
+        )
+# 改动点
+target_link_libraries(vpc_v2 PUBLIC
+        core_change_name_demo)
+
+if(ENABLE_RTTR)
+    if(NOT CMAKE_HOST_WIN32)
+        set(rttr_DIR /home/nfs/rttr/rttr-0.9.6/build/install/share/rttr/cmake)
+    endif()
+    find_package(rttr CONFIG REQUIRED)
+    target_link_libraries(vpc_v2 PUBLIC
+            RTTR::Core)
+endif()
+
+install(FILES ${service_client_header}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/huaweicloud/vpc/v2)
+install(FILES ${service_model_header}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/huaweicloud/vpc/v2/model)
+install(TARGETS vpc_v2
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+```
 ### 在 Windows 系统上安装 SDK
 
 #### Step 1：安装 vcpkg 并使用 vcpkg 安装所需软件包
@@ -122,15 +373,18 @@ vcpkg install libbson
 
 ``` cpp
 #include <cstdio>
+#include <cstdlib>
+#include <exception>
 #include <iostream>
+#include <string>
 #include <huaweicloud/core/exception/Exceptions.h>
 #include <huaweicloud/core/Client.h>
 #include <huaweicloud/vpc/v2/VpcClient.h>
-
+ 
 using namespace HuaweiCloud::Sdk;
 using namespace HuaweiCloud::Sdk::Core;
 using namespace HuaweiCloud::Sdk::Core::Exception;
-
+ 
 int main(void)
 {   
     std::string ak;
@@ -141,10 +395,10 @@ int main(void)
 #elif defined(linux) || defined(__linux) || defined(__linux__)
     char* envVar; 
     #define INIT_ENV_VAR(ID, NAME)               \
-    do {                                     \
-        if (envVar = secure_getenv(#NAME)) { \
-            ID = std::string(envVar);        \
-        }                                    \
+    do {                                         \
+        if ((envVar = secure_getenv(#NAME))) {   \
+            ID = std::string(envVar);            \
+        }                                        \
     } while (0)
     INIT_ENV_VAR(ak, HUAWEICLOUD_SDK_AK);
     INIT_ENV_VAR(sk, HUAWEICLOUD_SDK_SK);
@@ -164,17 +418,17 @@ int main(void)
             .withHttpConfig(httpConfig)
             .withEndPoint("{your endpoint}")
             .build();
-
+ 
     // Initialize request parameters
     Vpc::V2::Model::ListVpcsRequest listRequest;
     try {
-        std::string stringValue;
+        std::string responseBody;
         // Creat an API request and get response
         std::cout << "************ListVpc***********" << std::endl;
         std::shared_ptr<Vpc::V2::Model::ListVpcsResponse> listRes = 
-            vpcApi->listVpcs(listRequest);
-        stringValue = listRes->getHttpBody();
-        std::cout << stringValue << std::endl;
+            vpcApi_v2->listVpcs(listRequest);
+        responseBody = listRes->getHttpBody();
+        std::cout << responseBody << std::endl;
     } catch (HostUnreachableException& e) { // handle exception
         std::cout << e.what() << std::endl;
     } catch (SslHandShakeException& e) {
@@ -188,6 +442,8 @@ int main(void)
         std::cout << "ErrorCode: " << e.getErrorCode() << std::endl;
         std::cout << "ErrorMsg: " << e.getErrorMsg() << std::endl;
         std::cout << "RequestId: " << e.getRequestId() << std::endl;
+    } catch (std::exception &e) {
+        std::cout << "Catch an unexpected exception: " << e.what() << std::endl;
     }
     return 0;
 }
@@ -245,6 +501,8 @@ target_link_libraries(demo PUBLIC core vpc_v2)
     * [2.2 使用临时 AK 和 SK](#22-使用临时-ak-和-sk-top)
 * [3. 客户端初始化](#3-客户端初始化-top)
     * [3.1 指定云服务 Endpoint 方式](#31-指定云服务-endpoint-方式-top)
+    * [3.2 指定Region 方式（推荐)](#32-指定-region-方式-推荐-top)
+    * [3.3 指定 UserAgent 方式](#33-指定-UserAgent-方式-top)
 * [4. 发送请求并查看响应](#4-发送请求并查看响应-top)
     * [4.1 异常处理](#41-异常处理-top)
 * [5. 异步客户端使用](#5-异步客户端使用-top)
@@ -436,14 +694,36 @@ auto client = DevStarClient::newBuilder()
 | 指定云服务 Endpoint 方式 | 只要接口已在当前环境发布就可以成功调用                       | 需要用户自行查找并填写 projectId 和 endpoint |
 | 指定 Region 方式         | 无需指定 projectId 和 endpoint，按照要求配置即可自动获取该值并回填 | 支持的服务和 region 有限制                   |
 
+#### 3.3 指定 UserAgent 方式 [:top:](#用户手册-top)
+
+从**v3.1.187**版本起，默认会在请求头User-Agent中附加额外信息，用于识别客户端调用服务时所使用的SDK语言、客户端库版本以及平台信息等。
+User-Agent包含C++版本、操作系统和时区语言信息，同时会生成一个随机标识符追加到User-Agent信息中。随机标识符会存储在用户主目录下，linux为 `~/.huaweicloud/application_id`
+，windows为`C:\Users\USER_NAME\.huaweicloud\application_id`。
+
+上述信息将用于保护您及您的用户的华为云账号安全。
+
+您可以通过自定义User-Agent的方式关闭上述行为，自定义User-Agent信息建议长度不超过50个字符，仅可包含ASCII可打印字符：
+
+``` cpp
+// Append custom User-Agent information to replace the default
+HttpConfig httpConfig = HttpConfig();
+httpConfig.setUserAgent("custom user agent...");
+ 
+std::unique_ptr<Vpc::V2::VpcClient> vpcApi_v2 = Vpc::V2::VpcClient::newBuilder()
+    .withCredentials(basicCredentials)
+    .withHttpConfig(httpConfig)
+    .withEndPoint(endpoint)
+    .build();
+```
+
 ### 4. 发送请求并查看响应 [:top:](#用户手册-top)
 
 ``` cpp
 // 初始化请求，以调用接口 listVpcs 为例
 Vpc::V2::Model::ListVpcsRequest listRequest;
-std::shared_ptr<Vpc::V2::Model::ListVpcsResponse> listRes = vpcApi->listVpcs(listRequest);
+std::shared_ptr<Vpc::V2::Model::ListVpcsResponse> listRes = vpcApi_v2->listVpcs(listRequest);
 std::string responseBody = listRes->getHttpBody();
-std::cout << stringValue << std::endl;
+std::cout << responseBody << std::endl;
 ```
 
 #### 4.1 异常处理 [:top:](#用户手册-top)
@@ -461,14 +741,14 @@ std::cout << stringValue << std::endl;
 // 异常处理
 try {
     std::shared_ptr<Vpc::V2::Model::ListVpcsResponse> listRes = 
-        vpcApi->listVpcs(listRequest);
+        vpcApi_v2->listVpcs(listRequest);
     std::string responseBody = listRes->getHttpBody();
-    std::cout << stringValue << std::endl;
+    std::cout << responseBody << std::endl;
 } catch (HostUnreachableException& e) {
     std::cout << e.what() << std::endl;
 } catch (SslHandShakeException& e) {
     std::cout << e.what() << std::endl;
-} catch (RetryQutageException& e) {
+} catch (RetryOutageException& e) {
     std::cout << e.what() << std::endl;
 } catch (CallTimeoutException& e) {
     std::cout << e.what() << std::endl;
@@ -486,7 +766,7 @@ try {
 // 采用c++ std::async接口实现，以listVpcs接口为例
 #include <future>
 auto future = std::async(std::launch::async,
-                        &Vpc::V2::VpcClient::listVpcs, vpcApi, listRequest);
+                        &Vpc::V2::VpcClient::listVpcs, vpcApi_v2.get(), listRequest);
 auto listResponse = future.get();
 ```
 
@@ -550,7 +830,7 @@ endif()
 - 使用多个服务
 
 ``` cmake
-# USE MULTIPLE SERVICES(EXAMPLE: USE VPC ECS AND EIP)
+# USE MULTIPLE SERVICES(EXAMPLE: vpc ecs eip)
 add_subdirectory(core)
 add_subdirectory(vpc/src/v2)
 add_subdirectory(eip/src/v2)
@@ -560,5 +840,71 @@ add_subdirectory(ecs/src/v2)
 ``` cmake
 # SET ENABLE_BSON IS ON
 option(ENABLE_BSON "Enable bson library" ON)
+
+```
+
+### 8.特殊说明
+- 如果使用cce 服务的listAutopilotJobs、getAutopilotOneJob、deleteAutopilotJob 的3个特殊api, 需要参考以下示例代码进行调用。
+和其他cce 的api 相比，有以下两处改动
+1）在引用对应sdk 的client时需要引用 CceSpecClient.h头文件(其他api 是使用CceClient.h)
+2）调用api 时需要CceSpecClient::newBuilder()方法来创建Client(其他api 是使用CceClient::newBuilder()方法)
+
+``` cpp
+#include <cstdlib>
+#include <iostream>
+#include <string>
+#include <memory>
+#include <huaweicloud/core/exception/Exceptions.h>
+#include <huaweicloud/core/Client.h>
+// include 头文件时需要引用CceSpecClient.h
+#include <huaweicloud/cce/v3/CceSpecClient.h>
+
+using namespace HuaweiCloud::Sdk::Cce::V3;
+using namespace HuaweiCloud::Sdk::Cce::V3::Model;
+using namespace HuaweiCloud::Sdk::Core;
+using namespace HuaweiCloud::Sdk::Core::Exception;
+using namespace std;
+
+int main() {
+    string ak = getenv("CLOUD_SDK_AK");
+    string sk = getenv("CLOUD_SDK_SK");
+
+    auto auth = std::make_unique<BasicCredentials>();
+    auth->withAk(ak)
+        .withSk(sk);
+    HttpConfig httpConfig = HttpConfig();
+    // 调用api需要使用CceSpecClient
+    auto client = CceSpecClient::newBuilder()
+            .withCredentials(std::unique_ptr<Credentials>(auth.release()))
+            .withHttpConfig(httpConfig)
+            .withEndPoint(endpoint)
+            .build();
+
+    DeleteAutopilotJobRequest request;
+    request.setJobId("f55daac6-0411-11f1-852c-0255ac101783");
+
+    std::cout << "-----begin execute request-------" << std::endl;
+    try {
+        auto reponse = client->deleteAutopilotJob(request);
+        std::cout << reponse->getHttpBody() << std::endl;
+    } catch (HostUnreachableException& e) {
+        std::cout << "host unreachable:" << e.what() << std::endl;
+    } catch (SslHandShakeException& e) {
+        std::cout << "ssl handshake error:" << e.what() << std::endl;
+    } catch (RetryOutageException& e) {
+        std::cout << "retryoutage error:" << e.what() << std::endl;
+    } catch (CallTimeoutException& e) {
+        std::cout << "call timeout:" <<  e.what() << std::endl;
+    } catch (ServiceResponseException& e) {
+        std::cout << "http status code:" << e.getStatusCode() << std::endl;
+        std::cout << "error code:" << e.getErrorCode() << std::endl;
+        std::cout << "error msg:" << e.getErrorMsg() << std::endl;
+        std::cout << "RequestId:" << e.getRequestId() << std::endl;
+    } catch (exception& e) {
+        std:cout << "unknown exception:" << e.what() << std::endl;
+    }
+    std::cout << "------request finished--------" << std::endl;
+    return 0;
+}
 
 ```

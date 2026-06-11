@@ -12,12 +12,12 @@ namespace Model {
 
 ShowClusterSupportConfigurationRequest::ShowClusterSupportConfigurationRequest()
 {
-    clusterId_ = "";
-    clusterIdIsSet_ = false;
     clusterType_ = "";
     clusterTypeIsSet_ = false;
     clusterVersion_ = "";
     clusterVersionIsSet_ = false;
+    clusterID_ = "";
+    clusterIDIsSet_ = false;
     networkMode_ = "";
     networkModeIsSet_ = false;
 }
@@ -32,17 +32,17 @@ web::json::value ShowClusterSupportConfigurationRequest::toJson() const
 {
     web::json::value val = web::json::value::object();
 
-    if(clusterIdIsSet_) {
-        val[utility::conversions::to_string_t("cluster_id")] = ModelBase::toJson(clusterId_);
-    }
     if(clusterTypeIsSet_) {
-        val[utility::conversions::to_string_t("cluster_type")] = ModelBase::toJson(clusterType_);
+        val[utility::conversions::to_string_t("clusterType")] = ModelBase::toJson(clusterType_);
     }
     if(clusterVersionIsSet_) {
-        val[utility::conversions::to_string_t("cluster_version")] = ModelBase::toJson(clusterVersion_);
+        val[utility::conversions::to_string_t("clusterVersion")] = ModelBase::toJson(clusterVersion_);
+    }
+    if(clusterIDIsSet_) {
+        val[utility::conversions::to_string_t("clusterID")] = ModelBase::toJson(clusterID_);
     }
     if(networkModeIsSet_) {
-        val[utility::conversions::to_string_t("network_mode")] = ModelBase::toJson(networkMode_);
+        val[utility::conversions::to_string_t("networkMode")] = ModelBase::toJson(networkMode_);
     }
 
     return val;
@@ -51,17 +51,8 @@ bool ShowClusterSupportConfigurationRequest::fromJson(const web::json::value& va
 {
     bool ok = true;
     
-    if(val.has_field(utility::conversions::to_string_t("cluster_id"))) {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("cluster_id"));
-        if(!fieldValue.is_null())
-        {
-            std::string refVal;
-            ok &= ModelBase::fromJson(fieldValue, refVal);
-            setClusterId(refVal);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("cluster_type"))) {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("cluster_type"));
+    if(val.has_field(utility::conversions::to_string_t("clusterType"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("clusterType"));
         if(!fieldValue.is_null())
         {
             std::string refVal;
@@ -69,8 +60,8 @@ bool ShowClusterSupportConfigurationRequest::fromJson(const web::json::value& va
             setClusterType(refVal);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("cluster_version"))) {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("cluster_version"));
+    if(val.has_field(utility::conversions::to_string_t("clusterVersion"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("clusterVersion"));
         if(!fieldValue.is_null())
         {
             std::string refVal;
@@ -78,8 +69,17 @@ bool ShowClusterSupportConfigurationRequest::fromJson(const web::json::value& va
             setClusterVersion(refVal);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("network_mode"))) {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("network_mode"));
+    if(val.has_field(utility::conversions::to_string_t("clusterID"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("clusterID"));
+        if(!fieldValue.is_null())
+        {
+            std::string refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setClusterID(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("networkMode"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("networkMode"));
         if(!fieldValue.is_null())
         {
             std::string refVal;
@@ -90,27 +90,6 @@ bool ShowClusterSupportConfigurationRequest::fromJson(const web::json::value& va
     return ok;
 }
 
-
-std::string ShowClusterSupportConfigurationRequest::getClusterId() const
-{
-    return clusterId_;
-}
-
-void ShowClusterSupportConfigurationRequest::setClusterId(const std::string& value)
-{
-    clusterId_ = value;
-    clusterIdIsSet_ = true;
-}
-
-bool ShowClusterSupportConfigurationRequest::clusterIdIsSet() const
-{
-    return clusterIdIsSet_;
-}
-
-void ShowClusterSupportConfigurationRequest::unsetclusterId()
-{
-    clusterIdIsSet_ = false;
-}
 
 std::string ShowClusterSupportConfigurationRequest::getClusterType() const
 {
@@ -152,6 +131,27 @@ bool ShowClusterSupportConfigurationRequest::clusterVersionIsSet() const
 void ShowClusterSupportConfigurationRequest::unsetclusterVersion()
 {
     clusterVersionIsSet_ = false;
+}
+
+std::string ShowClusterSupportConfigurationRequest::getClusterID() const
+{
+    return clusterID_;
+}
+
+void ShowClusterSupportConfigurationRequest::setClusterID(const std::string& value)
+{
+    clusterID_ = value;
+    clusterIDIsSet_ = true;
+}
+
+bool ShowClusterSupportConfigurationRequest::clusterIDIsSet() const
+{
+    return clusterIDIsSet_;
+}
+
+void ShowClusterSupportConfigurationRequest::unsetclusterID()
+{
+    clusterIDIsSet_ = false;
 }
 
 std::string ShowClusterSupportConfigurationRequest::getNetworkMode() const

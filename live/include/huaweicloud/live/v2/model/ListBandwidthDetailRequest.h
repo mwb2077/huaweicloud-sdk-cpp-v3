@@ -40,15 +40,6 @@ public:
     /// ListBandwidthDetailRequest members
 
     /// <summary>
-    /// 项目ID，获取方法请参考[获取项目ID](https://support.huaweicloud.com/api-live/live_03_0023.html)。 
-    /// </summary>
-
-    std::string getProjectId() const;
-    bool projectIdIsSet() const;
-    void unsetprojectId();
-    void setProjectId(const std::string& value);
-
-    /// <summary>
     /// 播放域名列表，最多支持查询100个域名，多个域名以逗号分隔。  如果不传入域名，则查询租户下所有播放域名的带宽数据。 
     /// </summary>
 
@@ -147,10 +138,17 @@ public:
     void unsetserviceType();
     void setServiceType(const std::string& value);
 
+    /// <summary>
+    /// ip类型，取值如下：  - v4 ：ipv4协议  - v6 ：ipv6协议   不填写默认查询所有ip类型的数据   该参数只对2026-01-30后的数据生效。 
+    /// </summary>
+
+    std::string getIpType() const;
+    bool ipTypeIsSet() const;
+    void unsetipType();
+    void setIpType(const std::string& value);
+
 
 protected:
-    std::string projectId_;
-    bool projectIdIsSet_;
     std::vector<std::string> playDomains_;
     bool playDomainsIsSet_;
     std::string app_;
@@ -173,6 +171,8 @@ protected:
     bool endTimeIsSet_;
     std::string serviceType_;
     bool serviceTypeIsSet_;
+    std::string ipType_;
+    bool ipTypeIsSet_;
 
 #ifdef RTTR_FLAG
     RTTR_ENABLE()

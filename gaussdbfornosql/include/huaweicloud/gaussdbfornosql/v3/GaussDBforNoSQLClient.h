@@ -98,6 +98,8 @@
 #include <huaweicloud/gaussdbfornosql/v3/model/ExpandInstanceNodeResponse.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/ListAvailableFlavorInfosRequest.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/ListAvailableFlavorInfosResponse.h>
+#include <huaweicloud/gaussdbfornosql/v3/model/ListBackupsRequest.h>
+#include <huaweicloud/gaussdbfornosql/v3/model/ListBackupsResponse.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/ListCassandraSlowLogsRequest.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/ListCassandraSlowLogsRequestBody.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/ListCassandraSlowLogsResponse.h>
@@ -174,6 +176,11 @@
 #include <huaweicloud/gaussdbfornosql/v3/model/ListRestoreTimeResponse.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/ListSlowLogsRequest.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/ListSlowLogsResponse.h>
+#include <huaweicloud/gaussdbfornosql/v3/model/ListSslCertDownloadAddressesRequest.h>
+#include <huaweicloud/gaussdbfornosql/v3/model/ListSslCertDownloadAddressesResponse.h>
+#include <huaweicloud/gaussdbfornosql/v3/model/ModifyAutoNodeExpansionPolicyRequest.h>
+#include <huaweicloud/gaussdbfornosql/v3/model/ModifyAutoNodeExpansionPolicyRequestBody.h>
+#include <huaweicloud/gaussdbfornosql/v3/model/ModifyAutoNodeExpansionPolicyResponse.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/ModifyDbUserPrivilegeRequest.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/ModifyDbUserPrivilegeResponse.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/ModifyEpsQuotasRequest.h>
@@ -225,6 +232,9 @@
 #include <huaweicloud/gaussdbfornosql/v3/model/RestartInstanceResponse.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/RestoreExistingInstanceRequest.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/RestoreExistingInstanceResponse.h>
+#include <huaweicloud/gaussdbfornosql/v3/model/RestoreRedisDataRequest.h>
+#include <huaweicloud/gaussdbfornosql/v3/model/RestoreRedisDataRequestBody.h>
+#include <huaweicloud/gaussdbfornosql/v3/model/RestoreRedisDataResponse.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/RestoreRedisPitrRequest.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/RestoreRedisPitrRequestBody.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/RestoreRedisPitrResponse.h>
@@ -262,6 +272,8 @@
 #include <huaweicloud/gaussdbfornosql/v3/model/ShowApplyHistoryResponse.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/ShowAutoEnlargePolicyRequest.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/ShowAutoEnlargePolicyResponse.h>
+#include <huaweicloud/gaussdbfornosql/v3/model/ShowAutoNodeExpansionPolicyRequest.h>
+#include <huaweicloud/gaussdbfornosql/v3/model/ShowAutoNodeExpansionPolicyResponse.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/ShowBackupPoliciesRequest.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/ShowBackupPoliciesResponse.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/ShowBackupPolicyRequest.h>
@@ -356,6 +368,9 @@
 #include <huaweicloud/gaussdbfornosql/v3/model/UpdateInstanceConfigurationsRequest.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/UpdateInstanceConfigurationsRequestBody.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/UpdateInstanceConfigurationsResponse.h>
+#include <huaweicloud/gaussdbfornosql/v3/model/UpdateInstanceLBRequestBody.h>
+#include <huaweicloud/gaussdbfornosql/v3/model/UpdateInstanceLbRequest.h>
+#include <huaweicloud/gaussdbfornosql/v3/model/UpdateInstanceLbResponse.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/UpdateInstanceNameRequest.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/UpdateInstanceNameRequestBody.h>
 #include <huaweicloud/gaussdbfornosql/v3/model/UpdateInstanceNameResponse.h>
@@ -672,6 +687,14 @@ public:
     std::shared_ptr<ListAvailableFlavorInfosResponse> listAvailableFlavorInfos(
         ListAvailableFlavorInfosRequest &request
     );
+    // 查询备份列表（推荐）
+    //
+    // 根据指定条件查询备份列表。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ListBackupsResponse> listBackups(
+        ListBackupsRequest &request
+    );
     // 查询GeminiDB(for Cassandra)数据库慢日志
     //
     // 查询GeminiDB(for Cassandra)数据库慢日志信息，支持日志关键字搜索。
@@ -952,6 +975,22 @@ public:
     std::shared_ptr<ListSlowLogsResponse> listSlowLogs(
         ListSlowLogsRequest &request
     );
+    // 获取SSL证书下载地址
+    //
+    // 获取SSL证书下载地址。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ListSslCertDownloadAddressesResponse> listSslCertDownloadAddresses(
+        ListSslCertDownloadAddressesRequest &request
+    );
+    // 设置节点自动扩容策略
+    //
+    // 设置节点自动扩容策略。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ModifyAutoNodeExpansionPolicyResponse> modifyAutoNodeExpansionPolicy(
+        ModifyAutoNodeExpansionPolicyRequest &request
+    );
     // 修改Redis数据库帐号权限
     //
     // 修改Redis数据库帐号权限。
@@ -1082,6 +1121,14 @@ public:
     std::shared_ptr<RestoreExistingInstanceResponse> restoreExistingInstance(
         RestoreExistingInstanceRequest &request
     );
+    // 数据文件导入已有实例
+    //
+    // 数据导入已有实例。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<RestoreRedisDataResponse> restoreRedisData(
+        RestoreRedisDataRequest &request
+    );
     // 恢复当前Redis实例到指定时间点
     //
     // 恢复当前Redis实例到指定时间点。
@@ -1196,6 +1243,14 @@ public:
     std::shared_ptr<ShowAutoEnlargePolicyResponse> showAutoEnlargePolicy(
         ShowAutoEnlargePolicyRequest &request
     );
+    // 查询节点自动扩容策略
+    //
+    // 查询节点自动扩容策略。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ShowAutoNodeExpansionPolicyResponse> showAutoNodeExpansionPolicy(
+        ShowAutoNodeExpansionPolicyRequest &request
+    );
     // 查询自动备份策略
     //
     // 查询自动备份策略。
@@ -1284,9 +1339,9 @@ public:
     std::shared_ptr<ShowIpNumRequirementResponse> showIpNumRequirement(
         ShowIpNumRequirementRequest &request
     );
-    // 查询实例参数的修改历史
+    // 查询参数组修改历史。
     //
-    // 查询实例参数的修改历史
+    // 查询指定实例的参数组修改历史记录，支持分页查询，支持参数搜索。
     // 
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<ShowModifyHistoryResponse> showModifyHistory(
@@ -1515,6 +1570,14 @@ public:
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<UpdateInstanceConfigurationsResponse> updateInstanceConfigurations(
         UpdateInstanceConfigurationsRequest &request
+    );
+    // 修改负载均衡地址
+    //
+    // 修改负载均衡地址。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<UpdateInstanceLbResponse> updateInstanceLb(
+        UpdateInstanceLbRequest &request
     );
     // 修改实例名称
     //

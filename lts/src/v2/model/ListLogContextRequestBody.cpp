@@ -20,6 +20,8 @@ ListLogContextRequestBody::ListLogContextRequestBody()
     backwardsSizeIsSet_ = false;
     forwardsSize_ = 0;
     forwardsSizeIsSet_ = false;
+    scrollId_ = "";
+    scrollIdIsSet_ = false;
 }
 
 ListLogContextRequestBody::~ListLogContextRequestBody() = default;
@@ -39,10 +41,13 @@ web::json::value ListLogContextRequestBody::toJson() const
         val[utility::conversions::to_string_t("__time__")] = ModelBase::toJson(time_);
     }
     if(backwardsSizeIsSet_) {
-        val[utility::conversions::to_string_t("backwardsSize")] = ModelBase::toJson(backwardsSize_);
+        val[utility::conversions::to_string_t("backwards_size")] = ModelBase::toJson(backwardsSize_);
     }
     if(forwardsSizeIsSet_) {
-        val[utility::conversions::to_string_t("forwardsSize")] = ModelBase::toJson(forwardsSize_);
+        val[utility::conversions::to_string_t("forwards_size")] = ModelBase::toJson(forwardsSize_);
+    }
+    if(scrollIdIsSet_) {
+        val[utility::conversions::to_string_t("scroll_id")] = ModelBase::toJson(scrollId_);
     }
 
     return val;
@@ -69,8 +74,8 @@ bool ListLogContextRequestBody::fromJson(const web::json::value& val)
             setTime(refVal);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("backwardsSize"))) {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("backwardsSize"));
+    if(val.has_field(utility::conversions::to_string_t("backwards_size"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("backwards_size"));
         if(!fieldValue.is_null())
         {
             int32_t refVal;
@@ -78,13 +83,22 @@ bool ListLogContextRequestBody::fromJson(const web::json::value& val)
             setBackwardsSize(refVal);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("forwardsSize"))) {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("forwardsSize"));
+    if(val.has_field(utility::conversions::to_string_t("forwards_size"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("forwards_size"));
         if(!fieldValue.is_null())
         {
             int32_t refVal;
             ok &= ModelBase::fromJson(fieldValue, refVal);
             setForwardsSize(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("scroll_id"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("scroll_id"));
+        if(!fieldValue.is_null())
+        {
+            std::string refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setScrollId(refVal);
         }
     }
     return ok;
@@ -173,6 +187,27 @@ bool ListLogContextRequestBody::forwardsSizeIsSet() const
 void ListLogContextRequestBody::unsetforwardsSize()
 {
     forwardsSizeIsSet_ = false;
+}
+
+std::string ListLogContextRequestBody::getScrollId() const
+{
+    return scrollId_;
+}
+
+void ListLogContextRequestBody::setScrollId(const std::string& value)
+{
+    scrollId_ = value;
+    scrollIdIsSet_ = true;
+}
+
+bool ListLogContextRequestBody::scrollIdIsSet() const
+{
+    return scrollIdIsSet_;
+}
+
+void ListLogContextRequestBody::unsetscrollId()
+{
+    scrollIdIsSet_ = false;
 }
 
 }

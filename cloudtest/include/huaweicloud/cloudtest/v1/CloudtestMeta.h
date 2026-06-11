@@ -16,12 +16,14 @@ public:
     static HttpRequestDef genRequestDefForAddCaseResultFour();
     static HttpRequestDef genRequestDefForAddTestCaseComment();
     static HttpRequestDef genRequestDefForAddTestCaseResultLog();
+    static HttpRequestDef genRequestDefForBatchAddCaseResultInTask();
     static HttpRequestDef genRequestDefForBatchAddRelationsByOneCase();
     static HttpRequestDef genRequestDefForBatchAddResourcesForIterator();
     static HttpRequestDef genRequestDefForBatchDeleteTestCase();
     static HttpRequestDef genRequestDefForBatchDeleteTestCases();
     static HttpRequestDef genRequestDefForBatchDeleteTestReport();
     static HttpRequestDef genRequestDefForBatchRemoveTestCasesFromIterator();
+    static HttpRequestDef genRequestDefForBatchUpdateTestCasesInDiffVersion();
     static HttpRequestDef genRequestDefForBatchUpdateVersionTestCases();
     static HttpRequestDef genRequestDefForCheckPermission();
     static HttpRequestDef genRequestDefForCreateIterator();
@@ -43,6 +45,7 @@ public:
     static HttpRequestDef genRequestDefForDeleteService();
     static HttpRequestDef genRequestDefForDeleteTestCaseComment();
     static HttpRequestDef genRequestDefForDeleteTestReportCustomDetailByUri();
+    static HttpRequestDef genRequestDefForDownloadStepImageNew();
     static HttpRequestDef genRequestDefForListAlarmStatisticsUsing();
     static HttpRequestDef genRequestDefForListAlertGroupsByCondition();
     static HttpRequestDef genRequestDefForListAlertTemplates();

@@ -12,6 +12,8 @@ namespace Model {
 
 DashPackageItem::DashPackageItem()
 {
+    id_ = "";
+    idIsSet_ = false;
     url_ = "";
     urlIsSet_ = false;
     streamSelectionIsSet_ = false;
@@ -31,6 +33,22 @@ DashPackageItem::DashPackageItem()
     minimumUpdatePeriodIsSet_ = false;
     minBufferTime_ = 0;
     minBufferTimeIsSet_ = false;
+    enableAccess_ = false;
+    enableAccessIsSet_ = false;
+    allowAllIpAccess_ = false;
+    allowAllIpAccessIsSet_ = false;
+    ipWhitelist_ = "";
+    ipWhitelistIsSet_ = false;
+    cdnIdentifierHeaderIsSet_ = false;
+    originDomainMaster_ = "";
+    originDomainMasterIsSet_ = false;
+    originDomainSlave_ = "";
+    originDomainSlaveIsSet_ = false;
+    manifestName_ = "";
+    manifestNameIsSet_ = false;
+    slaveUrl_ = "";
+    slaveUrlIsSet_ = false;
+    manifestSelectionIsSet_ = false;
 }
 
 DashPackageItem::~DashPackageItem() = default;
@@ -43,6 +61,9 @@ web::json::value DashPackageItem::toJson() const
 {
     web::json::value val = web::json::value::object();
 
+    if(idIsSet_) {
+        val[utility::conversions::to_string_t("id")] = ModelBase::toJson(id_);
+    }
     if(urlIsSet_) {
         val[utility::conversions::to_string_t("url")] = ModelBase::toJson(url_);
     }
@@ -79,6 +100,33 @@ web::json::value DashPackageItem::toJson() const
     if(minBufferTimeIsSet_) {
         val[utility::conversions::to_string_t("min_buffer_time")] = ModelBase::toJson(minBufferTime_);
     }
+    if(enableAccessIsSet_) {
+        val[utility::conversions::to_string_t("enable_access")] = ModelBase::toJson(enableAccess_);
+    }
+    if(allowAllIpAccessIsSet_) {
+        val[utility::conversions::to_string_t("allow_all_ip_access")] = ModelBase::toJson(allowAllIpAccess_);
+    }
+    if(ipWhitelistIsSet_) {
+        val[utility::conversions::to_string_t("ip_whitelist")] = ModelBase::toJson(ipWhitelist_);
+    }
+    if(cdnIdentifierHeaderIsSet_) {
+        val[utility::conversions::to_string_t("cdn_identifier_header")] = ModelBase::toJson(cdnIdentifierHeader_);
+    }
+    if(originDomainMasterIsSet_) {
+        val[utility::conversions::to_string_t("origin_domain_master")] = ModelBase::toJson(originDomainMaster_);
+    }
+    if(originDomainSlaveIsSet_) {
+        val[utility::conversions::to_string_t("origin_domain_slave")] = ModelBase::toJson(originDomainSlave_);
+    }
+    if(manifestNameIsSet_) {
+        val[utility::conversions::to_string_t("manifest_name")] = ModelBase::toJson(manifestName_);
+    }
+    if(slaveUrlIsSet_) {
+        val[utility::conversions::to_string_t("slave_url")] = ModelBase::toJson(slaveUrl_);
+    }
+    if(manifestSelectionIsSet_) {
+        val[utility::conversions::to_string_t("manifest_selection")] = ModelBase::toJson(manifestSelection_);
+    }
 
     return val;
 }
@@ -86,6 +134,15 @@ bool DashPackageItem::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
+    if(val.has_field(utility::conversions::to_string_t("id"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("id"));
+        if(!fieldValue.is_null())
+        {
+            std::string refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setId(refVal);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t("url"))) {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("url"));
         if(!fieldValue.is_null())
@@ -194,9 +251,111 @@ bool DashPackageItem::fromJson(const web::json::value& val)
             setMinBufferTime(refVal);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("enable_access"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("enable_access"));
+        if(!fieldValue.is_null())
+        {
+            bool refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setEnableAccess(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("allow_all_ip_access"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("allow_all_ip_access"));
+        if(!fieldValue.is_null())
+        {
+            bool refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setAllowAllIpAccess(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("ip_whitelist"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("ip_whitelist"));
+        if(!fieldValue.is_null())
+        {
+            std::string refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setIpWhitelist(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("cdn_identifier_header"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("cdn_identifier_header"));
+        if(!fieldValue.is_null())
+        {
+            HttpHeader refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setCdnIdentifierHeader(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("origin_domain_master"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("origin_domain_master"));
+        if(!fieldValue.is_null())
+        {
+            std::string refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setOriginDomainMaster(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("origin_domain_slave"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("origin_domain_slave"));
+        if(!fieldValue.is_null())
+        {
+            std::string refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setOriginDomainSlave(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("manifest_name"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("manifest_name"));
+        if(!fieldValue.is_null())
+        {
+            std::string refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setManifestName(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("slave_url"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("slave_url"));
+        if(!fieldValue.is_null())
+        {
+            std::string refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setSlaveUrl(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("manifest_selection"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("manifest_selection"));
+        if(!fieldValue.is_null())
+        {
+            ManifestSelection refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setManifestSelection(refVal);
+        }
+    }
     return ok;
 }
 
+
+std::string DashPackageItem::getId() const
+{
+    return id_;
+}
+
+void DashPackageItem::setId(const std::string& value)
+{
+    id_ = value;
+    idIsSet_ = true;
+}
+
+bool DashPackageItem::idIsSet() const
+{
+    return idIsSet_;
+}
+
+void DashPackageItem::unsetid()
+{
+    idIsSet_ = false;
+}
 
 std::string DashPackageItem::getUrl() const
 {
@@ -448,6 +607,195 @@ bool DashPackageItem::minBufferTimeIsSet() const
 void DashPackageItem::unsetminBufferTime()
 {
     minBufferTimeIsSet_ = false;
+}
+
+bool DashPackageItem::isEnableAccess() const
+{
+    return enableAccess_;
+}
+
+void DashPackageItem::setEnableAccess(bool value)
+{
+    enableAccess_ = value;
+    enableAccessIsSet_ = true;
+}
+
+bool DashPackageItem::enableAccessIsSet() const
+{
+    return enableAccessIsSet_;
+}
+
+void DashPackageItem::unsetenableAccess()
+{
+    enableAccessIsSet_ = false;
+}
+
+bool DashPackageItem::isAllowAllIpAccess() const
+{
+    return allowAllIpAccess_;
+}
+
+void DashPackageItem::setAllowAllIpAccess(bool value)
+{
+    allowAllIpAccess_ = value;
+    allowAllIpAccessIsSet_ = true;
+}
+
+bool DashPackageItem::allowAllIpAccessIsSet() const
+{
+    return allowAllIpAccessIsSet_;
+}
+
+void DashPackageItem::unsetallowAllIpAccess()
+{
+    allowAllIpAccessIsSet_ = false;
+}
+
+std::string DashPackageItem::getIpWhitelist() const
+{
+    return ipWhitelist_;
+}
+
+void DashPackageItem::setIpWhitelist(const std::string& value)
+{
+    ipWhitelist_ = value;
+    ipWhitelistIsSet_ = true;
+}
+
+bool DashPackageItem::ipWhitelistIsSet() const
+{
+    return ipWhitelistIsSet_;
+}
+
+void DashPackageItem::unsetipWhitelist()
+{
+    ipWhitelistIsSet_ = false;
+}
+
+HttpHeader DashPackageItem::getCdnIdentifierHeader() const
+{
+    return cdnIdentifierHeader_;
+}
+
+void DashPackageItem::setCdnIdentifierHeader(const HttpHeader& value)
+{
+    cdnIdentifierHeader_ = value;
+    cdnIdentifierHeaderIsSet_ = true;
+}
+
+bool DashPackageItem::cdnIdentifierHeaderIsSet() const
+{
+    return cdnIdentifierHeaderIsSet_;
+}
+
+void DashPackageItem::unsetcdnIdentifierHeader()
+{
+    cdnIdentifierHeaderIsSet_ = false;
+}
+
+std::string DashPackageItem::getOriginDomainMaster() const
+{
+    return originDomainMaster_;
+}
+
+void DashPackageItem::setOriginDomainMaster(const std::string& value)
+{
+    originDomainMaster_ = value;
+    originDomainMasterIsSet_ = true;
+}
+
+bool DashPackageItem::originDomainMasterIsSet() const
+{
+    return originDomainMasterIsSet_;
+}
+
+void DashPackageItem::unsetoriginDomainMaster()
+{
+    originDomainMasterIsSet_ = false;
+}
+
+std::string DashPackageItem::getOriginDomainSlave() const
+{
+    return originDomainSlave_;
+}
+
+void DashPackageItem::setOriginDomainSlave(const std::string& value)
+{
+    originDomainSlave_ = value;
+    originDomainSlaveIsSet_ = true;
+}
+
+bool DashPackageItem::originDomainSlaveIsSet() const
+{
+    return originDomainSlaveIsSet_;
+}
+
+void DashPackageItem::unsetoriginDomainSlave()
+{
+    originDomainSlaveIsSet_ = false;
+}
+
+std::string DashPackageItem::getManifestName() const
+{
+    return manifestName_;
+}
+
+void DashPackageItem::setManifestName(const std::string& value)
+{
+    manifestName_ = value;
+    manifestNameIsSet_ = true;
+}
+
+bool DashPackageItem::manifestNameIsSet() const
+{
+    return manifestNameIsSet_;
+}
+
+void DashPackageItem::unsetmanifestName()
+{
+    manifestNameIsSet_ = false;
+}
+
+std::string DashPackageItem::getSlaveUrl() const
+{
+    return slaveUrl_;
+}
+
+void DashPackageItem::setSlaveUrl(const std::string& value)
+{
+    slaveUrl_ = value;
+    slaveUrlIsSet_ = true;
+}
+
+bool DashPackageItem::slaveUrlIsSet() const
+{
+    return slaveUrlIsSet_;
+}
+
+void DashPackageItem::unsetslaveUrl()
+{
+    slaveUrlIsSet_ = false;
+}
+
+ManifestSelection DashPackageItem::getManifestSelection() const
+{
+    return manifestSelection_;
+}
+
+void DashPackageItem::setManifestSelection(const ManifestSelection& value)
+{
+    manifestSelection_ = value;
+    manifestSelectionIsSet_ = true;
+}
+
+bool DashPackageItem::manifestSelectionIsSet() const
+{
+    return manifestSelectionIsSet_;
+}
+
+void DashPackageItem::unsetmanifestSelection()
+{
+    manifestSelectionIsSet_ = false;
 }
 
 }

@@ -12,8 +12,6 @@ namespace Model {
 
 ListBandwidthDetailRequest::ListBandwidthDetailRequest()
 {
-    projectId_ = "";
-    projectIdIsSet_ = false;
     playDomainsIsSet_ = false;
     app_ = "";
     appIsSet_ = false;
@@ -32,6 +30,8 @@ ListBandwidthDetailRequest::ListBandwidthDetailRequest()
     endTimeIsSet_ = false;
     serviceType_ = "";
     serviceTypeIsSet_ = false;
+    ipType_ = "";
+    ipTypeIsSet_ = false;
 }
 
 ListBandwidthDetailRequest::~ListBandwidthDetailRequest() = default;
@@ -44,9 +44,6 @@ web::json::value ListBandwidthDetailRequest::toJson() const
 {
     web::json::value val = web::json::value::object();
 
-    if(projectIdIsSet_) {
-        val[utility::conversions::to_string_t("project_id")] = ModelBase::toJson(projectId_);
-    }
     if(playDomainsIsSet_) {
         val[utility::conversions::to_string_t("play_domains")] = ModelBase::toJson(playDomains_);
     }
@@ -80,6 +77,9 @@ web::json::value ListBandwidthDetailRequest::toJson() const
     if(serviceTypeIsSet_) {
         val[utility::conversions::to_string_t("service_type")] = ModelBase::toJson(serviceType_);
     }
+    if(ipTypeIsSet_) {
+        val[utility::conversions::to_string_t("ip_type")] = ModelBase::toJson(ipType_);
+    }
 
     return val;
 }
@@ -87,15 +87,6 @@ bool ListBandwidthDetailRequest::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
-    if(val.has_field(utility::conversions::to_string_t("project_id"))) {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("project_id"));
-        if(!fieldValue.is_null())
-        {
-            std::string refVal;
-            ok &= ModelBase::fromJson(fieldValue, refVal);
-            setProjectId(refVal);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t("play_domains"))) {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("play_domains"));
         if(!fieldValue.is_null())
@@ -195,30 +186,18 @@ bool ListBandwidthDetailRequest::fromJson(const web::json::value& val)
             setServiceType(refVal);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("ip_type"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("ip_type"));
+        if(!fieldValue.is_null())
+        {
+            std::string refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setIpType(refVal);
+        }
+    }
     return ok;
 }
 
-
-std::string ListBandwidthDetailRequest::getProjectId() const
-{
-    return projectId_;
-}
-
-void ListBandwidthDetailRequest::setProjectId(const std::string& value)
-{
-    projectId_ = value;
-    projectIdIsSet_ = true;
-}
-
-bool ListBandwidthDetailRequest::projectIdIsSet() const
-{
-    return projectIdIsSet_;
-}
-
-void ListBandwidthDetailRequest::unsetprojectId()
-{
-    projectIdIsSet_ = false;
-}
 
 std::vector<std::string>& ListBandwidthDetailRequest::getPlayDomains()
 {
@@ -449,6 +428,27 @@ bool ListBandwidthDetailRequest::serviceTypeIsSet() const
 void ListBandwidthDetailRequest::unsetserviceType()
 {
     serviceTypeIsSet_ = false;
+}
+
+std::string ListBandwidthDetailRequest::getIpType() const
+{
+    return ipType_;
+}
+
+void ListBandwidthDetailRequest::setIpType(const std::string& value)
+{
+    ipType_ = value;
+    ipTypeIsSet_ = true;
+}
+
+bool ListBandwidthDetailRequest::ipTypeIsSet() const
+{
+    return ipTypeIsSet_;
+}
+
+void ListBandwidthDetailRequest::unsetipType()
+{
+    ipTypeIsSet_ = false;
 }
 
 }

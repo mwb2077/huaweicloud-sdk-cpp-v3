@@ -35,6 +35,15 @@ HttpRequestDef CloudtestMeta::genRequestDefForAddTestCaseResultLog() {
     return reqDefBuilder;
 }
 
+HttpRequestDef CloudtestMeta::genRequestDefForBatchAddCaseResultInTask() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef CloudtestMeta::genRequestDefForBatchAddRelationsByOneCase() {
     HttpRequestDef reqDefBuilder;
     FieldDef bodyParam;
@@ -84,6 +93,15 @@ HttpRequestDef CloudtestMeta::genRequestDefForBatchDeleteTestReport() {
 }
 
 HttpRequestDef CloudtestMeta::genRequestDefForBatchRemoveTestCasesFromIterator() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef CloudtestMeta::genRequestDefForBatchUpdateTestCasesInDiffVersion() {
     HttpRequestDef reqDefBuilder;
     FieldDef bodyParam;
     reqDefBuilder.withRequestField(bodyParam.
@@ -263,6 +281,11 @@ HttpRequestDef CloudtestMeta::genRequestDefForDeleteTestCaseComment() {
 }
 
 HttpRequestDef CloudtestMeta::genRequestDefForDeleteTestReportCustomDetailByUri() {
+    HttpRequestDef reqDefBuilder;
+    return reqDefBuilder;
+}
+
+HttpRequestDef CloudtestMeta::genRequestDefForDownloadStepImageNew() {
     HttpRequestDef reqDefBuilder;
     return reqDefBuilder;
 }

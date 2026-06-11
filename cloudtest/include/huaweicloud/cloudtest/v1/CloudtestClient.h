@@ -18,10 +18,13 @@
 #include <huaweicloud/cloudtest/v1/model/AddTestCaseResultLogResponse.h>
 #include <huaweicloud/cloudtest/v1/model/AlarmStatisticsQuery.h>
 #include <huaweicloud/cloudtest/v1/model/AlertStatisticsDto.h>
+#include <huaweicloud/cloudtest/v1/model/BatchAddCaseResultInTaskRequest.h>
+#include <huaweicloud/cloudtest/v1/model/BatchAddCaseResultInTaskResponse.h>
 #include <huaweicloud/cloudtest/v1/model/BatchAddRelationsByOneCaseRequest.h>
 #include <huaweicloud/cloudtest/v1/model/BatchAddRelationsByOneCaseResponse.h>
 #include <huaweicloud/cloudtest/v1/model/BatchAddResourcesForIteratorRequest.h>
 #include <huaweicloud/cloudtest/v1/model/BatchAddResourcesForIteratorResponse.h>
+#include <huaweicloud/cloudtest/v1/model/BatchAddTestCaseResultInTaskInfo.h>
 #include <huaweicloud/cloudtest/v1/model/BatchDeleteTestCaseRequest.h>
 #include <huaweicloud/cloudtest/v1/model/BatchDeleteTestCaseRequestBody.h>
 #include <huaweicloud/cloudtest/v1/model/BatchDeleteTestCaseResponse.h>
@@ -31,6 +34,8 @@
 #include <huaweicloud/cloudtest/v1/model/BatchDeleteTestReportResponse.h>
 #include <huaweicloud/cloudtest/v1/model/BatchRemoveTestCasesFromIteratorRequest.h>
 #include <huaweicloud/cloudtest/v1/model/BatchRemoveTestCasesFromIteratorResponse.h>
+#include <huaweicloud/cloudtest/v1/model/BatchUpdateTestCasesInDiffVersionRequest.h>
+#include <huaweicloud/cloudtest/v1/model/BatchUpdateTestCasesInDiffVersionResponse.h>
 #include <huaweicloud/cloudtest/v1/model/BatchUpdateVersionTestCasesRequest.h>
 #include <huaweicloud/cloudtest/v1/model/BatchUpdateVersionTestCasesResponse.h>
 #include <huaweicloud/cloudtest/v1/model/BranchVersionInfo.h>
@@ -90,6 +95,8 @@
 #include <huaweicloud/cloudtest/v1/model/DeleteTestCaseInfo.h>
 #include <huaweicloud/cloudtest/v1/model/DeleteTestReportCustomDetailByUriRequest.h>
 #include <huaweicloud/cloudtest/v1/model/DeleteTestReportCustomDetailByUriResponse.h>
+#include <huaweicloud/cloudtest/v1/model/DownloadStepImageNewRequest.h>
+#include <huaweicloud/cloudtest/v1/model/DownloadStepImageNewResponse.h>
 #include <huaweicloud/cloudtest/v1/model/EtlRequestBody.h>
 #include <huaweicloud/cloudtest/v1/model/ExecuteTaskInfo.h>
 #include <huaweicloud/cloudtest/v1/model/GenerateReportInfo.h>
@@ -494,6 +501,14 @@ public:
     std::shared_ptr<AddTestCaseResultLogResponse> addTestCaseResultLog(
         AddTestCaseResultLogRequest &request
     );
+    // 在任务下批量设置用例结果
+    //
+    // 在任务下批量设置用例结果
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<BatchAddCaseResultInTaskResponse> batchAddCaseResultInTask(
+        BatchAddCaseResultInTaskRequest &request
+    );
     // 添加需求/缺陷和多个用例关联关系
     //
     // 添加需求/缺陷和多个用例关联关系
@@ -541,6 +556,14 @@ public:
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<BatchRemoveTestCasesFromIteratorResponse> batchRemoveTestCasesFromIterator(
         BatchRemoveTestCasesFromIteratorRequest &request
+    );
+    // 在不同分支或者迭代下批量修改用例
+    //
+    // 在不同分支或者迭代下批量修改用例
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<BatchUpdateTestCasesInDiffVersionResponse> batchUpdateTestCasesInDiffVersion(
+        BatchUpdateTestCasesInDiffVersionRequest &request
     );
     // 批量更新用例属性
     //
@@ -709,6 +732,14 @@ public:
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<DeleteTestReportCustomDetailByUriResponse> deleteTestReportCustomDetailByUri(
         DeleteTestReportCustomDetailByUriRequest &request
+    );
+    // 下载图片
+    //
+    // 下载图片
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<DownloadStepImageNewResponse> downloadStepImageNew(
+        DownloadStepImageNewRequest &request
     );
     // 查询告警统计数据
     //

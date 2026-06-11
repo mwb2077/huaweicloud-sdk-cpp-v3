@@ -14,6 +14,10 @@ StartInfo::StartInfo()
 {
     jobId_ = "";
     jobIdIsSet_ = false;
+    isOnlyInitTask_ = false;
+    isOnlyInitTaskIsSet_ = false;
+    isAutoCreateCompare_ = false;
+    isAutoCreateCompareIsSet_ = false;
     startTime_ = "";
     startTimeIsSet_ = false;
 }
@@ -30,6 +34,12 @@ web::json::value StartInfo::toJson() const
 
     if(jobIdIsSet_) {
         val[utility::conversions::to_string_t("job_id")] = ModelBase::toJson(jobId_);
+    }
+    if(isOnlyInitTaskIsSet_) {
+        val[utility::conversions::to_string_t("is_only_init_task")] = ModelBase::toJson(isOnlyInitTask_);
+    }
+    if(isAutoCreateCompareIsSet_) {
+        val[utility::conversions::to_string_t("is_auto_create_compare")] = ModelBase::toJson(isAutoCreateCompare_);
     }
     if(startTimeIsSet_) {
         val[utility::conversions::to_string_t("start_time")] = ModelBase::toJson(startTime_);
@@ -48,6 +58,24 @@ bool StartInfo::fromJson(const web::json::value& val)
             std::string refVal;
             ok &= ModelBase::fromJson(fieldValue, refVal);
             setJobId(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("is_only_init_task"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("is_only_init_task"));
+        if(!fieldValue.is_null())
+        {
+            bool refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setIsOnlyInitTask(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("is_auto_create_compare"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("is_auto_create_compare"));
+        if(!fieldValue.is_null())
+        {
+            bool refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setIsAutoCreateCompare(refVal);
         }
     }
     if(val.has_field(utility::conversions::to_string_t("start_time"))) {
@@ -82,6 +110,48 @@ bool StartInfo::jobIdIsSet() const
 void StartInfo::unsetjobId()
 {
     jobIdIsSet_ = false;
+}
+
+bool StartInfo::isIsOnlyInitTask() const
+{
+    return isOnlyInitTask_;
+}
+
+void StartInfo::setIsOnlyInitTask(bool value)
+{
+    isOnlyInitTask_ = value;
+    isOnlyInitTaskIsSet_ = true;
+}
+
+bool StartInfo::isOnlyInitTaskIsSet() const
+{
+    return isOnlyInitTaskIsSet_;
+}
+
+void StartInfo::unsetisOnlyInitTask()
+{
+    isOnlyInitTaskIsSet_ = false;
+}
+
+bool StartInfo::isIsAutoCreateCompare() const
+{
+    return isAutoCreateCompare_;
+}
+
+void StartInfo::setIsAutoCreateCompare(bool value)
+{
+    isAutoCreateCompare_ = value;
+    isAutoCreateCompareIsSet_ = true;
+}
+
+bool StartInfo::isAutoCreateCompareIsSet() const
+{
+    return isAutoCreateCompareIsSet_;
+}
+
+void StartInfo::unsetisAutoCreateCompare()
+{
+    isAutoCreateCompareIsSet_ = false;
 }
 
 std::string StartInfo::getStartTime() const

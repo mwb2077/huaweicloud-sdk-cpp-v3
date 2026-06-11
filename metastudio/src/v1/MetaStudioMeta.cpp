@@ -246,6 +246,134 @@ HttpRequestDef MetaStudioMeta::genRequestDefForShowAgency() {
     return reqDefBuilder;
 }
 
+HttpRequestDef MetaStudioMeta::genRequestDefForCreateAudioRecordConfig() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForDeleteAudioRecordConfig() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForShowAudioRecordConfig() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForUpdateAudioRecordConfig() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef MetaStudioMeta::genRequestDefForDeleteTask() {
     HttpRequestDef reqDefBuilder;
     FieldDef headerParamAuthorization;
@@ -406,6 +534,102 @@ HttpRequestDef MetaStudioMeta::genRequestDefForShowTask() {
                   .withName("XProjectId")
                   .withJsonTag("X-Project-Id")
                   .withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForShowSummaryUsageData() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("UserId")
+                  .withJsonTag("user_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("ResourceType")
+                  .withJsonTag("resource_type")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("BusinessType")
+                  .withJsonTag("business_type")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Unit")
+                  .withJsonTag("unit")
+                  .withLocationType(Query_));
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForShowUsageData() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("StartTime")
+                  .withJsonTag("start_time")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("EndTime")
+                  .withJsonTag("end_time")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("UserId")
+                  .withJsonTag("user_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("ResourceType")
+                  .withJsonTag("resource_type")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("BusinessType")
+                  .withJsonTag("business_type")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Unit")
+                  .withJsonTag("unit")
+                  .withLocationType(Query_));
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
     return reqDefBuilder;
 }
 
@@ -827,6 +1051,35 @@ HttpRequestDef MetaStudioMeta::genRequestDefForDeleteAsset() {
     return reqDefBuilder;
 }
 
+HttpRequestDef MetaStudioMeta::genRequestDefForExecuteTransferAssetAction() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef MetaStudioMeta::genRequestDefForListAssetSummary() {
     HttpRequestDef reqDefBuilder;
     FieldDef headerParamAuthorization;
@@ -968,6 +1221,46 @@ HttpRequestDef MetaStudioMeta::genRequestDefForListAssets() {
     return reqDefBuilder;
 }
 
+HttpRequestDef MetaStudioMeta::genRequestDefForListTransferAssetJobs() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Role")
+                  .withJsonTag("role")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("State")
+                  .withJsonTag("state")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("TransferType")
+                  .withJsonTag("transfer_type")
+                  .withLocationType(Query_));
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef MetaStudioMeta::genRequestDefForRestoreAsset() {
     HttpRequestDef reqDefBuilder;
     FieldDef headerParamAuthorization;
@@ -1035,6 +1328,60 @@ HttpRequestDef MetaStudioMeta::genRequestDefForShowAssetReplicationInfo() {
                   .withName("XAppUserId")
                   .withJsonTag("X-App-UserId")
                   .withLocationType(Header_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForShowTransferAssetJob() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForTransferAsset() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
     reqDefBuilder.withResponseField(FieldDef().
         withName("xRequestId").
         withJsonTag("X-Request-Id").
@@ -2851,6 +3198,40 @@ HttpRequestDef MetaStudioMeta::genRequestDefForUpdateInstruction() {
     return reqDefBuilder;
 }
 
+HttpRequestDef MetaStudioMeta::genRequestDefForCreateInteractionRule() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef MetaStudioMeta::genRequestDefForCreateInteractionRuleGroup() {
     HttpRequestDef reqDefBuilder;
     FieldDef headerParamAuthorization;
@@ -2877,6 +3258,36 @@ HttpRequestDef MetaStudioMeta::genRequestDefForCreateInteractionRuleGroup() {
     reqDefBuilder.withRequestField(bodyParam.
         withName("Body").
         withLocationType(Body_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForDeleteInteractionRule() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
     reqDefBuilder.withResponseField(FieldDef().
         withName("xRequestId").
         withJsonTag("X-Request-Id").
@@ -2952,6 +3363,115 @@ HttpRequestDef MetaStudioMeta::genRequestDefForListInteractionRuleGroups() {
                   .withName("XAppUserId")
                   .withJsonTag("X-App-UserId")
                   .withLocationType(Header_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForListInteractionRuleGroupsSummary() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("CreateSince")
+                  .withJsonTag("create_since")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("CreateUntil")
+                  .withJsonTag("create_until")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("GroupName")
+                  .withJsonTag("group_name")
+                  .withLocationType(Query_));
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForShowInteractionRuleGroup() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForUpdateInteractionRule() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
     reqDefBuilder.withResponseField(FieldDef().
         withName("xRequestId").
         withJsonTag("X-Request-Id").
@@ -4052,6 +4572,45 @@ HttpRequestDef MetaStudioMeta::genRequestDefForShowLivePlatform() {
     return reqDefBuilder;
 }
 
+HttpRequestDef MetaStudioMeta::genRequestDefForShowLivePlatformAccessType() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Used")
+                  .withJsonTag("used")
+                  .withLocationType(Query_));
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef MetaStudioMeta::genRequestDefForUpdateLivePlatform() {
     HttpRequestDef reqDefBuilder;
     FieldDef headerParamAuthorization;
@@ -4904,41 +5463,6 @@ HttpRequestDef MetaStudioMeta::genRequestDefForCreatePictureModelingByUrlJob() {
     return reqDefBuilder;
 }
 
-HttpRequestDef MetaStudioMeta::genRequestDefForCreatePictureModelingJob() {
-    HttpRequestDef reqDefBuilder;
-    FieldDef headerParamAuthorization;
-    reqDefBuilder.withRequestField(headerParamAuthorization
-                  .withName("Authorization")
-                  .withJsonTag("Authorization")
-                  .withLocationType(Header_));
-    FieldDef headerParamXSdkDate;
-    reqDefBuilder.withRequestField(headerParamXSdkDate
-                  .withName("XSdkDate")
-                  .withJsonTag("X-Sdk-Date")
-                  .withLocationType(Header_));
-    FieldDef headerParamXProjectId;
-    reqDefBuilder.withRequestField(headerParamXProjectId
-                  .withName("XProjectId")
-                  .withJsonTag("X-Project-Id")
-                  .withLocationType(Header_));
-    FieldDef headerParamXAppUserId;
-    reqDefBuilder.withRequestField(headerParamXAppUserId
-                  .withName("XAppUserId")
-                  .withJsonTag("X-App-UserId")
-                  .withLocationType(Header_));
-    FieldDef formBodyParams;
-    reqDefBuilder.withRequestField(formBodyParams.
-                  withName("").
-                  withName("Body").
-                  withLocationType(Body_));
-    reqDefBuilder.withResponseField(FieldDef().
-        withName("xRequestId").
-        withJsonTag("X-Request-Id").
-        withKindName("std::string").
-        withLocationType(Header_));
-    return reqDefBuilder;
-}
-
 HttpRequestDef MetaStudioMeta::genRequestDefForListPictureModelingJobs() {
     HttpRequestDef reqDefBuilder;
     reqDefBuilder.withRequestField(FieldDef().withName("Offset")
@@ -5617,6 +6141,27 @@ HttpRequestDef MetaStudioMeta::genRequestDefForUpdateQuestionAnswer() {
     return reqDefBuilder;
 }
 
+HttpRequestDef MetaStudioMeta::genRequestDefForShowVoiceTrainingQuotas() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
+                  .withLocationType(Query_));
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef MetaStudioMeta::genRequestDefForCreateRobot() {
     HttpRequestDef reqDefBuilder;
     FieldDef headerParamAuthorization;
@@ -6172,6 +6717,60 @@ HttpRequestDef MetaStudioMeta::genRequestDefForUpdateSmartChatRoom() {
     return reqDefBuilder;
 }
 
+HttpRequestDef MetaStudioMeta::genRequestDefForShowSmartLiveUserConfig() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForUpdateSmartLiveUserConfig() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef MetaStudioMeta::genRequestDefForBatchConfirmLiveCommands() {
     HttpRequestDef reqDefBuilder;
     FieldDef headerParamAuthorization;
@@ -6232,6 +6831,42 @@ HttpRequestDef MetaStudioMeta::genRequestDefForExecuteSmartLiveCommand() {
     reqDefBuilder.withRequestField(bodyParam.
         withName("Body").
         withLocationType(Body_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForListInsertCommands() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
+                  .withLocationType(Query_));
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
     reqDefBuilder.withResponseField(FieldDef().
         withName("xRequestId").
         withJsonTag("X-Request-Id").
@@ -6731,6 +7366,36 @@ HttpRequestDef MetaStudioMeta::genRequestDefForListSmartLiveRooms() {
     return reqDefBuilder;
 }
 
+HttpRequestDef MetaStudioMeta::genRequestDefForShowLiveWarningInfo() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef MetaStudioMeta::genRequestDefForShowSmartLiveRoom() {
     HttpRequestDef reqDefBuilder;
     FieldDef headerParamAuthorization;
@@ -6910,6 +7575,35 @@ HttpRequestDef MetaStudioMeta::genRequestDefForShowSubtitleFile() {
     return reqDefBuilder;
 }
 
+HttpRequestDef MetaStudioMeta::genRequestDefForBindUserAssetResource() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef MetaStudioMeta::genRequestDefForCountTenantResources() {
     HttpRequestDef reqDefBuilder;
     reqDefBuilder.withRequestField(FieldDef().withName("Business")
@@ -6921,6 +7615,89 @@ HttpRequestDef MetaStudioMeta::genRequestDefForCountTenantResources() {
     reqDefBuilder.withRequestField(FieldDef().withName("ResourceExpireEndTime")
                   .withJsonTag("resource_expire_end_time")
                   .withLocationType(Query_));
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForCreateUserQuotas() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForDeleteTenantUserConfiguration() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForDeleteUserQuotas() {
+    HttpRequestDef reqDefBuilder;
     FieldDef headerParamAuthorization;
     reqDefBuilder.withRequestField(headerParamAuthorization
                   .withName("Authorization")
@@ -7005,6 +7782,98 @@ HttpRequestDef MetaStudioMeta::genRequestDefForListTenantResources() {
     return reqDefBuilder;
 }
 
+HttpRequestDef MetaStudioMeta::genRequestDefForListUserQuotas() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("UserId")
+                  .withJsonTag("user_id")
+                  .withLocationType(Query_));
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForSetTenantNoticeConfiguration() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForSetTenantUserConfiguration() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef MetaStudioMeta::genRequestDefForShowResourceUsage() {
     HttpRequestDef reqDefBuilder;
     reqDefBuilder.withRequestField(FieldDef().withName("Resource")
@@ -7012,6 +7881,112 @@ HttpRequestDef MetaStudioMeta::genRequestDefForShowResourceUsage() {
                   .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("Business")
                   .withJsonTag("business")
+                  .withLocationType(Query_));
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForShowTenantAssginRecord() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
+                  .withLocationType(Query_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForShowTenantNoticeConfiguration() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Type")
+                  .withJsonTag("type")
+                  .withLocationType(Query_));
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForShowTenantServiceConfigs() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForShowTenantUserConfiguration() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
                   .withLocationType(Query_));
     FieldDef headerParamAuthorization;
     reqDefBuilder.withRequestField(headerParamAuthorization
@@ -7090,6 +8065,89 @@ HttpRequestDef MetaStudioMeta::genRequestDefForSignSpecialAgreement() {
     return reqDefBuilder;
 }
 
+HttpRequestDef MetaStudioMeta::genRequestDefForUpdateTenantServiceConfigs() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForUpdateUserQuotas() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForCommitShortJob() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef MetaStudioMeta::genRequestDefForCommitVoiceTrainingJob() {
     HttpRequestDef reqDefBuilder;
     FieldDef headerParamAuthorization;
@@ -7127,6 +8185,35 @@ HttpRequestDef MetaStudioMeta::genRequestDefForConfirmTrainingSegment() {
     reqDefBuilder.withRequestField(FieldDef().withName("Index")
                   .withJsonTag("index")
                   .withLocationType(Query_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForCreateShortJob() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
     return reqDefBuilder;
 }
 
@@ -7190,6 +8277,20 @@ HttpRequestDef MetaStudioMeta::genRequestDefForCreateTrainingMiddleJob() {
                   .withName("XProjectId")
                   .withJsonTag("X-Project-Id")
                   .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForCreateTrainingThirdPartyJob() {
+    HttpRequestDef reqDefBuilder;
     FieldDef headerParamXAppUserId;
     reqDefBuilder.withRequestField(headerParamXAppUserId
                   .withName("XAppUserId")
@@ -7307,6 +8408,20 @@ HttpRequestDef MetaStudioMeta::genRequestDefForSetJobBatchName() {
     return reqDefBuilder;
 }
 
+HttpRequestDef MetaStudioMeta::genRequestDefForShowEncryptFile() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("TenantId")
+                  .withJsonTag("tenant_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("JobId")
+                  .withJsonTag("job_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("OnceToken")
+                  .withJsonTag("once_token")
+                  .withLocationType(Query_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef MetaStudioMeta::genRequestDefForShowJobAuditResult() {
     HttpRequestDef reqDefBuilder;
     return reqDefBuilder;
@@ -7314,6 +8429,31 @@ HttpRequestDef MetaStudioMeta::genRequestDefForShowJobAuditResult() {
 
 HttpRequestDef MetaStudioMeta::genRequestDefForShowJobUploadingAddress() {
     HttpRequestDef reqDefBuilder;
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForShowShortJob() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
     return reqDefBuilder;
 }
 
@@ -7326,6 +8466,17 @@ HttpRequestDef MetaStudioMeta::genRequestDefForShowTrainingSegmentInfo() {
     HttpRequestDef reqDefBuilder;
     reqDefBuilder.withRequestField(FieldDef().withName("JobId")
                   .withJsonTag("job_id")
+                  .withLocationType(Query_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForShowUserReviewAttachmentUploadingAddress() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("StartNumber")
+                  .withJsonTag("start_number")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("EndNumber")
+                  .withJsonTag("end_number")
                   .withLocationType(Query_));
     return reqDefBuilder;
 }
@@ -7419,6 +8570,20 @@ HttpRequestDef MetaStudioMeta::genRequestDefForDelete2dModelTrainingJob() {
     return reqDefBuilder;
 }
 
+HttpRequestDef MetaStudioMeta::genRequestDefForDownload2dModelTraningEncryptFile() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("TenantId")
+                  .withJsonTag("tenant_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("JobId")
+                  .withJsonTag("job_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("OnceToken")
+                  .withJsonTag("once_token")
+                  .withLocationType(Query_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef MetaStudioMeta::genRequestDefForExecute2dModelTrainingCommandByUser() {
     HttpRequestDef reqDefBuilder;
     FieldDef headerParamAuthorization;
@@ -7461,6 +8626,9 @@ HttpRequestDef MetaStudioMeta::genRequestDefForList2dModelTrainingJob() {
     reqDefBuilder.withRequestField(FieldDef().withName("Limit")
                   .withJsonTag("limit")
                   .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("State")
+                  .withJsonTag("state")
+                  .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("SortKey")
                   .withJsonTag("sort_key")
                   .withLocationType(Query_));
@@ -7473,11 +8641,14 @@ HttpRequestDef MetaStudioMeta::genRequestDefForList2dModelTrainingJob() {
     reqDefBuilder.withRequestField(FieldDef().withName("CreateSince")
                   .withJsonTag("create_since")
                   .withLocationType(Query_));
-    reqDefBuilder.withRequestField(FieldDef().withName("State")
-                  .withJsonTag("state")
-                  .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("QueryProjectId")
                   .withJsonTag("query_project_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("UpdateSince")
+                  .withJsonTag("update_since")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("UpdateUntil")
+                  .withJsonTag("update_until")
                   .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("BatchName")
                   .withJsonTag("batch_name")
@@ -7496,6 +8667,15 @@ HttpRequestDef MetaStudioMeta::genRequestDefForList2dModelTrainingJob() {
                   .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("IsFlexus")
                   .withJsonTag("is_flexus")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("IsLiveCopy")
+                  .withJsonTag("is_live_copy")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("TrainLocation")
+                  .withJsonTag("train_location")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("IsOndemandResource")
+                  .withJsonTag("is_ondemand_resource")
                   .withLocationType(Query_));
     FieldDef headerParamAuthorization;
     reqDefBuilder.withRequestField(headerParamAuthorization
@@ -7581,123 +8761,6 @@ HttpRequestDef MetaStudioMeta::genRequestDefForUpdate2dModelTrainingJob() {
     reqDefBuilder.withRequestField(bodyParam.
         withName("Body").
         withLocationType(Body_));
-    reqDefBuilder.withResponseField(FieldDef().
-        withName("xRequestId").
-        withJsonTag("X-Request-Id").
-        withKindName("std::string").
-        withLocationType(Header_));
-    return reqDefBuilder;
-}
-
-HttpRequestDef MetaStudioMeta::genRequestDefForCreateFacialAnimations() {
-    HttpRequestDef reqDefBuilder;
-    FieldDef bodyParam;
-    reqDefBuilder.withRequestField(bodyParam.
-        withName("Body").
-        withLocationType(Body_));
-    reqDefBuilder.withResponseField(FieldDef().
-        withName("xRequestId").
-        withJsonTag("X-Request-Id").
-        withKindName("std::string").
-        withLocationType(Header_));
-    return reqDefBuilder;
-}
-
-HttpRequestDef MetaStudioMeta::genRequestDefForCreateTtsa() {
-    HttpRequestDef reqDefBuilder;
-    FieldDef headerParamAuthorization;
-    reqDefBuilder.withRequestField(headerParamAuthorization
-                  .withName("Authorization")
-                  .withJsonTag("Authorization")
-                  .withLocationType(Header_));
-    FieldDef headerParamXSdkDate;
-    reqDefBuilder.withRequestField(headerParamXSdkDate
-                  .withName("XSdkDate")
-                  .withJsonTag("X-Sdk-Date")
-                  .withLocationType(Header_));
-    FieldDef headerParamXProjectId;
-    reqDefBuilder.withRequestField(headerParamXProjectId
-                  .withName("XProjectId")
-                  .withJsonTag("X-Project-Id")
-                  .withLocationType(Header_));
-    FieldDef headerParamXAppUserId;
-    reqDefBuilder.withRequestField(headerParamXAppUserId
-                  .withName("XAppUserId")
-                  .withJsonTag("X-App-UserId")
-                  .withLocationType(Header_));
-    FieldDef bodyParam;
-    reqDefBuilder.withRequestField(bodyParam.
-        withName("Body").
-        withLocationType(Body_));
-    reqDefBuilder.withResponseField(FieldDef().
-        withName("xRequestId").
-        withJsonTag("X-Request-Id").
-        withKindName("std::string").
-        withLocationType(Header_));
-    return reqDefBuilder;
-}
-
-HttpRequestDef MetaStudioMeta::genRequestDefForListFacialAnimationsData() {
-    HttpRequestDef reqDefBuilder;
-    return reqDefBuilder;
-}
-
-HttpRequestDef MetaStudioMeta::genRequestDefForListTtsaData() {
-    HttpRequestDef reqDefBuilder;
-    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
-                  .withJsonTag("offset")
-                  .withLocationType(Query_));
-    FieldDef headerParamAuthorization;
-    reqDefBuilder.withRequestField(headerParamAuthorization
-                  .withName("Authorization")
-                  .withJsonTag("Authorization")
-                  .withLocationType(Header_));
-    FieldDef headerParamXSdkDate;
-    reqDefBuilder.withRequestField(headerParamXSdkDate
-                  .withName("XSdkDate")
-                  .withJsonTag("X-Sdk-Date")
-                  .withLocationType(Header_));
-    FieldDef headerParamXProjectId;
-    reqDefBuilder.withRequestField(headerParamXProjectId
-                  .withName("XProjectId")
-                  .withJsonTag("X-Project-Id")
-                  .withLocationType(Header_));
-    reqDefBuilder.withResponseField(FieldDef().
-        withName("xRequestId").
-        withJsonTag("X-Request-Id").
-        withKindName("std::string").
-        withLocationType(Header_));
-    return reqDefBuilder;
-}
-
-HttpRequestDef MetaStudioMeta::genRequestDefForListTtsaJobs() {
-    HttpRequestDef reqDefBuilder;
-    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
-                  .withJsonTag("offset")
-                  .withLocationType(Query_));
-    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
-                  .withJsonTag("limit")
-                  .withLocationType(Query_));
-    FieldDef headerParamAuthorization;
-    reqDefBuilder.withRequestField(headerParamAuthorization
-                  .withName("Authorization")
-                  .withJsonTag("Authorization")
-                  .withLocationType(Header_));
-    FieldDef headerParamXSdkDate;
-    reqDefBuilder.withRequestField(headerParamXSdkDate
-                  .withName("XSdkDate")
-                  .withJsonTag("X-Sdk-Date")
-                  .withLocationType(Header_));
-    FieldDef headerParamXProjectId;
-    reqDefBuilder.withRequestField(headerParamXProjectId
-                  .withName("XProjectId")
-                  .withJsonTag("X-Project-Id")
-                  .withLocationType(Header_));
-    FieldDef headerParamXAppUserId;
-    reqDefBuilder.withRequestField(headerParamXAppUserId
-                  .withName("XAppUserId")
-                  .withJsonTag("X-App-UserId")
-                  .withLocationType(Header_));
     reqDefBuilder.withResponseField(FieldDef().
         withName("xRequestId").
         withJsonTag("X-Request-Id").
@@ -7908,6 +8971,36 @@ HttpRequestDef MetaStudioMeta::genRequestDefForShowAsyncTtsJob() {
 }
 
 HttpRequestDef MetaStudioMeta::genRequestDefForShowTtsAuditionFile() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef headerParamXRequestId;
+    reqDefBuilder.withRequestField(headerParamXRequestId
+                  .withName("XRequestId")
+                  .withJsonTag("X-Request-Id")
+                  .withLocationType(Header_));
+    FieldDef headerParamAuthorization;
+    reqDefBuilder.withRequestField(headerParamAuthorization
+                  .withName("Authorization")
+                  .withJsonTag("Authorization")
+                  .withLocationType(Header_));
+    FieldDef headerParamXSdkDate;
+    reqDefBuilder.withRequestField(headerParamXSdkDate
+                  .withName("XSdkDate")
+                  .withJsonTag("X-Sdk-Date")
+                  .withLocationType(Header_));
+    FieldDef headerParamXProjectId;
+    reqDefBuilder.withRequestField(headerParamXProjectId
+                  .withName("XProjectId")
+                  .withJsonTag("X-Project-Id")
+                  .withLocationType(Header_));
+    FieldDef headerParamXAppUserId;
+    reqDefBuilder.withRequestField(headerParamXAppUserId
+                  .withName("XAppUserId")
+                  .withJsonTag("X-App-UserId")
+                  .withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef MetaStudioMeta::genRequestDefForCreateTtsOnceCode() {
     HttpRequestDef reqDefBuilder;
     FieldDef headerParamXRequestId;
     reqDefBuilder.withRequestField(headerParamXRequestId
@@ -8352,175 +9445,6 @@ HttpRequestDef MetaStudioMeta::genRequestDefForUpdateTtscVocabularyGroups() {
     reqDefBuilder.withRequestField(bodyParam.
         withName("Body").
         withLocationType(Body_));
-    return reqDefBuilder;
-}
-
-HttpRequestDef MetaStudioMeta::genRequestDefForCreateVideoMotionCaptureJob() {
-    HttpRequestDef reqDefBuilder;
-    FieldDef headerParamAuthorization;
-    reqDefBuilder.withRequestField(headerParamAuthorization
-                  .withName("Authorization")
-                  .withJsonTag("Authorization")
-                  .withLocationType(Header_));
-    FieldDef headerParamXSdkDate;
-    reqDefBuilder.withRequestField(headerParamXSdkDate
-                  .withName("XSdkDate")
-                  .withJsonTag("X-Sdk-Date")
-                  .withLocationType(Header_));
-    FieldDef headerParamXProjectId;
-    reqDefBuilder.withRequestField(headerParamXProjectId
-                  .withName("XProjectId")
-                  .withJsonTag("X-Project-Id")
-                  .withLocationType(Header_));
-    FieldDef headerParamXAppUserId;
-    reqDefBuilder.withRequestField(headerParamXAppUserId
-                  .withName("XAppUserId")
-                  .withJsonTag("X-App-UserId")
-                  .withLocationType(Header_));
-    FieldDef headerParamXUserPrivilege;
-    reqDefBuilder.withRequestField(headerParamXUserPrivilege
-                  .withName("XUserPrivilege")
-                  .withJsonTag("X-User-Privilege")
-                  .withLocationType(Header_));
-    FieldDef bodyParam;
-    reqDefBuilder.withRequestField(bodyParam.
-        withName("Body").
-        withLocationType(Body_));
-    reqDefBuilder.withResponseField(FieldDef().
-        withName("xRequestId").
-        withJsonTag("X-Request-Id").
-        withKindName("std::string").
-        withLocationType(Header_));
-    return reqDefBuilder;
-}
-
-HttpRequestDef MetaStudioMeta::genRequestDefForExecuteVideoMotionCaptureCommand() {
-    HttpRequestDef reqDefBuilder;
-    FieldDef headerParamAuthorization;
-    reqDefBuilder.withRequestField(headerParamAuthorization
-                  .withName("Authorization")
-                  .withJsonTag("Authorization")
-                  .withLocationType(Header_));
-    FieldDef headerParamXSdkDate;
-    reqDefBuilder.withRequestField(headerParamXSdkDate
-                  .withName("XSdkDate")
-                  .withJsonTag("X-Sdk-Date")
-                  .withLocationType(Header_));
-    FieldDef headerParamXProjectId;
-    reqDefBuilder.withRequestField(headerParamXProjectId
-                  .withName("XProjectId")
-                  .withJsonTag("X-Project-Id")
-                  .withLocationType(Header_));
-    FieldDef headerParamXAppUserId;
-    reqDefBuilder.withRequestField(headerParamXAppUserId
-                  .withName("XAppUserId")
-                  .withJsonTag("X-App-UserId")
-                  .withLocationType(Header_));
-    FieldDef bodyParam;
-    reqDefBuilder.withRequestField(bodyParam.
-        withName("Body").
-        withLocationType(Body_));
-    reqDefBuilder.withResponseField(FieldDef().
-        withName("xRequestId").
-        withJsonTag("X-Request-Id").
-        withKindName("std::string").
-        withLocationType(Header_));
-    return reqDefBuilder;
-}
-
-HttpRequestDef MetaStudioMeta::genRequestDefForListVideoMotionCaptureJobs() {
-    HttpRequestDef reqDefBuilder;
-    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
-                  .withJsonTag("offset")
-                  .withLocationType(Query_));
-    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
-                  .withJsonTag("limit")
-                  .withLocationType(Query_));
-    FieldDef headerParamAuthorization;
-    reqDefBuilder.withRequestField(headerParamAuthorization
-                  .withName("Authorization")
-                  .withJsonTag("Authorization")
-                  .withLocationType(Header_));
-    FieldDef headerParamXSdkDate;
-    reqDefBuilder.withRequestField(headerParamXSdkDate
-                  .withName("XSdkDate")
-                  .withJsonTag("X-Sdk-Date")
-                  .withLocationType(Header_));
-    FieldDef headerParamXProjectId;
-    reqDefBuilder.withRequestField(headerParamXProjectId
-                  .withName("XProjectId")
-                  .withJsonTag("X-Project-Id")
-                  .withLocationType(Header_));
-    FieldDef headerParamXAppUserId;
-    reqDefBuilder.withRequestField(headerParamXAppUserId
-                  .withName("XAppUserId")
-                  .withJsonTag("X-App-UserId")
-                  .withLocationType(Header_));
-    reqDefBuilder.withResponseField(FieldDef().
-        withName("xRequestId").
-        withJsonTag("X-Request-Id").
-        withKindName("std::string").
-        withLocationType(Header_));
-    return reqDefBuilder;
-}
-
-HttpRequestDef MetaStudioMeta::genRequestDefForShowVideoMotionCaptureJob() {
-    HttpRequestDef reqDefBuilder;
-    FieldDef headerParamAuthorization;
-    reqDefBuilder.withRequestField(headerParamAuthorization
-                  .withName("Authorization")
-                  .withJsonTag("Authorization")
-                  .withLocationType(Header_));
-    FieldDef headerParamXSdkDate;
-    reqDefBuilder.withRequestField(headerParamXSdkDate
-                  .withName("XSdkDate")
-                  .withJsonTag("X-Sdk-Date")
-                  .withLocationType(Header_));
-    FieldDef headerParamXProjectId;
-    reqDefBuilder.withRequestField(headerParamXProjectId
-                  .withName("XProjectId")
-                  .withJsonTag("X-Project-Id")
-                  .withLocationType(Header_));
-    FieldDef headerParamXAppUserId;
-    reqDefBuilder.withRequestField(headerParamXAppUserId
-                  .withName("XAppUserId")
-                  .withJsonTag("X-App-UserId")
-                  .withLocationType(Header_));
-    reqDefBuilder.withResponseField(FieldDef().
-        withName("xRequestId").
-        withJsonTag("X-Request-Id").
-        withKindName("std::string").
-        withLocationType(Header_));
-    return reqDefBuilder;
-}
-
-HttpRequestDef MetaStudioMeta::genRequestDefForStopVideoMotionCaptureJob() {
-    HttpRequestDef reqDefBuilder;
-    FieldDef headerParamAuthorization;
-    reqDefBuilder.withRequestField(headerParamAuthorization
-                  .withName("Authorization")
-                  .withJsonTag("Authorization")
-                  .withLocationType(Header_));
-    FieldDef headerParamXSdkDate;
-    reqDefBuilder.withRequestField(headerParamXSdkDate
-                  .withName("XSdkDate")
-                  .withJsonTag("X-Sdk-Date")
-                  .withLocationType(Header_));
-    FieldDef headerParamXProjectId;
-    reqDefBuilder.withRequestField(headerParamXProjectId
-                  .withName("XProjectId")
-                  .withJsonTag("X-Project-Id")
-                  .withLocationType(Header_));
-    FieldDef headerParamXAppUserId;
-    reqDefBuilder.withRequestField(headerParamXAppUserId
-                  .withName("XAppUserId")
-                  .withJsonTag("X-App-UserId")
-                  .withLocationType(Header_));
-    reqDefBuilder.withResponseField(FieldDef().
-        withName("xRequestId").
-        withJsonTag("X-Request-Id").
-        withKindName("std::string").
-        withLocationType(Header_));
     return reqDefBuilder;
 }
 

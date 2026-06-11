@@ -25,23 +25,36 @@ if(ENABLE_BSON)
     add_definitions(-DHUAWEICLOUD_SDK_BSON_)
 endif()
 
-SET(BUILD_SERVICE functiongraph)
-SET(SERVICE_VERSION v2)
+# USE SINGLE SERVICE(EXAMPLE: vpc ecs eip)
+# compile core default
+add_subdirectory(core)
 
-if(BUILD_SERVICE STREQUAL "all" OR BUILD_SERVICE STREQUAL "")
-   # USE MULTIPLE SERVICES(EXAMPLE: USE VPC ECS AND EIP)
-   add_subdirectory(core)
-   #add_subdirectory(tms/src/v1)
-   #add_subdirectory(eps/src/v1)
-   #add_subdirectory(smn/src/v2)
-   add_subdirectory(identitycenter/src/v1)
-   add_subdirectory(identitycenterstore/src/v1)
-   #add_subdirectory(drs/src/v3)
-   #add_subdirectory(drs/src/v5)
-   message(STATUS "Build all Services")
+#If you need to compile a specific version of a service, specify BUILD_SERVICE as the service name and SERVICE_VERSION as the version number.
+if(BUILD_SERVICE)
+    message(STATUS   "'BUILD_SERVICE'=${BUILD_SERVICE}")
+    message(STATUS   "'SERVICE_VERSION'=${SERVICE_VERSION}")
+
+    if(NOT EXISTS "${CMAKE_SOURCE_DIR}/${BUILD_SERVICE}")
+        message(FATAL_ERROR "BUILD_SERVICE(${BUILD_SERVICE}) is invalid")
+    endif()
+
+    if(NOT EXISTS "${CMAKE_SOURCE_DIR}/${BUILD_SERVICE}/src/${SERVICE_VERSION}")
+        message(FATAL_ERROR "SERVICE_VERSION(${SERVICE_VERSION}) is invalid")
+    endif()
+
+    add_subdirectory(${BUILD_SERVICE}/src/${SERVICE_VERSION})
 else()
-   # USE SINGLE SERVICE(EXAMPLE: USE VPC ECS AND EIP)
-   add_subdirectory(core)
-   add_subdirectory(${BUILD_SERVICE}/src/${SERVICE_VERSION})
-   message(STATUS   "'BUILD_SERVICE'=${BUILD_SERVICE}")
+    # 1. Recursively obtains the paths of all CMakeLists.txt files.
+    file(GLOB_RECURSE all_cmakefiles RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "**/CMakeLists.txt")
+
+    foreach(file_path ${all_cmakefiles})
+        # Obtains the name of the directory where the file is located
+        get_filename_component(sub_dir ${file_path} DIRECTORY)
+
+        # Exclude the current directory and core directory (avoid infinite loop)
+        if(NOT "${sub_dir}" STREQUAL "" AND NOT "${sub_dir}" STREQUAL "." AND NOT "${sub_dir}" STREQUAL "core" )
+            message(STATUS "Found recursive subdirectory: ${sub_dir}")
+            add_subdirectory(${sub_dir})
+        endif()
+    endforeach()
 endif()

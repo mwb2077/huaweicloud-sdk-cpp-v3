@@ -8,6 +8,15 @@ namespace V1 {
 
 using namespace HuaweiCloud::Sdk::Core::Http;
 
+HttpRequestDef CpcsMeta::genRequestDefForAddClusterPort() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef CpcsMeta::genRequestDefForAssociateApps() {
     HttpRequestDef reqDefBuilder;
     FieldDef bodyParam;
@@ -53,6 +62,11 @@ HttpRequestDef CpcsMeta::genRequestDefForCancelAuthorizeAccessKeys() {
     return reqDefBuilder;
 }
 
+HttpRequestDef CpcsMeta::genRequestDefForCheckClusterPort() {
+    HttpRequestDef reqDefBuilder;
+    return reqDefBuilder;
+}
+
 HttpRequestDef CpcsMeta::genRequestDefForCreateApp() {
     HttpRequestDef reqDefBuilder;
     FieldDef bodyParam;
@@ -95,6 +109,14 @@ HttpRequestDef CpcsMeta::genRequestDefForDeleteCcspCluster() {
     return reqDefBuilder;
 }
 
+HttpRequestDef CpcsMeta::genRequestDefForDeleteClusterPort() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Type")
+                  .withJsonTag("type")
+                  .withLocationType(Query_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef CpcsMeta::genRequestDefForDisableCcspInstance() {
     HttpRequestDef reqDefBuilder;
     return reqDefBuilder;
@@ -116,11 +138,11 @@ HttpRequestDef CpcsMeta::genRequestDefForEnableCcspInstance() {
 
 HttpRequestDef CpcsMeta::genRequestDefForListCcspTenantImages() {
     HttpRequestDef reqDefBuilder;
-    reqDefBuilder.withRequestField(FieldDef().withName("PageSize")
-                  .withJsonTag("page_size")
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
                   .withLocationType(Query_));
-    reqDefBuilder.withRequestField(FieldDef().withName("PageNum")
-                  .withJsonTag("page_num")
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
                   .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("ImageName")
                   .withJsonTag("image_name")
@@ -137,6 +159,11 @@ HttpRequestDef CpcsMeta::genRequestDefForListCcspTenantImages() {
     return reqDefBuilder;
 }
 
+HttpRequestDef CpcsMeta::genRequestDefForListClusterPort() {
+    HttpRequestDef reqDefBuilder;
+    return reqDefBuilder;
+}
+
 HttpRequestDef CpcsMeta::genRequestDefForShowAccessKey() {
     HttpRequestDef reqDefBuilder;
     return reqDefBuilder;
@@ -144,11 +171,11 @@ HttpRequestDef CpcsMeta::genRequestDefForShowAccessKey() {
 
 HttpRequestDef CpcsMeta::genRequestDefForShowAppAccessKeyList() {
     HttpRequestDef reqDefBuilder;
-    reqDefBuilder.withRequestField(FieldDef().withName("PageSize")
-                  .withJsonTag("page_size")
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
                   .withLocationType(Query_));
-    reqDefBuilder.withRequestField(FieldDef().withName("PageNum")
-                  .withJsonTag("page_num")
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
                   .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("KeyName")
                   .withJsonTag("key_name")
@@ -164,11 +191,11 @@ HttpRequestDef CpcsMeta::genRequestDefForShowAppAccessKeyList() {
 
 HttpRequestDef CpcsMeta::genRequestDefForShowAppList() {
     HttpRequestDef reqDefBuilder;
-    reqDefBuilder.withRequestField(FieldDef().withName("PageSize")
-                  .withJsonTag("page_size")
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
                   .withLocationType(Query_));
-    reqDefBuilder.withRequestField(FieldDef().withName("PageNum")
-                  .withJsonTag("page_num")
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
                   .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("AppName")
                   .withJsonTag("app_name")
@@ -193,17 +220,34 @@ HttpRequestDef CpcsMeta::genRequestDefForShowAssociationList() {
     reqDefBuilder.withRequestField(FieldDef().withName("AppId")
                   .withJsonTag("app_id")
                   .withLocationType(Query_));
-    reqDefBuilder.withRequestField(FieldDef().withName("PageSize")
-                  .withJsonTag("page_size")
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
                   .withLocationType(Query_));
-    reqDefBuilder.withRequestField(FieldDef().withName("PageNum")
-                  .withJsonTag("page_num")
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
                   .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("SortKey")
                   .withJsonTag("sort_key")
                   .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("SortDir")
                   .withJsonTag("sort_dir")
+                  .withLocationType(Query_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef CpcsMeta::genRequestDefForShowAuditLog() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("StartTime")
+                  .withJsonTag("start_time")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("EndTime")
+                  .withJsonTag("end_time")
                   .withLocationType(Query_));
     return reqDefBuilder;
 }
@@ -220,11 +264,11 @@ HttpRequestDef CpcsMeta::genRequestDefForShowCcspCluster() {
 
 HttpRequestDef CpcsMeta::genRequestDefForShowCcspClusterList() {
     HttpRequestDef reqDefBuilder;
-    reqDefBuilder.withRequestField(FieldDef().withName("PageSize")
-                  .withJsonTag("page_size")
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
                   .withLocationType(Query_));
-    reqDefBuilder.withRequestField(FieldDef().withName("PageNum")
-                  .withJsonTag("page_num")
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
                   .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("Name")
                   .withJsonTag("name")
@@ -243,14 +287,14 @@ HttpRequestDef CpcsMeta::genRequestDefForShowCcspClusterList() {
 
 HttpRequestDef CpcsMeta::genRequestDefForShowCcspInstanceInfo() {
     HttpRequestDef reqDefBuilder;
-    reqDefBuilder.withRequestField(FieldDef().withName("PageSize")
-                  .withJsonTag("page_size")
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
                   .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("Name")
                   .withJsonTag("name")
                   .withLocationType(Query_));
-    reqDefBuilder.withRequestField(FieldDef().withName("PageNum")
-                  .withJsonTag("page_num")
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
                   .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("SortKey")
                   .withJsonTag("sort_key")
@@ -272,11 +316,11 @@ HttpRequestDef CpcsMeta::genRequestDefForShowCcspInstanceInfo() {
 
 HttpRequestDef CpcsMeta::genRequestDefForShowClusterAccessKeyList() {
     HttpRequestDef reqDefBuilder;
-    reqDefBuilder.withRequestField(FieldDef().withName("PageSize")
-                  .withJsonTag("page_size")
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
                   .withLocationType(Query_));
-    reqDefBuilder.withRequestField(FieldDef().withName("PageNum")
-                  .withJsonTag("page_num")
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
                   .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("AppName")
                   .withJsonTag("app_name")
@@ -295,8 +339,328 @@ HttpRequestDef CpcsMeta::genRequestDefForShowClusterUri() {
     return reqDefBuilder;
 }
 
+HttpRequestDef CpcsMeta::genRequestDefForShowResourceDetailAccessKey() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("ClusterId")
+                  .withJsonTag("cluster_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("AppId")
+                  .withJsonTag("app_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("ServiceType")
+                  .withJsonTag("service_type")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("AlgorithmType")
+                  .withJsonTag("algorithm_type")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("CertificateType")
+                  .withJsonTag("certificate_type")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("From")
+                  .withJsonTag("from")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("To")
+                  .withJsonTag("to")
+                  .withLocationType(Query_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef CpcsMeta::genRequestDefForShowResourceDetailCertificate() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("ClusterId")
+                  .withJsonTag("cluster_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("AppId")
+                  .withJsonTag("app_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("ServiceType")
+                  .withJsonTag("service_type")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("AlgorithmType")
+                  .withJsonTag("algorithm_type")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("CertificateType")
+                  .withJsonTag("certificate_type")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("From")
+                  .withJsonTag("from")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("To")
+                  .withJsonTag("to")
+                  .withLocationType(Query_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef CpcsMeta::genRequestDefForShowResourceInfo() {
     HttpRequestDef reqDefBuilder;
+    return reqDefBuilder;
+}
+
+HttpRequestDef CpcsMeta::genRequestDefForShowStatisticCertificate() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("ClusterId")
+                  .withJsonTag("cluster_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("AppId")
+                  .withJsonTag("app_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("From")
+                  .withJsonTag("from")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("To")
+                  .withJsonTag("to")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Period")
+                  .withJsonTag("period")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Filter")
+                  .withJsonTag("filter")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Algorithm")
+                  .withJsonTag("algorithm")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("AlgorithmType")
+                  .withJsonTag("algorithm_type")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("CertificateType")
+                  .withJsonTag("certificate_type")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("ServerType")
+                  .withJsonTag("server_type")
+                  .withLocationType(Query_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef CpcsMeta::genRequestDefForShowStatisticInterface() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("ClusterId")
+                  .withJsonTag("cluster_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("AppId")
+                  .withJsonTag("app_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("From")
+                  .withJsonTag("from")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("To")
+                  .withJsonTag("to")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Period")
+                  .withJsonTag("period")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Filter")
+                  .withJsonTag("filter")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Algorithm")
+                  .withJsonTag("algorithm")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("AlgorithmType")
+                  .withJsonTag("algorithm_type")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("CertificateType")
+                  .withJsonTag("certificate_type")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("ServerType")
+                  .withJsonTag("server_type")
+                  .withLocationType(Query_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef CpcsMeta::genRequestDefForShowStatisticResource() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("ClusterId")
+                  .withJsonTag("cluster_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("AppId")
+                  .withJsonTag("app_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("From")
+                  .withJsonTag("from")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("To")
+                  .withJsonTag("to")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Period")
+                  .withJsonTag("period")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Filter")
+                  .withJsonTag("filter")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Algorithm")
+                  .withJsonTag("algorithm")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("AlgorithmType")
+                  .withJsonTag("algorithm_type")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("CertificateType")
+                  .withJsonTag("certificate_type")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("ServerType")
+                  .withJsonTag("server_type")
+                  .withLocationType(Query_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef CpcsMeta::genRequestDefForShowStatisticSecretKey() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("ClusterId")
+                  .withJsonTag("cluster_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("AppId")
+                  .withJsonTag("app_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("From")
+                  .withJsonTag("from")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("To")
+                  .withJsonTag("to")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Period")
+                  .withJsonTag("period")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Filter")
+                  .withJsonTag("filter")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Algorithm")
+                  .withJsonTag("algorithm")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("AlgorithmType")
+                  .withJsonTag("algorithm_type")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("CertificateType")
+                  .withJsonTag("certificate_type")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("ServerType")
+                  .withJsonTag("server_type")
+                  .withLocationType(Query_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef CpcsMeta::genRequestDefForShowStatusApp() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("ClusterId")
+                  .withJsonTag("cluster_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("AppId")
+                  .withJsonTag("app_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("InstanceId")
+                  .withJsonTag("instance_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("From")
+                  .withJsonTag("from")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("To")
+                  .withJsonTag("to")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Period")
+                  .withJsonTag("period")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Filter")
+                  .withJsonTag("filter")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("ServerType")
+                  .withJsonTag("server_type")
+                  .withLocationType(Query_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef CpcsMeta::genRequestDefForShowStatusCluster() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("ClusterId")
+                  .withJsonTag("cluster_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("AppId")
+                  .withJsonTag("app_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("InstanceId")
+                  .withJsonTag("instance_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("From")
+                  .withJsonTag("from")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("To")
+                  .withJsonTag("to")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Period")
+                  .withJsonTag("period")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Filter")
+                  .withJsonTag("filter")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("ServerType")
+                  .withJsonTag("server_type")
+                  .withLocationType(Query_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef CpcsMeta::genRequestDefForShowStatusInstance() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("ClusterId")
+                  .withJsonTag("cluster_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("AppId")
+                  .withJsonTag("app_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("InstanceId")
+                  .withJsonTag("instance_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("From")
+                  .withJsonTag("from")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("To")
+                  .withJsonTag("to")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Period")
+                  .withJsonTag("period")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Filter")
+                  .withJsonTag("filter")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("ServerType")
+                  .withJsonTag("server_type")
+                  .withLocationType(Query_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef CpcsMeta::genRequestDefForShowStatusService() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("ClusterId")
+                  .withJsonTag("cluster_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("AppId")
+                  .withJsonTag("app_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("InstanceId")
+                  .withJsonTag("instance_id")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("From")
+                  .withJsonTag("from")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("To")
+                  .withJsonTag("to")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Period")
+                  .withJsonTag("period")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Filter")
+                  .withJsonTag("filter")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("ServerType")
+                  .withJsonTag("server_type")
+                  .withLocationType(Query_));
     return reqDefBuilder;
 }
 
@@ -326,6 +690,20 @@ HttpRequestDef CpcsMeta::genRequestDefForShowVmMonitor() {
     reqDefBuilder.withRequestField(FieldDef().withName("Filter")
                   .withJsonTag("filter")
                   .withLocationType(Query_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef CpcsMeta::genRequestDefForSwitchCpcsToken() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xCPCSToken").
+        withJsonTag("X-CPCS-Token").
+        withKindName("std::string").
+        withLocationType(Header_));
     return reqDefBuilder;
 }
 

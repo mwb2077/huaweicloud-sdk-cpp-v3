@@ -47,10 +47,21 @@ public:
     void unsetassetId();
     void setAssetId(const std::string& value);
 
+    /// <summary>
+    /// 截图任务id，仅支持多截图场景会返回。
+    /// </summary>
+
+    std::string getThumbnailTaskId() const;
+    bool thumbnailTaskIdIsSet() const;
+    void unsetthumbnailTaskId();
+    void setThumbnailTaskId(const std::string& value);
+
 
 protected:
     std::string assetId_;
     bool assetIdIsSet_;
+    std::string thumbnailTaskId_;
+    bool thumbnailTaskIdIsSet_;
 
 #ifdef RTTR_FLAG
     RTTR_ENABLE()

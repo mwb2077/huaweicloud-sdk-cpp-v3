@@ -39,8 +39,11 @@ QueryTranscodingsTaskResponse::QueryTranscodingsTaskResponse()
     thumbnailOutputname_ = "";
     thumbnailOutputnameIsSet_ = false;
     picInfoIsSet_ = false;
+    thumbnailsInfoIsSet_ = false;
+    imageSpriteInfoIsSet_ = false;
     avParametersIsSet_ = false;
     additionalManifestsIsSet_ = false;
+    metadataIsSet_ = false;
 }
 
 QueryTranscodingsTaskResponse::~QueryTranscodingsTaskResponse() = default;
@@ -104,11 +107,20 @@ web::json::value QueryTranscodingsTaskResponse::toJson() const
     if(picInfoIsSet_) {
         val[utility::conversions::to_string_t("pic_info")] = ModelBase::toJson(picInfo_);
     }
+    if(thumbnailsInfoIsSet_) {
+        val[utility::conversions::to_string_t("thumbnails_info")] = ModelBase::toJson(thumbnailsInfo_);
+    }
+    if(imageSpriteInfoIsSet_) {
+        val[utility::conversions::to_string_t("image_sprite_info")] = ModelBase::toJson(imageSpriteInfo_);
+    }
     if(avParametersIsSet_) {
         val[utility::conversions::to_string_t("av_parameters")] = ModelBase::toJson(avParameters_);
     }
     if(additionalManifestsIsSet_) {
         val[utility::conversions::to_string_t("additional_manifests")] = ModelBase::toJson(additionalManifests_);
+    }
+    if(metadataIsSet_) {
+        val[utility::conversions::to_string_t("metadata")] = ModelBase::toJson(metadata_);
     }
 
     return val;
@@ -270,6 +282,24 @@ bool QueryTranscodingsTaskResponse::fromJson(const web::json::value& val)
             setPicInfo(refVal);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("thumbnails_info"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("thumbnails_info"));
+        if(!fieldValue.is_null())
+        {
+            std::vector<ThumbnailsInfo> refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setThumbnailsInfo(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("image_sprite_info"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("image_sprite_info"));
+        if(!fieldValue.is_null())
+        {
+            std::vector<ImageSpriteInfo> refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setImageSpriteInfo(refVal);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t("av_parameters"))) {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("av_parameters"));
         if(!fieldValue.is_null())
@@ -286,6 +316,15 @@ bool QueryTranscodingsTaskResponse::fromJson(const web::json::value& val)
             std::vector<AdditionalManifests> refVal;
             ok &= ModelBase::fromJson(fieldValue, refVal);
             setAdditionalManifests(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("metadata"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("metadata"));
+        if(!fieldValue.is_null())
+        {
+            std::vector<FileMetaData> refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setMetadata(refVal);
         }
     }
     return ok;
@@ -649,6 +688,48 @@ void QueryTranscodingsTaskResponse::unsetpicInfo()
     picInfoIsSet_ = false;
 }
 
+std::vector<ThumbnailsInfo>& QueryTranscodingsTaskResponse::getThumbnailsInfo()
+{
+    return thumbnailsInfo_;
+}
+
+void QueryTranscodingsTaskResponse::setThumbnailsInfo(const std::vector<ThumbnailsInfo>& value)
+{
+    thumbnailsInfo_ = value;
+    thumbnailsInfoIsSet_ = true;
+}
+
+bool QueryTranscodingsTaskResponse::thumbnailsInfoIsSet() const
+{
+    return thumbnailsInfoIsSet_;
+}
+
+void QueryTranscodingsTaskResponse::unsetthumbnailsInfo()
+{
+    thumbnailsInfoIsSet_ = false;
+}
+
+std::vector<ImageSpriteInfo>& QueryTranscodingsTaskResponse::getImageSpriteInfo()
+{
+    return imageSpriteInfo_;
+}
+
+void QueryTranscodingsTaskResponse::setImageSpriteInfo(const std::vector<ImageSpriteInfo>& value)
+{
+    imageSpriteInfo_ = value;
+    imageSpriteInfoIsSet_ = true;
+}
+
+bool QueryTranscodingsTaskResponse::imageSpriteInfoIsSet() const
+{
+    return imageSpriteInfoIsSet_;
+}
+
+void QueryTranscodingsTaskResponse::unsetimageSpriteInfo()
+{
+    imageSpriteInfoIsSet_ = false;
+}
+
 std::vector<AvParameters>& QueryTranscodingsTaskResponse::getAvParameters()
 {
     return avParameters_;
@@ -689,6 +770,27 @@ bool QueryTranscodingsTaskResponse::additionalManifestsIsSet() const
 void QueryTranscodingsTaskResponse::unsetadditionalManifests()
 {
     additionalManifestsIsSet_ = false;
+}
+
+std::vector<FileMetaData>& QueryTranscodingsTaskResponse::getMetadata()
+{
+    return metadata_;
+}
+
+void QueryTranscodingsTaskResponse::setMetadata(const std::vector<FileMetaData>& value)
+{
+    metadata_ = value;
+    metadataIsSet_ = true;
+}
+
+bool QueryTranscodingsTaskResponse::metadataIsSet() const
+{
+    return metadataIsSet_;
+}
+
+void QueryTranscodingsTaskResponse::unsetmetadata()
+{
+    metadataIsSet_ = false;
 }
 
 }

@@ -39,6 +39,24 @@ public:
     /// SlowSQLInfoResult members
 
     /// <summary>
+    /// **参数解释**: 数据库名称。 **取值范围**: 不涉及。
+    /// </summary>
+
+    std::string getDbName() const;
+    bool dbNameIsSet() const;
+    void unsetdbName();
+    void setDbName(const std::string& value);
+
+    /// <summary>
+    /// **参数解释**: SCHEMA名称。 **取值范围**: 不涉及。
+    /// </summary>
+
+    std::string getSchemaName() const;
+    bool schemaNameIsSet() const;
+    void unsetschemaName();
+    void setSchemaName(const std::string& value);
+
+    /// <summary>
     /// **参数解释**: 变量替换后的完整SQL。当sql_text不返回变量值时，sql返回空字符串。 **取值范围**: 不涉及。
     /// </summary>
 
@@ -87,10 +105,10 @@ public:
     /// **参数解释**: 执行次数（次）。 **取值范围**: 不涉及。
     /// </summary>
 
-    std::string getCalls() const;
+    int32_t getCalls() const;
     bool callsIsSet() const;
     void unsetcalls();
-    void setCalls(const std::string& value);
+    void setCalls(int32_t value);
 
     /// <summary>
     /// **参数解释**: 平均执行时间（us）。 **取值范围**: 不涉及。
@@ -175,6 +193,10 @@ public:
 
 
 protected:
+    std::string dbName_;
+    bool dbNameIsSet_;
+    std::string schemaName_;
+    bool schemaNameIsSet_;
     std::string sql_;
     bool sqlIsSet_;
     std::string sqlId_;
@@ -185,7 +207,7 @@ protected:
     bool sqlTextIsSet_;
     std::string queryPlan_;
     bool queryPlanIsSet_;
-    std::string calls_;
+    int32_t calls_;
     bool callsIsSet_;
     std::string avgExecTime_;
     bool avgExecTimeIsSet_;

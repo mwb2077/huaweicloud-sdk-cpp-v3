@@ -26,8 +26,12 @@
 #include <huaweicloud/live/v2/model/ListRecordDataResponse.h>
 #include <huaweicloud/live/v2/model/ListSnapshotDataRequest.h>
 #include <huaweicloud/live/v2/model/ListSnapshotDataResponse.h>
+#include <huaweicloud/live/v2/model/ListTranscodeConcurrencyNumRequest.h>
+#include <huaweicloud/live/v2/model/ListTranscodeConcurrencyNumResponse.h>
 #include <huaweicloud/live/v2/model/ListTranscodeDataRequest.h>
 #include <huaweicloud/live/v2/model/ListTranscodeDataResponse.h>
+#include <huaweicloud/live/v2/model/ListTranscodeTaskDetailRequest.h>
+#include <huaweicloud/live/v2/model/ListTranscodeTaskDetailResponse.h>
 #include <huaweicloud/live/v2/model/ListUsersOfStreamRequest.h>
 #include <huaweicloud/live/v2/model/ListUsersOfStreamResponse.h>
 #include <huaweicloud/live/v2/model/ShowStreamCountRequest.h>
@@ -190,6 +194,15 @@ public:
     std::shared_ptr<ListSnapshotDataResponse> listSnapshotData(
         ListSnapshotDataRequest &request
     );
+    // 查询推流域名转码路数
+    //
+    // 查询推流域名下的转码路数，根据输入时间点和时间粒度，返回转码路数。
+    // 最大查询跨度1天，最大查询周期90天，数据延迟5分钟。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ListTranscodeConcurrencyNumResponse> listTranscodeConcurrencyNum(
+        ListTranscodeConcurrencyNumRequest &request
+    );
     // 查询转码用量接口
     //
     // 查询直播域名每小时的转码时长数据。  最大查询跨度31天，最大查询周期90天。
@@ -197,6 +210,15 @@ public:
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<ListTranscodeDataResponse> listTranscodeData(
         ListTranscodeDataRequest &request
+    );
+    // 查询转码明细
+    //
+    // 查询流粒度转码明细，包含流名、模版、格式、时长。
+    // 最大查询跨度1天，最大查询周期14天。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ListTranscodeTaskDetailResponse> listTranscodeTaskDetail(
+        ListTranscodeTaskDetailRequest &request
     );
     // 查询观众趋势接口
     //

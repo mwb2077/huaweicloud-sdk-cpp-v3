@@ -27,8 +27,6 @@ SqlAlarmRuleRespList::SqlAlarmRuleRespList()
     topicsIsSet_ = false;
     sqlAlarmLevel_ = "";
     sqlAlarmLevelIsSet_ = false;
-    sqlAlarmSend_ = false;
-    sqlAlarmSendIsSet_ = false;
     domainId_ = "";
     domainIdIsSet_ = false;
     createTime_ = 0L;
@@ -51,6 +49,7 @@ SqlAlarmRuleRespList::SqlAlarmRuleRespList()
     notificationFrequencyIsSet_ = false;
     alarmActionRuleName_ = "";
     alarmActionRuleNameIsSet_ = false;
+    tagsIsSet_ = false;
 }
 
 SqlAlarmRuleRespList::~SqlAlarmRuleRespList() = default;
@@ -90,9 +89,6 @@ web::json::value SqlAlarmRuleRespList::toJson() const
     if(sqlAlarmLevelIsSet_) {
         val[utility::conversions::to_string_t("sql_alarm_level")] = ModelBase::toJson(sqlAlarmLevel_);
     }
-    if(sqlAlarmSendIsSet_) {
-        val[utility::conversions::to_string_t("sql_alarm_send")] = ModelBase::toJson(sqlAlarmSend_);
-    }
     if(domainIdIsSet_) {
         val[utility::conversions::to_string_t("domain_id")] = ModelBase::toJson(domainId_);
     }
@@ -125,6 +121,9 @@ web::json::value SqlAlarmRuleRespList::toJson() const
     }
     if(alarmActionRuleNameIsSet_) {
         val[utility::conversions::to_string_t("alarm_action_rule_name")] = ModelBase::toJson(alarmActionRuleName_);
+    }
+    if(tagsIsSet_) {
+        val[utility::conversions::to_string_t("tags")] = ModelBase::toJson(tags_);
     }
 
     return val;
@@ -173,7 +172,7 @@ bool SqlAlarmRuleRespList::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("sql_requests"));
         if(!fieldValue.is_null())
         {
-            std::vector<SqlRequest> refVal;
+            std::vector<SqlRequestResponse> refVal;
             ok &= ModelBase::fromJson(fieldValue, refVal);
             setSqlRequests(refVal);
         }
@@ -212,15 +211,6 @@ bool SqlAlarmRuleRespList::fromJson(const web::json::value& val)
             std::string refVal;
             ok &= ModelBase::fromJson(fieldValue, refVal);
             setSqlAlarmLevel(refVal);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("sql_alarm_send"))) {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("sql_alarm_send"));
-        if(!fieldValue.is_null())
-        {
-            bool refVal;
-            ok &= ModelBase::fromJson(fieldValue, refVal);
-            setSqlAlarmSend(refVal);
         }
     }
     if(val.has_field(utility::conversions::to_string_t("domain_id"))) {
@@ -322,6 +312,15 @@ bool SqlAlarmRuleRespList::fromJson(const web::json::value& val)
             setAlarmActionRuleName(refVal);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("tags"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("tags"));
+        if(!fieldValue.is_null())
+        {
+            std::vector<TagsResBody> refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setTags(refVal);
+        }
+    }
     return ok;
 }
 
@@ -410,12 +409,12 @@ void SqlAlarmRuleRespList::unsetsqlAlarmRuleDescription()
     sqlAlarmRuleDescriptionIsSet_ = false;
 }
 
-std::vector<SqlRequest>& SqlAlarmRuleRespList::getSqlRequests()
+std::vector<SqlRequestResponse>& SqlAlarmRuleRespList::getSqlRequests()
 {
     return sqlRequests_;
 }
 
-void SqlAlarmRuleRespList::setSqlRequests(const std::vector<SqlRequest>& value)
+void SqlAlarmRuleRespList::setSqlRequests(const std::vector<SqlRequestResponse>& value)
 {
     sqlRequests_ = value;
     sqlRequestsIsSet_ = true;
@@ -513,27 +512,6 @@ bool SqlAlarmRuleRespList::sqlAlarmLevelIsSet() const
 void SqlAlarmRuleRespList::unsetsqlAlarmLevel()
 {
     sqlAlarmLevelIsSet_ = false;
-}
-
-bool SqlAlarmRuleRespList::isSqlAlarmSend() const
-{
-    return sqlAlarmSend_;
-}
-
-void SqlAlarmRuleRespList::setSqlAlarmSend(bool value)
-{
-    sqlAlarmSend_ = value;
-    sqlAlarmSendIsSet_ = true;
-}
-
-bool SqlAlarmRuleRespList::sqlAlarmSendIsSet() const
-{
-    return sqlAlarmSendIsSet_;
-}
-
-void SqlAlarmRuleRespList::unsetsqlAlarmSend()
-{
-    sqlAlarmSendIsSet_ = false;
 }
 
 std::string SqlAlarmRuleRespList::getDomainId() const
@@ -765,6 +743,27 @@ bool SqlAlarmRuleRespList::alarmActionRuleNameIsSet() const
 void SqlAlarmRuleRespList::unsetalarmActionRuleName()
 {
     alarmActionRuleNameIsSet_ = false;
+}
+
+std::vector<TagsResBody>& SqlAlarmRuleRespList::getTags()
+{
+    return tags_;
+}
+
+void SqlAlarmRuleRespList::setTags(const std::vector<TagsResBody>& value)
+{
+    tags_ = value;
+    tagsIsSet_ = true;
+}
+
+bool SqlAlarmRuleRespList::tagsIsSet() const
+{
+    return tagsIsSet_;
+}
+
+void SqlAlarmRuleRespList::unsettags()
+{
+    tagsIsSet_ = false;
 }
 
 }

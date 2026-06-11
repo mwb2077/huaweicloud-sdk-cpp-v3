@@ -15,6 +15,7 @@ CreateTranscodingReq::CreateTranscodingReq()
     inputIsSet_ = false;
     outputIsSet_ = false;
     transTemplateIdIsSet_ = false;
+    transTemplateListIsSet_ = false;
     avParametersIsSet_ = false;
     additionalManifestsIsSet_ = false;
     outputFilenamesIsSet_ = false;
@@ -22,6 +23,8 @@ CreateTranscodingReq::CreateTranscodingReq()
     userDataIsSet_ = false;
     watermarksIsSet_ = false;
     thumbnailIsSet_ = false;
+    thumbnailsIsSet_ = false;
+    imageSpritesIsSet_ = false;
     priority_ = 0;
     priorityIsSet_ = false;
     subtitleIsSet_ = false;
@@ -31,6 +34,7 @@ CreateTranscodingReq::CreateTranscodingReq()
     multiAudioIsSet_ = false;
     videoProcessIsSet_ = false;
     audioProcessIsSet_ = false;
+    metadataIsSet_ = false;
 }
 
 CreateTranscodingReq::~CreateTranscodingReq() = default;
@@ -52,6 +56,9 @@ web::json::value CreateTranscodingReq::toJson() const
     if(transTemplateIdIsSet_) {
         val[utility::conversions::to_string_t("trans_template_id")] = ModelBase::toJson(transTemplateId_);
     }
+    if(transTemplateListIsSet_) {
+        val[utility::conversions::to_string_t("trans_template_list")] = ModelBase::toJson(transTemplateList_);
+    }
     if(avParametersIsSet_) {
         val[utility::conversions::to_string_t("av_parameters")] = ModelBase::toJson(avParameters_);
     }
@@ -69,6 +76,12 @@ web::json::value CreateTranscodingReq::toJson() const
     }
     if(thumbnailIsSet_) {
         val[utility::conversions::to_string_t("thumbnail")] = ModelBase::toJson(thumbnail_);
+    }
+    if(thumbnailsIsSet_) {
+        val[utility::conversions::to_string_t("thumbnails")] = ModelBase::toJson(thumbnails_);
+    }
+    if(imageSpritesIsSet_) {
+        val[utility::conversions::to_string_t("image_sprites")] = ModelBase::toJson(imageSprites_);
     }
     if(priorityIsSet_) {
         val[utility::conversions::to_string_t("priority")] = ModelBase::toJson(priority_);
@@ -93,6 +106,9 @@ web::json::value CreateTranscodingReq::toJson() const
     }
     if(audioProcessIsSet_) {
         val[utility::conversions::to_string_t("audio_process")] = ModelBase::toJson(audioProcess_);
+    }
+    if(metadataIsSet_) {
+        val[utility::conversions::to_string_t("metadata")] = ModelBase::toJson(metadata_);
     }
 
     return val;
@@ -126,6 +142,15 @@ bool CreateTranscodingReq::fromJson(const web::json::value& val)
             std::vector<int32_t> refVal;
             ok &= ModelBase::fromJson(fieldValue, refVal);
             setTransTemplateId(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("trans_template_list"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("trans_template_list"));
+        if(!fieldValue.is_null())
+        {
+            std::vector<TransIdTemplate> refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setTransTemplateList(refVal);
         }
     }
     if(val.has_field(utility::conversions::to_string_t("av_parameters"))) {
@@ -180,6 +205,24 @@ bool CreateTranscodingReq::fromJson(const web::json::value& val)
             Thumbnail refVal;
             ok &= ModelBase::fromJson(fieldValue, refVal);
             setThumbnail(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("thumbnails"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("thumbnails"));
+        if(!fieldValue.is_null())
+        {
+            std::vector<Thumbnail> refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setThumbnails(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("image_sprites"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("image_sprites"));
+        if(!fieldValue.is_null())
+        {
+            std::vector<ImageSprite> refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setImageSprites(refVal);
         }
     }
     if(val.has_field(utility::conversions::to_string_t("priority"))) {
@@ -254,6 +297,15 @@ bool CreateTranscodingReq::fromJson(const web::json::value& val)
             setAudioProcess(refVal);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("metadata"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("metadata"));
+        if(!fieldValue.is_null())
+        {
+            std::vector<FileMetaData> refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setMetadata(refVal);
+        }
+    }
     return ok;
 }
 
@@ -319,6 +371,27 @@ bool CreateTranscodingReq::transTemplateIdIsSet() const
 void CreateTranscodingReq::unsettransTemplateId()
 {
     transTemplateIdIsSet_ = false;
+}
+
+std::vector<TransIdTemplate>& CreateTranscodingReq::getTransTemplateList()
+{
+    return transTemplateList_;
+}
+
+void CreateTranscodingReq::setTransTemplateList(const std::vector<TransIdTemplate>& value)
+{
+    transTemplateList_ = value;
+    transTemplateListIsSet_ = true;
+}
+
+bool CreateTranscodingReq::transTemplateListIsSet() const
+{
+    return transTemplateListIsSet_;
+}
+
+void CreateTranscodingReq::unsettransTemplateList()
+{
+    transTemplateListIsSet_ = false;
 }
 
 std::vector<AvParameters>& CreateTranscodingReq::getAvParameters()
@@ -445,6 +518,48 @@ bool CreateTranscodingReq::thumbnailIsSet() const
 void CreateTranscodingReq::unsetthumbnail()
 {
     thumbnailIsSet_ = false;
+}
+
+std::vector<Thumbnail>& CreateTranscodingReq::getThumbnails()
+{
+    return thumbnails_;
+}
+
+void CreateTranscodingReq::setThumbnails(const std::vector<Thumbnail>& value)
+{
+    thumbnails_ = value;
+    thumbnailsIsSet_ = true;
+}
+
+bool CreateTranscodingReq::thumbnailsIsSet() const
+{
+    return thumbnailsIsSet_;
+}
+
+void CreateTranscodingReq::unsetthumbnails()
+{
+    thumbnailsIsSet_ = false;
+}
+
+std::vector<ImageSprite>& CreateTranscodingReq::getImageSprites()
+{
+    return imageSprites_;
+}
+
+void CreateTranscodingReq::setImageSprites(const std::vector<ImageSprite>& value)
+{
+    imageSprites_ = value;
+    imageSpritesIsSet_ = true;
+}
+
+bool CreateTranscodingReq::imageSpritesIsSet() const
+{
+    return imageSpritesIsSet_;
+}
+
+void CreateTranscodingReq::unsetimageSprites()
+{
+    imageSpritesIsSet_ = false;
 }
 
 int32_t CreateTranscodingReq::getPriority() const
@@ -613,6 +728,27 @@ bool CreateTranscodingReq::audioProcessIsSet() const
 void CreateTranscodingReq::unsetaudioProcess()
 {
     audioProcessIsSet_ = false;
+}
+
+std::vector<FileMetaData>& CreateTranscodingReq::getMetadata()
+{
+    return metadata_;
+}
+
+void CreateTranscodingReq::setMetadata(const std::vector<FileMetaData>& value)
+{
+    metadata_ = value;
+    metadataIsSet_ = true;
+}
+
+bool CreateTranscodingReq::metadataIsSet() const
+{
+    return metadataIsSet_;
+}
+
+void CreateTranscodingReq::unsetmetadata()
+{
+    metadataIsSet_ = false;
 }
 
 }

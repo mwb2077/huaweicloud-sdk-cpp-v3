@@ -28,6 +28,9 @@
 #include <huaweicloud/dds/v3/model/BatchUpgradeDatabaseVersionRequest.h>
 #include <huaweicloud/dds/v3/model/BatchUpgradeDatabaseVersionRequestBody.h>
 #include <huaweicloud/dds/v3/model/BatchUpgradeDatabaseVersionResponse.h>
+#include <huaweicloud/dds/v3/model/BindPublicGatewayRequest.h>
+#include <huaweicloud/dds/v3/model/BindPublicGatewayRequestBody.h>
+#include <huaweicloud/dds/v3/model/BindPublicGatewayResponse.h>
 #include <huaweicloud/dds/v3/model/CancelEipRequest.h>
 #include <huaweicloud/dds/v3/model/CancelEipResponse.h>
 #include <huaweicloud/dds/v3/model/CancelScheduledTaskRequest.h>
@@ -79,6 +82,9 @@
 #include <huaweicloud/dds/v3/model/DeleteDatabaseUserResponse.h>
 #include <huaweicloud/dds/v3/model/DeleteInstanceRequest.h>
 #include <huaweicloud/dds/v3/model/DeleteInstanceResponse.h>
+#include <huaweicloud/dds/v3/model/DeleteIpRequest.h>
+#include <huaweicloud/dds/v3/model/DeleteIpRequestBody.h>
+#include <huaweicloud/dds/v3/model/DeleteIpResponse.h>
 #include <huaweicloud/dds/v3/model/DeleteKillOpRuleListRequest.h>
 #include <huaweicloud/dds/v3/model/DeleteKillOpRuleListRequestBody.h>
 #include <huaweicloud/dds/v3/model/DeleteKillOpRuleListResponse.h>
@@ -282,7 +288,10 @@
 #include <huaweicloud/dds/v3/model/SwitchSslRequestBody.h>
 #include <huaweicloud/dds/v3/model/SwitchSslResponse.h>
 #include <huaweicloud/dds/v3/model/SwitchoverReplicaSetRequest.h>
+#include <huaweicloud/dds/v3/model/SwitchoverReplicaSetRequestBody.h>
 #include <huaweicloud/dds/v3/model/SwitchoverReplicaSetResponse.h>
+#include <huaweicloud/dds/v3/model/UnbindPublicGatewayRequest.h>
+#include <huaweicloud/dds/v3/model/UnbindPublicGatewayResponse.h>
 #include <huaweicloud/dds/v3/model/UpdateBackupDownloadPolicyRequest.h>
 #include <huaweicloud/dds/v3/model/UpdateBackupDownloadPolicyRequestBody.h>
 #include <huaweicloud/dds/v3/model/UpdateBackupDownloadPolicyResponse.h>
@@ -408,6 +417,14 @@ public:
     std::shared_ptr<BatchUpgradeDatabaseVersionResponse> batchUpgradeDatabaseVersion(
         BatchUpgradeDatabaseVersionRequest &request
     );
+    // 绑定公网网关
+    //
+    // 为实例下的节点绑定公网网关。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<BindPublicGatewayResponse> bindPublicGateway(
+        BindPublicGatewayRequest &request
+    );
     // 解绑弹性公网IP
     //
     // 解绑实例下节点已经绑定的弹性公网IP。
@@ -530,7 +547,7 @@ public:
     );
     // 删除参数模板
     //
-    // 删除参数模板。
+    // 删除指定参数模板。
     // 
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<DeleteConfigurationResponse> deleteConfiguration(
@@ -559,6 +576,14 @@ public:
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<DeleteInstanceResponse> deleteInstance(
         DeleteInstanceRequest &request
+    );
+    // 删除集群的Shard/Config IP
+    //
+    // 删除集群的Shard/Config IP
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<DeleteIpResponse> deleteIp(
+        DeleteIpRequest &request
     );
     // 删除killOp规则
     //
@@ -786,7 +811,7 @@ public:
     );
     // 查询数据库慢日志
     //
-    // 查询数据库慢日志信息。
+    // 查询数据库慢日志信息，支持关键字、数据库表名等搜索功能。
     // 
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<ListLtsSlowLogsResponse> listLtsSlowLogs(
@@ -1066,7 +1091,7 @@ public:
     );
     // 获取参数模板的详情
     //
-    // 获取参数模板的详情。
+    // 获取指定参数模板的参数信息。
     // 
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<ShowConfigurationParameterResponse> showConfigurationParameter(
@@ -1090,7 +1115,7 @@ public:
     );
     // 获取指定实例的参数信息
     //
-    // 获取指定实例的参数，可以是实例，组，节点的参数模板。
+    // 获取指定实例的参数信息。
     // 
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<ShowEntityConfigurationResponse> showEntityConfiguration(
@@ -1232,13 +1257,21 @@ public:
     std::shared_ptr<SwitchSslResponse> switchSsl(
         SwitchSslRequest &request
     );
-    // 切换副本集实例的主备节点
+    // 切换实例的主备节点
     //
-    // 切换副本集实例下的主备节点
+    // 切换实例下的主备节点
     // 
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<SwitchoverReplicaSetResponse> switchoverReplicaSet(
         SwitchoverReplicaSetRequest &request
+    );
+    // 解绑公网网关
+    //
+    // 为实例下的节点解绑公网网关。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<UnbindPublicGatewayResponse> unbindPublicGateway(
+        UnbindPublicGatewayRequest &request
     );
     // 更新备份下载策略
     //

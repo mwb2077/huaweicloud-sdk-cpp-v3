@@ -14,6 +14,8 @@ ShowModifyHistoryRequest::ShowModifyHistoryRequest()
 {
     instanceId_ = "";
     instanceIdIsSet_ = false;
+    parameterName_ = "";
+    parameterNameIsSet_ = false;
     offset_ = 0;
     offsetIsSet_ = false;
     limit_ = 0;
@@ -32,6 +34,9 @@ web::json::value ShowModifyHistoryRequest::toJson() const
 
     if(instanceIdIsSet_) {
         val[utility::conversions::to_string_t("instance_id")] = ModelBase::toJson(instanceId_);
+    }
+    if(parameterNameIsSet_) {
+        val[utility::conversions::to_string_t("parameter_name")] = ModelBase::toJson(parameterName_);
     }
     if(offsetIsSet_) {
         val[utility::conversions::to_string_t("offset")] = ModelBase::toJson(offset_);
@@ -53,6 +58,15 @@ bool ShowModifyHistoryRequest::fromJson(const web::json::value& val)
             std::string refVal;
             ok &= ModelBase::fromJson(fieldValue, refVal);
             setInstanceId(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("parameter_name"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("parameter_name"));
+        if(!fieldValue.is_null())
+        {
+            std::string refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setParameterName(refVal);
         }
     }
     if(val.has_field(utility::conversions::to_string_t("offset"))) {
@@ -96,6 +110,27 @@ bool ShowModifyHistoryRequest::instanceIdIsSet() const
 void ShowModifyHistoryRequest::unsetinstanceId()
 {
     instanceIdIsSet_ = false;
+}
+
+std::string ShowModifyHistoryRequest::getParameterName() const
+{
+    return parameterName_;
+}
+
+void ShowModifyHistoryRequest::setParameterName(const std::string& value)
+{
+    parameterName_ = value;
+    parameterNameIsSet_ = true;
+}
+
+bool ShowModifyHistoryRequest::parameterNameIsSet() const
+{
+    return parameterNameIsSet_;
+}
+
+void ShowModifyHistoryRequest::unsetparameterName()
+{
+    parameterNameIsSet_ = false;
 }
 
 int32_t ShowModifyHistoryRequest::getOffset() const

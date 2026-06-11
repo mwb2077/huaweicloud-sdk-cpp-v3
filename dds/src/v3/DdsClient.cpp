@@ -328,6 +328,49 @@ std::shared_ptr<BatchUpgradeDatabaseVersionResponse> DdsClient::batchUpgradeData
 
     return localVarResult;
 }
+std::shared_ptr<BindPublicGatewayResponse> DdsClient::bindPublicGateway(BindPublicGatewayRequest &request)
+{
+    std::string localVarPath = "/v3/{project_id}/instances/{instance_id}/nodes/{node_id}/public-gateway";
+
+    std::map<std::string, std::string> localVarQueryParams;
+    std::map<std::string, std::string> localVarHeaderParams;
+    std::map<std::string, std::string> localVarFormParams;
+    std::map<std::string, std::string> localVarPathParams;
+
+    localVarPathParams["instance_id"] = parameterToString(request.getInstanceId());
+    localVarPathParams["node_id"] = parameterToString(request.getNodeId());
+
+    bool isJson = false;
+    bool isMultiPart = false;
+    bool isBson = false;
+    std::string contentType = getContentType("application/json", isJson, isMultiPart, isBson);
+    localVarHeaderParams["Content-Type"] = contentType;
+
+
+    std::string localVarHttpBody;
+    if (isJson) {
+        // handle json input
+        web::json::value localVarJson;
+        localVarJson = ModelBase::toJson(request.getBody());
+        localVarHttpBody = utility::conversions::to_utf8string(localVarJson.serialize());
+    }
+
+    std::unique_ptr<HttpResponse> res = callApi("POST", localVarPath, localVarPathParams, localVarQueryParams,
+        localVarHeaderParams, localVarHttpBody, DdsMeta::genRequestDefForBindPublicGateway());
+
+    std::shared_ptr<BindPublicGatewayResponse> localVarResult = std::make_shared<BindPublicGatewayResponse>();
+    localVarResult->setStatusCode(res->getStatusCode());
+    localVarResult->setHeaderParams(res->getHeaderParams());
+    localVarResult->setHttpBody(res->getHttpBody());
+    if (!res->getHttpBody().empty()) {
+        spdlog::info("parse json format response");
+        utility::string_t localVarResponse = utility::conversions::to_string_t(res->getHttpBody());
+        web::json::value localVarJson = web::json::value::parse(localVarResponse);
+        localVarResult->fromJson(localVarJson);
+    }
+
+    return localVarResult;
+}
 std::shared_ptr<CancelEipResponse> DdsClient::cancelEip(CancelEipRequest &request)
 {
     std::string localVarPath = "/v3/{project_id}/nodes/{node_id}/unbind-eip";
@@ -1079,6 +1122,48 @@ std::shared_ptr<DeleteInstanceResponse> DdsClient::deleteInstance(DeleteInstance
 
     return localVarResult;
 }
+std::shared_ptr<DeleteIpResponse> DdsClient::deleteIp(DeleteIpRequest &request)
+{
+    std::string localVarPath = "/v3/{project_id}/instances/{instance_id}/ip";
+
+    std::map<std::string, std::string> localVarQueryParams;
+    std::map<std::string, std::string> localVarHeaderParams;
+    std::map<std::string, std::string> localVarFormParams;
+    std::map<std::string, std::string> localVarPathParams;
+
+    localVarPathParams["instance_id"] = parameterToString(request.getInstanceId());
+
+    bool isJson = false;
+    bool isMultiPart = false;
+    bool isBson = false;
+    std::string contentType = getContentType("application/json", isJson, isMultiPart, isBson);
+    localVarHeaderParams["Content-Type"] = contentType;
+
+
+    std::string localVarHttpBody;
+    if (isJson) {
+        // handle json input
+        web::json::value localVarJson;
+        localVarJson = ModelBase::toJson(request.getBody());
+        localVarHttpBody = utility::conversions::to_utf8string(localVarJson.serialize());
+    }
+
+    std::unique_ptr<HttpResponse> res = callApi("DELETE", localVarPath, localVarPathParams, localVarQueryParams,
+        localVarHeaderParams, localVarHttpBody, DdsMeta::genRequestDefForDeleteIp());
+
+    std::shared_ptr<DeleteIpResponse> localVarResult = std::make_shared<DeleteIpResponse>();
+    localVarResult->setStatusCode(res->getStatusCode());
+    localVarResult->setHeaderParams(res->getHeaderParams());
+    localVarResult->setHttpBody(res->getHttpBody());
+    if (!res->getHttpBody().empty()) {
+        spdlog::info("parse json format response");
+        utility::string_t localVarResponse = utility::conversions::to_string_t(res->getHttpBody());
+        web::json::value localVarJson = web::json::value::parse(localVarResponse);
+        localVarResult->fromJson(localVarJson);
+    }
+
+    return localVarResult;
+}
 std::shared_ptr<DeleteKillOpRuleListResponse> DdsClient::deleteKillOpRuleList(DeleteKillOpRuleListRequest &request)
 {
     std::string localVarPath = "/v3/{project_id}/instances/{instance_id}/kill-op-rule";
@@ -1668,6 +1753,24 @@ std::shared_ptr<ListBackupsResponse> DdsClient::listBackups(ListBackupsRequest &
     }
     if (request.modeIsSet()) {
         localVarQueryParams["mode"] = parameterToString(request.getMode());
+    }
+    if (request.orderFieldIsSet()) {
+        localVarQueryParams["order_field"] = parameterToString(request.getOrderField());
+    }
+    if (request.orderRuleIsSet()) {
+        localVarQueryParams["order_rule"] = parameterToString(request.getOrderRule());
+    }
+    if (request.backupStatusIsSet()) {
+        localVarQueryParams["backup_status"] = parameterToString(request.getBackupStatus());
+    }
+    if (request.backupNameIsSet()) {
+        localVarQueryParams["backup_name"] = parameterToString(request.getBackupName());
+    }
+    if (request.backupDescriptionIsSet()) {
+        localVarQueryParams["backup_description"] = parameterToString(request.getBackupDescription());
+    }
+    if (request.instanceNameIsSet()) {
+        localVarQueryParams["instance_name"] = parameterToString(request.getInstanceName());
     }
 
     std::string localVarHttpBody;
@@ -2663,6 +2766,9 @@ std::shared_ptr<ListTasksResponse> DdsClient::listTasks(ListTasksRequest &reques
     if (request.statusIsSet()) {
         localVarQueryParams["status"] = parameterToString(request.getStatus());
     }
+    if (request.idIsSet()) {
+        localVarQueryParams["id"] = parameterToString(request.getId());
+    }
     if (request.nameIsSet()) {
         localVarQueryParams["name"] = parameterToString(request.getName());
     }
@@ -3419,9 +3525,6 @@ std::shared_ptr<ShowBackupDownloadLinkResponse> DdsClient::showBackupDownloadLin
     }
     if (request.backupIdIsSet()) {
         localVarQueryParams["backup_id"] = parameterToString(request.getBackupId());
-    }
-    if (request.xLanguageIsSet()) {
-        localVarHeaderParams["X-Language"] = parameterToString(request.getXLanguage());
     }
 
     std::string localVarHttpBody;
@@ -4327,11 +4430,54 @@ std::shared_ptr<SwitchoverReplicaSetResponse> DdsClient::switchoverReplicaSet(Sw
 
 
     std::string localVarHttpBody;
+    if (isJson) {
+        // handle json input
+        web::json::value localVarJson;
+        localVarJson = ModelBase::toJson(request.getBody());
+        localVarHttpBody = utility::conversions::to_utf8string(localVarJson.serialize());
+    }
 
     std::unique_ptr<HttpResponse> res = callApi("POST", localVarPath, localVarPathParams, localVarQueryParams,
         localVarHeaderParams, localVarHttpBody, DdsMeta::genRequestDefForSwitchoverReplicaSet());
 
     std::shared_ptr<SwitchoverReplicaSetResponse> localVarResult = std::make_shared<SwitchoverReplicaSetResponse>();
+    localVarResult->setStatusCode(res->getStatusCode());
+    localVarResult->setHeaderParams(res->getHeaderParams());
+    localVarResult->setHttpBody(res->getHttpBody());
+    if (!res->getHttpBody().empty()) {
+        spdlog::info("parse json format response");
+        utility::string_t localVarResponse = utility::conversions::to_string_t(res->getHttpBody());
+        web::json::value localVarJson = web::json::value::parse(localVarResponse);
+        localVarResult->fromJson(localVarJson);
+    }
+
+    return localVarResult;
+}
+std::shared_ptr<UnbindPublicGatewayResponse> DdsClient::unbindPublicGateway(UnbindPublicGatewayRequest &request)
+{
+    std::string localVarPath = "/v3/{project_id}/instances/{instance_id}/nodes/{node_id}/public-gateway";
+
+    std::map<std::string, std::string> localVarQueryParams;
+    std::map<std::string, std::string> localVarHeaderParams;
+    std::map<std::string, std::string> localVarFormParams;
+    std::map<std::string, std::string> localVarPathParams;
+
+    localVarPathParams["instance_id"] = parameterToString(request.getInstanceId());
+    localVarPathParams["node_id"] = parameterToString(request.getNodeId());
+
+    bool isJson = false;
+    bool isMultiPart = false;
+    bool isBson = false;
+    std::string contentType = getContentType("application/json", isJson, isMultiPart, isBson);
+    localVarHeaderParams["Content-Type"] = contentType;
+
+
+    std::string localVarHttpBody;
+
+    std::unique_ptr<HttpResponse> res = callApi("DELETE", localVarPath, localVarPathParams, localVarQueryParams,
+        localVarHeaderParams, localVarHttpBody, DdsMeta::genRequestDefForUnbindPublicGateway());
+
+    std::shared_ptr<UnbindPublicGatewayResponse> localVarResult = std::make_shared<UnbindPublicGatewayResponse>();
     localVarResult->setStatusCode(res->getStatusCode());
     localVarResult->setHeaderParams(res->getHeaderParams());
     localVarResult->setHttpBody(res->getHttpBody());

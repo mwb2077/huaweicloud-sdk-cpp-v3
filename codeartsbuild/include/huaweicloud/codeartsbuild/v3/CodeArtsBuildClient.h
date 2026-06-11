@@ -115,6 +115,8 @@
 #include <huaweicloud/codeartsbuild/v3/model/ShowImageTemplateListResponse.h>
 #include <string>
 
+#include <huaweicloud/codeartsbuild/v3/model/AddFavouriteTaskRequest.h>
+#include <huaweicloud/codeartsbuild/v3/model/AddFavouriteTaskResponse.h>
 #include <huaweicloud/codeartsbuild/v3/model/ApplyProjectPermissionRequest.h>
 #include <huaweicloud/codeartsbuild/v3/model/ApplyProjectPermissionResponse.h>
 #include <huaweicloud/codeartsbuild/v3/model/BatchUpdateJobRolePermissionRequest.h>
@@ -160,6 +162,8 @@
 #include <huaweicloud/codeartsbuild/v3/model/ListUpdateJobHistoryRequest.h>
 #include <huaweicloud/codeartsbuild/v3/model/ListUpdateJobHistoryResponse.h>
 #include <huaweicloud/codeartsbuild/v3/model/ProjectPermissionRequestBody.h>
+#include <huaweicloud/codeartsbuild/v3/model/RemoverFavouriteTaskRequest.h>
+#include <huaweicloud/codeartsbuild/v3/model/RemoverFavouriteTaskResponse.h>
 #include <huaweicloud/codeartsbuild/v3/model/RestoreRecyclingJobsRequest.h>
 #include <huaweicloud/codeartsbuild/v3/model/RestoreRecyclingJobsResponse.h>
 #include <huaweicloud/codeartsbuild/v3/model/RolePermissionsRequestBody.h>
@@ -220,7 +224,6 @@
 #include <huaweicloud/codeartsbuild/v3/model/DeleteKeystoreResponse.h>
 #include <huaweicloud/codeartsbuild/v3/model/DownloadKeystoreByNameRequest.h>
 #include <huaweicloud/codeartsbuild/v3/model/DownloadKeystoreByNameResponse.h>
-#include <huaweicloud/core/utils/HttpContent.h>
 #include <huaweicloud/codeartsbuild/v3/model/ListKeystoreRequest.h>
 #include <huaweicloud/codeartsbuild/v3/model/ListKeystoreResponse.h>
 #include <huaweicloud/codeartsbuild/v3/model/ListKeystoreSearchRequest.h>
@@ -233,9 +236,14 @@
 #include <huaweicloud/codeartsbuild/v3/model/UpdateKeystoreRequest.h>
 #include <huaweicloud/codeartsbuild/v3/model/UpdateKeystoreRequestBody.h>
 #include <huaweicloud/codeartsbuild/v3/model/UpdateKeystoreResponse.h>
-#include <huaweicloud/codeartsbuild/v3/model/UploadKeystoreRequest.h>
-#include <huaweicloud/codeartsbuild/v3/model/UploadKeystoreRequestBody.h>
-#include <huaweicloud/codeartsbuild/v3/model/UploadKeystoreResponse.h>
+#include <string>
+
+#include <huaweicloud/codeartsbuild/v3/model/DownloadBuildFullLogRequest.h>
+#include <huaweicloud/codeartsbuild/v3/model/DownloadBuildFullLogResponse.h>
+#include <huaweicloud/codeartsbuild/v3/model/DownloadBuildRealTimeLogRequest.h>
+#include <huaweicloud/codeartsbuild/v3/model/DownloadBuildRealTimeLogResponse.h>
+#include <huaweicloud/codeartsbuild/v3/model/ShowActionIInfoRequest.h>
+#include <huaweicloud/codeartsbuild/v3/model/ShowActionIInfoResponse.h>
 #include <string>
 
 #include <huaweicloud/codeartsbuild/v3/model/DownloadLogByRecordIdRequest.h>
@@ -290,6 +298,8 @@
 
 #include <huaweicloud/codeartsbuild/v3/model/AddFavouriteCustomTemplateRequest.h>
 #include <huaweicloud/codeartsbuild/v3/model/AddFavouriteCustomTemplateResponse.h>
+#include <huaweicloud/codeartsbuild/v3/model/AddFavouriteOfficialTemplateRequest.h>
+#include <huaweicloud/codeartsbuild/v3/model/AddFavouriteOfficialTemplateResponse.h>
 #include <huaweicloud/codeartsbuild/v3/model/CreateTemplateRequest.h>
 #include <huaweicloud/codeartsbuild/v3/model/CreateTemplateResponse.h>
 #include <huaweicloud/codeartsbuild/v3/model/CreateTemplatesRequestBody.h>
@@ -304,6 +314,8 @@
 #include <huaweicloud/codeartsbuild/v3/model/ListRecommendOfficialTemplateResponse.h>
 #include <huaweicloud/codeartsbuild/v3/model/RemoverFavouriteCustomTemplateRequest.h>
 #include <huaweicloud/codeartsbuild/v3/model/RemoverFavouriteCustomTemplateResponse.h>
+#include <huaweicloud/codeartsbuild/v3/model/RemoverFavouriteOfficialTemplateRequest.h>
+#include <huaweicloud/codeartsbuild/v3/model/RemoverFavouriteOfficialTemplateResponse.h>
 #include <huaweicloud/codeartsbuild/v3/model/SaveTemplateUsedInfoRequest.h>
 #include <huaweicloud/codeartsbuild/v3/model/SaveTemplateUsedInfoRequestBody.h>
 #include <huaweicloud/codeartsbuild/v3/model/SaveTemplateUsedInfoResponse.h>
@@ -709,6 +721,14 @@ public:
         ShowImageTemplateListRequest &request
     );
 
+    // 收藏任务
+    //
+    // 收藏任务
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<AddFavouriteTaskResponse> addFavouriteTask(
+        AddFavouriteTaskRequest &request
+    );
     // 任务是否使用项目级权限
     //
     // 任务是否使用项目级权限
@@ -860,6 +880,14 @@ public:
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<ListUpdateJobHistoryResponse> listUpdateJobHistory(
         ListUpdateJobHistoryRequest &request
+    );
+    // 取消收藏任务
+    //
+    // 取消收藏任务
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<RemoverFavouriteTaskResponse> removerFavouriteTask(
+        RemoverFavouriteTaskRequest &request
     );
     // 恢复回收站中的任务
     //
@@ -1110,13 +1138,30 @@ public:
     std::shared_ptr<UpdateKeystorePermissionResponse> updateKeystorePermission(
         UpdateKeystorePermissionRequest &request
     );
-    // 上传文件
+
+    // 下载全量构建日志
     //
-    // 上传文件
+    // 下载全量构建日志
     // 
     // Please refer to HUAWEI cloud API Explorer for details.
-    std::shared_ptr<UploadKeystoreResponse> uploadKeystore(
-        UploadKeystoreRequest &request
+    std::shared_ptr<DownloadBuildFullLogResponse> downloadBuildFullLog(
+        DownloadBuildFullLogRequest &request
+    );
+    // 获取运行全量日志
+    //
+    // 获取运行全量日志
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<DownloadBuildRealTimeLogResponse> downloadBuildRealTimeLog(
+        DownloadBuildRealTimeLogRequest &request
+    );
+    // 任务执行后获取构建日志
+    //
+    // 任务执行后获取构建日志
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ShowActionIInfoResponse> showActionIInfo(
+        ShowActionIInfoRequest &request
     );
 
     // 下载构建日志(待下线)
@@ -1298,6 +1343,14 @@ public:
     std::shared_ptr<AddFavouriteCustomTemplateResponse> addFavouriteCustomTemplate(
         AddFavouriteCustomTemplateRequest &request
     );
+    // 收藏官方模板
+    //
+    // 收藏官方模板
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<AddFavouriteOfficialTemplateResponse> addFavouriteOfficialTemplate(
+        AddFavouriteOfficialTemplateRequest &request
+    );
     // 创建构建模板
     //
     // 创建构建模板
@@ -1345,6 +1398,14 @@ public:
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<RemoverFavouriteCustomTemplateResponse> removerFavouriteCustomTemplate(
         RemoverFavouriteCustomTemplateRequest &request
+    );
+    // 取消收藏官方模板
+    //
+    // 取消收藏官方模板
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<RemoverFavouriteOfficialTemplateResponse> removerFavouriteOfficialTemplate(
+        RemoverFavouriteOfficialTemplateRequest &request
     );
     // 保存模板使用记录
     //

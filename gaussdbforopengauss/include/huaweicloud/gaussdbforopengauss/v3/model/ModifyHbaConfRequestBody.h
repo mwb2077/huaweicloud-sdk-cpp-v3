@@ -9,7 +9,8 @@
 #include <huaweicloud/core/utils/Utils.h>
 #include <huaweicloud/core/http/HttpResponse.h>
 
-#include <huaweicloud/core/utils/Object.h>
+#include <huaweicloud/gaussdbforopengauss/v3/model/BeforeHbaConfOption.h>
+#include <huaweicloud/gaussdbforopengauss/v3/model/AfterHbaConfOption.h>
 
 namespace HuaweiCloud {
 namespace Sdk {
@@ -39,29 +40,29 @@ public:
     /// ModifyHbaConfRequestBody members
 
     /// <summary>
-    /// **参数解释**: 需要修改的hba配置信息。 **约束限制**: 不涉及。
+    /// 
     /// </summary>
 
-    Object getBeforeConfs() const;
-    bool beforeConfsIsSet() const;
-    void unsetbeforeConfs();
-    void setBeforeConfs(const Object& value);
+    BeforeHbaConfOption getBeforeConf() const;
+    bool beforeConfIsSet() const;
+    void unsetbeforeConf();
+    void setBeforeConf(const BeforeHbaConfOption& value);
 
     /// <summary>
-    /// **参数解释**: 修改后的hba配置信息。 **约束限制**: 不涉及。
+    /// 
     /// </summary>
 
-    Object getAfterConfs() const;
-    bool afterConfsIsSet() const;
-    void unsetafterConfs();
-    void setAfterConfs(const Object& value);
+    AfterHbaConfOption getAfterConf() const;
+    bool afterConfIsSet() const;
+    void unsetafterConf();
+    void setAfterConf(const AfterHbaConfOption& value);
 
 
 protected:
-    Object beforeConfs_;
-    bool beforeConfsIsSet_;
-    Object afterConfs_;
-    bool afterConfsIsSet_;
+    BeforeHbaConfOption beforeConf_;
+    bool beforeConfIsSet_;
+    AfterHbaConfOption afterConf_;
+    bool afterConfIsSet_;
 
 };
 

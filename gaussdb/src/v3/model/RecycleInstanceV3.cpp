@@ -24,9 +24,9 @@ RecycleInstanceV3::RecycleInstanceV3()
     engineVersionIsSet_ = false;
     payModel_ = "";
     payModelIsSet_ = false;
-    createAt_ = 0;
+    createAt_ = 0L;
     createAtIsSet_ = false;
-    deletedAt_ = 0;
+    deletedAt_ = 0L;
     deletedAtIsSet_ = false;
     volumeType_ = "";
     volumeTypeIsSet_ = false;
@@ -46,6 +46,7 @@ RecycleInstanceV3::RecycleInstanceV3()
     recycleBackupIdIsSet_ = false;
     recycleStatus_ = "";
     recycleStatusIsSet_ = false;
+    recycleBackupsIsSet_ = false;
 }
 
 RecycleInstanceV3::~RecycleInstanceV3() = default;
@@ -108,6 +109,9 @@ web::json::value RecycleInstanceV3::toJson() const
     }
     if(recycleStatusIsSet_) {
         val[utility::conversions::to_string_t("recycle_status")] = ModelBase::toJson(recycleStatus_);
+    }
+    if(recycleBackupsIsSet_) {
+        val[utility::conversions::to_string_t("recycle_backups")] = ModelBase::toJson(recycleBackups_);
     }
 
     return val;
@@ -174,7 +178,7 @@ bool RecycleInstanceV3::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("create_at"));
         if(!fieldValue.is_null())
         {
-            int32_t refVal;
+            int64_t refVal;
             ok &= ModelBase::fromJson(fieldValue, refVal);
             setCreateAt(refVal);
         }
@@ -183,7 +187,7 @@ bool RecycleInstanceV3::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("deleted_at"));
         if(!fieldValue.is_null())
         {
-            int32_t refVal;
+            int64_t refVal;
             ok &= ModelBase::fromJson(fieldValue, refVal);
             setDeletedAt(refVal);
         }
@@ -267,6 +271,15 @@ bool RecycleInstanceV3::fromJson(const web::json::value& val)
             std::string refVal;
             ok &= ModelBase::fromJson(fieldValue, refVal);
             setRecycleStatus(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("recycle_backups"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("recycle_backups"));
+        if(!fieldValue.is_null())
+        {
+            std::vector<RecycleBackupV3> refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setRecycleBackups(refVal);
         }
     }
     return ok;
@@ -399,12 +412,12 @@ void RecycleInstanceV3::unsetpayModel()
     payModelIsSet_ = false;
 }
 
-int32_t RecycleInstanceV3::getCreateAt() const
+int64_t RecycleInstanceV3::getCreateAt() const
 {
     return createAt_;
 }
 
-void RecycleInstanceV3::setCreateAt(int32_t value)
+void RecycleInstanceV3::setCreateAt(int64_t value)
 {
     createAt_ = value;
     createAtIsSet_ = true;
@@ -420,12 +433,12 @@ void RecycleInstanceV3::unsetcreateAt()
     createAtIsSet_ = false;
 }
 
-int32_t RecycleInstanceV3::getDeletedAt() const
+int64_t RecycleInstanceV3::getDeletedAt() const
 {
     return deletedAt_;
 }
 
-void RecycleInstanceV3::setDeletedAt(int32_t value)
+void RecycleInstanceV3::setDeletedAt(int64_t value)
 {
     deletedAt_ = value;
     deletedAtIsSet_ = true;
@@ -628,6 +641,27 @@ bool RecycleInstanceV3::recycleStatusIsSet() const
 void RecycleInstanceV3::unsetrecycleStatus()
 {
     recycleStatusIsSet_ = false;
+}
+
+std::vector<RecycleBackupV3>& RecycleInstanceV3::getRecycleBackups()
+{
+    return recycleBackups_;
+}
+
+void RecycleInstanceV3::setRecycleBackups(const std::vector<RecycleBackupV3>& value)
+{
+    recycleBackups_ = value;
+    recycleBackupsIsSet_ = true;
+}
+
+bool RecycleInstanceV3::recycleBackupsIsSet() const
+{
+    return recycleBackupsIsSet_;
+}
+
+void RecycleInstanceV3::unsetrecycleBackups()
+{
+    recycleBackupsIsSet_ = false;
 }
 
 }

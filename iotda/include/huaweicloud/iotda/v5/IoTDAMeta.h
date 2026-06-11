@@ -33,6 +33,7 @@ public:
     static HttpRequestDef genRequestDefForListRoutingBacklogPolicy();
     static HttpRequestDef genRequestDefForShowRoutingBacklogPolicy();
     static HttpRequestDef genRequestDefForUpdateRoutingBacklogPolicy();
+    static HttpRequestDef genRequestDefForConfirmBatchTask();
     static HttpRequestDef genRequestDefForCreateBatchTask();
     static HttpRequestDef genRequestDefForDeleteBatchTask();
     static HttpRequestDef genRequestDefForListBatchTasks();
@@ -50,6 +51,7 @@ public:
     static HttpRequestDef genRequestDefForCheckCertificate();
     static HttpRequestDef genRequestDefForDeleteCertificate();
     static HttpRequestDef genRequestDefForListCertificates();
+    static HttpRequestDef genRequestDefForShowCertificate();
     static HttpRequestDef genRequestDefForUpdateCertificate();
     static HttpRequestDef genRequestDefForCreateCommand();
     static HttpRequestDef genRequestDefForCreateDeviceAuthenticationTemplate();
@@ -94,6 +96,15 @@ public:
     static HttpRequestDef genRequestDefForDeleteDeviceShadow();
     static HttpRequestDef genRequestDefForShowDeviceShadow();
     static HttpRequestDef genRequestDefForUpdateDeviceShadowDesiredData();
+    static HttpRequestDef genRequestDefForCreateDomainConfiguration();
+    static HttpRequestDef genRequestDefForDeleteDomainConfiguration();
+    static HttpRequestDef genRequestDefForListDomainConfigurations();
+    static HttpRequestDef genRequestDefForShowDomainConfiguration();
+    static HttpRequestDef genRequestDefForUpdateDomainConfiguration();
+    static HttpRequestDef genRequestDefForCreateExportTask();
+    static HttpRequestDef genRequestDefForDeleteExportTask();
+    static HttpRequestDef genRequestDefForListExportTasks();
+    static HttpRequestDef genRequestDefForShowExportTask();
     static HttpRequestDef genRequestDefForCreateRoutingFlowControlPolicy();
     static HttpRequestDef genRequestDefForDeleteRoutingFlowControlPolicy();
     static HttpRequestDef genRequestDefForListRoutingFlowControlPolicy();
@@ -112,6 +123,11 @@ public:
     static HttpRequestDef genRequestDefForDeleteDeviceMessage();
     static HttpRequestDef genRequestDefForListDeviceMessages();
     static HttpRequestDef genRequestDefForShowDeviceMessage();
+    static HttpRequestDef genRequestDefForCreateOtaModule();
+    static HttpRequestDef genRequestDefForDeleteOtaModule();
+    static HttpRequestDef genRequestDefForListOtaModules();
+    static HttpRequestDef genRequestDefForShowOtaModule();
+    static HttpRequestDef genRequestDefForUpdateOtaModule();
     static HttpRequestDef genRequestDefForCreateOtaPackage();
     static HttpRequestDef genRequestDefForDeleteOtaPackage();
     static HttpRequestDef genRequestDefForListOtaPackageInfo();
@@ -157,6 +173,10 @@ public:
     static HttpRequestDef genRequestDefForListSecurityProfiles();
     static HttpRequestDef genRequestDefForShowSecurityProfile();
     static HttpRequestDef genRequestDefForUpdateSecurityProfile();
+    static HttpRequestDef genRequestDefForCreateServerCertificate();
+    static HttpRequestDef genRequestDefForDeleteServerCertificate();
+    static HttpRequestDef genRequestDefForListServerCertificate();
+    static HttpRequestDef genRequestDefForShowServerCertificate();
     static HttpRequestDef genRequestDefForListResourcesByTags();
     static HttpRequestDef genRequestDefForTagDevice();
     static HttpRequestDef genRequestDefForUntagDevice();

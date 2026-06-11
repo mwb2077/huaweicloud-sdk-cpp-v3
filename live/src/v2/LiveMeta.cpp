@@ -83,6 +83,9 @@ HttpRequestDef LiveMeta::genRequestDefForListBandwidthDetail() {
     reqDefBuilder.withRequestField(FieldDef().withName("ServiceType")
                   .withJsonTag("service_type")
                   .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("IpType")
+                  .withJsonTag("ip_type")
+                  .withLocationType(Query_));
     reqDefBuilder.withResponseField(FieldDef().
         withName("xRequestId").
         withJsonTag("X-Request-Id").
@@ -318,6 +321,31 @@ HttpRequestDef LiveMeta::genRequestDefForListSnapshotData() {
     return reqDefBuilder;
 }
 
+HttpRequestDef LiveMeta::genRequestDefForListTranscodeConcurrencyNum() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("PublishDomains")
+                  .withJsonTag("publish_domains")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("App")
+                  .withJsonTag("app")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Interval")
+                  .withJsonTag("interval")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("StartTime")
+                  .withJsonTag("start_time")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("EndTime")
+                  .withJsonTag("end_time")
+                  .withLocationType(Query_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef LiveMeta::genRequestDefForListTranscodeData() {
     HttpRequestDef reqDefBuilder;
     reqDefBuilder.withRequestField(FieldDef().withName("PublishDomain")
@@ -325,6 +353,28 @@ HttpRequestDef LiveMeta::genRequestDefForListTranscodeData() {
                   .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("Stream")
                   .withJsonTag("stream")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("StartTime")
+                  .withJsonTag("start_time")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("EndTime")
+                  .withJsonTag("end_time")
+                  .withLocationType(Query_));
+    reqDefBuilder.withResponseField(FieldDef().
+        withName("xRequestId").
+        withJsonTag("X-Request-Id").
+        withKindName("std::string").
+        withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef LiveMeta::genRequestDefForListTranscodeTaskDetail() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Domain")
+                  .withJsonTag("domain")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("StreamNameList")
+                  .withJsonTag("stream_name_list")
                   .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("StartTime")
                   .withJsonTag("start_time")
@@ -468,6 +518,9 @@ HttpRequestDef LiveMeta::genRequestDefForListSingleStreamBitrate() {
                   .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("Stream")
                   .withJsonTag("stream")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Type")
+                  .withJsonTag("type")
                   .withLocationType(Query_));
     reqDefBuilder.withRequestField(FieldDef().withName("StartTime")
                   .withJsonTag("start_time")

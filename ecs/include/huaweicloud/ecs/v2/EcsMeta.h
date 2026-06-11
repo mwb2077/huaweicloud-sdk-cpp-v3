@@ -17,9 +17,11 @@ public:
     static HttpRequestDef genRequestDefForAddServerGroupMember();
     static HttpRequestDef genRequestDefForAssociateServerVirtualIp();
     static HttpRequestDef genRequestDefForAttachServerVolume();
+    static HttpRequestDef genRequestDefForBatchAddServerGroupMember();
     static HttpRequestDef genRequestDefForBatchAddServerNics();
     static HttpRequestDef genRequestDefForBatchAttachSharableVolumes();
     static HttpRequestDef genRequestDefForBatchCreateServerTags();
+    static HttpRequestDef genRequestDefForBatchDeleteServerGroupMember();
     static HttpRequestDef genRequestDefForBatchDeleteServerNics();
     static HttpRequestDef genRequestDefForBatchDeleteServerTags();
     static HttpRequestDef genRequestDefForBatchDetachVolumes();
@@ -94,6 +96,7 @@ public:
     static HttpRequestDef genRequestDefForShowMetadataOptions();
     static HttpRequestDef genRequestDefForShowRecycleBin();
     static HttpRequestDef genRequestDefForShowResetPasswordFlag();
+    static HttpRequestDef genRequestDefForShowSerialConsoleActions();
     static HttpRequestDef genRequestDefForShowServer();
     static HttpRequestDef genRequestDefForShowServerAttachableNicNum();
     static HttpRequestDef genRequestDefForShowServerBlockDevice();
@@ -106,6 +109,7 @@ public:
     static HttpRequestDef genRequestDefForUpdateRecycleBin();
     static HttpRequestDef genRequestDefForUpdateRecycleBinPolicy();
     static HttpRequestDef genRequestDefForUpdateScheduledEvent();
+    static HttpRequestDef genRequestDefForUpdateSerialConsoleOptions();
     static HttpRequestDef genRequestDefForUpdateServer();
     static HttpRequestDef genRequestDefForUpdateServerAutoTerminateTime();
     static HttpRequestDef genRequestDefForUpdateServerBlockDevice();

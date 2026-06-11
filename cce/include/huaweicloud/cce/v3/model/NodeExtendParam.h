@@ -48,7 +48,7 @@ public:
     void setEcsPerformancetype(const std::string& value);
 
     /// <summary>
-    /// 订单ID，节点付费类型为自动付费包周期类型时，响应中会返回此字段(仅创建场景涉及)。
+    /// **参数解释**： 订单ID。 **约束限制**： 节点付费类型为自动付费包周期类型时，响应中会返回此字段(仅创建场景涉及)，节点池场景响应返回中无该参数。 **取值范围**： 不涉及 **默认取值**： 不涉及
     /// </summary>
 
     std::string getOrderID() const;
@@ -57,7 +57,7 @@ public:
     void setOrderID(const std::string& value);
 
     /// <summary>
-    /// 产品ID，节点付费类型为自动付费包周期类型时，响应中会返回此字段。
+    /// **参数解释**： 产品ID。 **约束限制**： 节点付费类型为自动付费包周期类型或者节点池类型是包周期节点池时，响应中会返回此字段。 **取值范围**： 不涉及 **默认取值**： 不涉及
     /// </summary>
 
     std::string getProductID() const;
@@ -120,13 +120,22 @@ public:
     void setDockerLVMConfigOverride(const std::string& value);
 
     /// <summary>
-    /// 节点上单容器的可用磁盘空间大小，单位G。  不配置该值或值为0时将使用默认值，Devicemapper模式下默认值为10；OverlayFS模式默认不限制单容器可用空间大小，且dockerBaseSize设置仅在新版本集群的EulerOS节点上生效。  CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。  Devicemapper模式下建议dockerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替。 
+    /// **参数解释**： 节点上单容器的可用磁盘空间大小（已废弃，请优先使用containerBaseSize参数），单位G。 CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。 **约束限制**： - Devicemapper模式下建议dockerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替。 - dockerBaseSize设置仅在v1.19.16-r0、v1.21.3-r0、v1.23.3-r0及以上的集群版本中的EulerOS[/HCEOS2.0](tag:hws,hws_hk,ctc,cmcc)节点上生效。  **取值范围**： 10-500。 **默认取值**： 不配置该值或值为0时将使用默认值： - Devicemapper模式下默认值为10； - OverlayFS模式默认不限制单容器可用空间大小。 
     /// </summary>
 
     int32_t getDockerBaseSize() const;
     bool dockerBaseSizeIsSet() const;
     void unsetdockerBaseSize();
     void setDockerBaseSize(int32_t value);
+
+    /// <summary>
+    /// **参数解释**： 节点上单容器的可用磁盘空间大小，单位G。 CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。 **约束限制**： - Devicemapper模式下建议containerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替；Devicemapper模式在新版中仅有共池裸机使用，已逐步废弃。 - containerBaseSize设置仅在新版本集群（v1.23.14-r0/v1.25.9-r0/v1.27.6-r0/v1.28.4-r0及以上）的EulerOS[/HCEOS2.0](tag:hws,hws_hk,ctc,cmcc)节点上生效。 - 更新节点池时，不支持更新此参数。  **取值范围**： 10-500。 **默认取值**： 不配置该值或值为0时将使用默认值： - Devicemapper模式下默认值为10； - OverlayFS模式默认不限制单容器可用空间大小。
+    /// </summary>
+
+    int32_t getContainerBaseSize() const;
+    bool containerBaseSizeIsSet() const;
+    void unsetcontainerBaseSize();
+    void setContainerBaseSize(int32_t value);
 
     /// <summary>
     /// 是否为CCE Turbo集群节点。
@@ -138,7 +147,7 @@ public:
     void setOffloadNode(const std::string& value);
 
     /// <summary>
-    /// 节点的公钥。
+    /// **参数解释**： 节点的公钥，应用于ssh密钥登录。 **约束限制**： - 当选择使用密钥对方式登录节点时该配置无效 - 创建、更新节点池场景不支持该参数  **取值范围**： 不涉及 **默认取值**： 不涉及
     /// </summary>
 
     std::string getPublicKey() const;
@@ -165,7 +174,7 @@ public:
     void setAlphaCcePostInstall(const std::string& value);
 
     /// <summary>
-    /// 如果创建裸金属节点，需要使用自定义镜像时用此参数。 
+    /// **参数解释**： 节点自定义镜像ID，从IMS控制台获取，需要使用自定义镜像时使用此参数。 **约束限制**： 不涉及 [&gt; - 若指定了extendParam中的securityReinforcementType参数为cybersecurity，节点将开启安全等保加固功能，则节点的操作系统类型必须使用HCE2.0。](tag:hws)  **取值范围**： 不涉及 **默认取值**： 不涉及
     /// </summary>
 
     std::string getAlphaCceNodeImageID() const;
@@ -201,6 +210,24 @@ public:
     void setChargingMode(int32_t value);
 
     /// <summary>
+    /// **参数解释**： 创建竞价实例时，需指定该参数的值为“spot”。 **约束限制**： 仅当billingMode&#x3D;0时此参数生效 **取值范围**： 不涉及 **默认取值**： 不涉及
+    /// </summary>
+
+    std::string getMarketType() const;
+    bool marketTypeIsSet() const;
+    void unsetmarketType();
+    void setMarketType(const std::string& value);
+
+    /// <summary>
+    /// **参数解释**： 用户愿意为竞价实例每小时支付的最高价格。 **约束限制**： - 仅当billingMode&#x3D;0且marketType&#x3D;spot时，该参数设置后生效。 - 当billingMode&#x3D;0且marketType&#x3D;spot时，如果不传递spotPrice，默认使用按需购买的价格作为竞价。 - spotPrice需要小于等于按需价格并大于等于云服务器市场价格。  **取值范围**： 不涉及 **默认取值**： 不涉及
+    /// </summary>
+
+    std::string getSpotPrice() const;
+    bool spotPriceIsSet() const;
+    void unsetspotPrice();
+    void setSpotPrice(const std::string& value);
+
+    /// <summary>
     /// 委托的名称。  委托是由租户管理员在统一身份认证服务（Identity and Access Management，IAM）上创建的，可以为CCE节点提供访问云服务器的临时凭证。 作为响应参数仅在创建节点传入时返回该字段。 
     /// </summary>
 
@@ -228,7 +255,61 @@ public:
     void setSystemReservedMem(int32_t value);
 
     /// <summary>
-    /// 节点密码，作为响应参数时，固定展示星号。
+    /// **参数解释**： 节点CPU预留，Kubernetes相关组件预留值。单位为mcore。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws) **约束限制**： kubeReservedCpu，systemReservedCpu之和小于节点池中节点最小CPU规格的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    /// </summary>
+
+    int32_t getKubeReservedCpu() const;
+    bool kubeReservedCpuIsSet() const;
+    void unsetkubeReservedCpu();
+    void setKubeReservedCpu(int32_t value);
+
+    /// <summary>
+    /// **参数解释**： 节点CPU预留，系统组件预留值。单位为mcore。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws) **约束限制**： kubeReservedCpu，systemReservedCpu之和小于节点池中节点最小CPU规格的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    /// </summary>
+
+    int32_t getSystemReservedCpu() const;
+    bool systemReservedCpuIsSet() const;
+    void unsetsystemReservedCpu();
+    void setSystemReservedCpu(int32_t value);
+
+    /// <summary>
+    /// **参数解释**： 节点PID预留，Kubernetes相关组件预留值。目的是为Kubernetes系统守护进程（如kubelet、container runtime等）预留指定数量的进程ID。 **约束限制**： kubeReservedPid，systemReservedPid之和小于linux PID数量上限的50%。[不同OS的kernel.pid_max可能并不相同，具体请参见[修改节点进程 ID数量上限kernel.pid_max](https://support.huaweicloud.com/usermanual-cce/cce_10_0401.html#section1)](tag:hws) **取值范围**： [0,2097152] 注：CCE仅校验kernel.pid_max为4194304的场景，2022年1月30日及之前创建的节点和部分OS的kernel.pid_max会有所不同，若您更新过kernel.pid_max也需要保证kubeReservedPid，systemReservedPid之和小于linux PID数量上限。 **默认取值**： 不涉及
+    /// </summary>
+
+    int32_t getKubeReservedPid() const;
+    bool kubeReservedPidIsSet() const;
+    void unsetkubeReservedPid();
+    void setKubeReservedPid(int32_t value);
+
+    /// <summary>
+    /// **参数解释**： 节点PID预留，系统组件预留值。目的是为OS系统守护进程（如 sshd、udev 等）预留指定数量的进程ID。 **约束限制**： kubeReservedPid，systemReservedPid之和小于linux PID数量上限的50%。[不同OS的kernel.pid_max可能并不相同，具体请参见[修改节点进程 ID数量上限kernel.pid_max](https://support.huaweicloud.com/usermanual-cce/cce_10_0401.html#section1)](tag:hws) **取值范围**： [0,2097152] 注：CCE仅校验kernel.pid_max为4194304的场景，2022年1月30日及之前创建的节点和部分OS的kernel.pid_max会有所不同，若您更新过kernel.pid_max也需要保证kubeReservedPid，systemReservedPid之和小于linux PID数量上限。 **默认取值**： 不涉及
+    /// </summary>
+
+    int32_t getSystemReservedPid() const;
+    bool systemReservedPidIsSet() const;
+    void unsetsystemReservedPid();
+    void setSystemReservedPid(int32_t value);
+
+    /// <summary>
+    /// **参数解释**： 节点临时存储空间预留，Kubernetes组件预留值。目的是为Kubernetes系统守护进程（如kubelet、container runtime等）预留临时存储。单位为Gi。 **约束限制**： kubeReservedStorage，systemReservedStorage之和小于容器组件所使用硬盘空间的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    /// </summary>
+
+    int32_t getKubeReservedStorage() const;
+    bool kubeReservedStorageIsSet() const;
+    void unsetkubeReservedStorage();
+    void setKubeReservedStorage(int32_t value);
+
+    /// <summary>
+    /// **参数解释**： 节点临时存储空间预留，系统组件预留值。目的是为OS系统守护进程（如 sshd、udev 等）预留临时存储。单位为Gi。 **约束限制**： kubeReservedStorage，systemReservedStorage之和小于容器组件所使用硬盘空间的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    /// </summary>
+
+    int32_t getSystemReservedStorage() const;
+    bool systemReservedStorageIsSet() const;
+    void unsetsystemReservedStorage();
+    void setSystemReservedStorage(int32_t value);
+
+    /// <summary>
+    /// **参数解释**： 节点密码，仅作为响应参数时，固定展示星号，节点池场景响应返回中无该参数。 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
     /// </summary>
 
     std::string getInitNodePassword() const;
@@ -237,13 +318,22 @@ public:
     void setInitNodePassword(const std::string& value);
 
     /// <summary>
-    /// **参数解释**： 指定节点安全加固类型，当前仅支持HCE2.0镜像等保2.0三级安全加固。 等保加固会对身份鉴别、访问控制、安全审计、入侵防范、恶意代码防范进行检查并加固。详情请参见[Huawei Cloud EulerOS 2.0等保2.0三级版镜像概述](https://support.huaweicloud.com/productdesc-hce/hce_sec_0001.html)。 若未指定此参数，则尝试用原有的值补全。如：原先HCE2.0镜像已配置安全加固，更新节点池时未指定此参数，则仍旧保持安全加固配置，若要取消，需显式指定参数值为\&quot;null\&quot;。 **约束限制**： 不涉及 **取值范围**： 取值范围：[&#39;null&#39;, cybersecurity]; **默认取值**： 不涉及
+    /// **参数解释**： 指定节点安全加固类型，当前仅支持HCE2.0镜像等保2.0三级安全加固。 等保加固会对身份鉴别、访问控制、安全审计、入侵防范、恶意代码防范进行检查并加固。[详情请参见[Huawei Cloud EulerOS 2.0等保2.0三级版镜像概述](https://support.huaweicloud.com/productdesc-hce/hce_sec_0001.html)。](tag:hws) 若未指定此参数，则尝试用原有的值补全。如：原先HCE2.0镜像已配置安全加固，更新节点池时未指定此参数，则仍旧保持安全加固配置，若要取消，需显式指定参数值为\&quot;null\&quot;。 **约束限制**： 不涉及 **取值范围**： - 空值：表示不开启等保加固 - cybersecurity：表示开启等保加固  **默认取值**： 不涉及
     /// </summary>
 
     std::string getSecurityReinforcementType() const;
     bool securityReinforcementTypeIsSet() const;
     void unsetsecurityReinforcementType();
     void setSecurityReinforcementType(const std::string& value);
+
+    /// <summary>
+    /// **参数解释**： 是否要求携带token，默认optional。 **约束限制**： 不涉及 **取值范围**： - optional：不要求携带token。 - required：要求必须携带token，即IMDS服务禁用v1版本，启用v2版本。  **默认取值**： optional
+    /// </summary>
+
+    std::string getServerMetadataHttpTokens() const;
+    bool serverMetadataHttpTokensIsSet() const;
+    void unsetserverMetadataHttpTokens();
+    void setServerMetadataHttpTokens(const std::string& value);
 
 
 protected:
@@ -267,6 +357,8 @@ protected:
     bool dockerLVMConfigOverrideIsSet_;
     int32_t dockerBaseSize_;
     bool dockerBaseSizeIsSet_;
+    int32_t containerBaseSize_;
+    bool containerBaseSizeIsSet_;
     std::string offloadNode_;
     bool offloadNodeIsSet_;
     std::string publicKey_;
@@ -283,16 +375,34 @@ protected:
     bool nicThresholdIsSet_;
     int32_t chargingMode_;
     bool chargingModeIsSet_;
+    std::string marketType_;
+    bool marketTypeIsSet_;
+    std::string spotPrice_;
+    bool spotPriceIsSet_;
     std::string agencyName_;
     bool agencyNameIsSet_;
     int32_t kubeReservedMem_;
     bool kubeReservedMemIsSet_;
     int32_t systemReservedMem_;
     bool systemReservedMemIsSet_;
+    int32_t kubeReservedCpu_;
+    bool kubeReservedCpuIsSet_;
+    int32_t systemReservedCpu_;
+    bool systemReservedCpuIsSet_;
+    int32_t kubeReservedPid_;
+    bool kubeReservedPidIsSet_;
+    int32_t systemReservedPid_;
+    bool systemReservedPidIsSet_;
+    int32_t kubeReservedStorage_;
+    bool kubeReservedStorageIsSet_;
+    int32_t systemReservedStorage_;
+    bool systemReservedStorageIsSet_;
     std::string initNodePassword_;
     bool initNodePasswordIsSet_;
     std::string securityReinforcementType_;
     bool securityReinforcementTypeIsSet_;
+    std::string serverMetadataHttpTokens_;
+    bool serverMetadataHttpTokensIsSet_;
 
 };
 

@@ -32,6 +32,8 @@ NodeExtendParam::NodeExtendParam()
     dockerLVMConfigOverrideIsSet_ = false;
     dockerBaseSize_ = 0;
     dockerBaseSizeIsSet_ = false;
+    containerBaseSize_ = 0;
+    containerBaseSizeIsSet_ = false;
     offloadNode_ = "";
     offloadNodeIsSet_ = false;
     publicKey_ = "";
@@ -48,16 +50,34 @@ NodeExtendParam::NodeExtendParam()
     nicThresholdIsSet_ = false;
     chargingMode_ = 0;
     chargingModeIsSet_ = false;
+    marketType_ = "";
+    marketTypeIsSet_ = false;
+    spotPrice_ = "";
+    spotPriceIsSet_ = false;
     agencyName_ = "";
     agencyNameIsSet_ = false;
     kubeReservedMem_ = 0;
     kubeReservedMemIsSet_ = false;
     systemReservedMem_ = 0;
     systemReservedMemIsSet_ = false;
+    kubeReservedCpu_ = 0;
+    kubeReservedCpuIsSet_ = false;
+    systemReservedCpu_ = 0;
+    systemReservedCpuIsSet_ = false;
+    kubeReservedPid_ = 0;
+    kubeReservedPidIsSet_ = false;
+    systemReservedPid_ = 0;
+    systemReservedPidIsSet_ = false;
+    kubeReservedStorage_ = 0;
+    kubeReservedStorageIsSet_ = false;
+    systemReservedStorage_ = 0;
+    systemReservedStorageIsSet_ = false;
     initNodePassword_ = "";
     initNodePasswordIsSet_ = false;
     securityReinforcementType_ = "";
     securityReinforcementTypeIsSet_ = false;
+    serverMetadataHttpTokens_ = "";
+    serverMetadataHttpTokensIsSet_ = false;
 }
 
 NodeExtendParam::~NodeExtendParam() = default;
@@ -100,6 +120,9 @@ web::json::value NodeExtendParam::toJson() const
     if(dockerBaseSizeIsSet_) {
         val[utility::conversions::to_string_t("dockerBaseSize")] = ModelBase::toJson(dockerBaseSize_);
     }
+    if(containerBaseSizeIsSet_) {
+        val[utility::conversions::to_string_t("containerBaseSize")] = ModelBase::toJson(containerBaseSize_);
+    }
     if(offloadNodeIsSet_) {
         val[utility::conversions::to_string_t("offloadNode")] = ModelBase::toJson(offloadNode_);
     }
@@ -124,6 +147,12 @@ web::json::value NodeExtendParam::toJson() const
     if(chargingModeIsSet_) {
         val[utility::conversions::to_string_t("chargingMode")] = ModelBase::toJson(chargingMode_);
     }
+    if(marketTypeIsSet_) {
+        val[utility::conversions::to_string_t("marketType")] = ModelBase::toJson(marketType_);
+    }
+    if(spotPriceIsSet_) {
+        val[utility::conversions::to_string_t("spotPrice")] = ModelBase::toJson(spotPrice_);
+    }
     if(agencyNameIsSet_) {
         val[utility::conversions::to_string_t("agency_name")] = ModelBase::toJson(agencyName_);
     }
@@ -133,11 +162,32 @@ web::json::value NodeExtendParam::toJson() const
     if(systemReservedMemIsSet_) {
         val[utility::conversions::to_string_t("systemReservedMem")] = ModelBase::toJson(systemReservedMem_);
     }
+    if(kubeReservedCpuIsSet_) {
+        val[utility::conversions::to_string_t("kubeReservedCpu")] = ModelBase::toJson(kubeReservedCpu_);
+    }
+    if(systemReservedCpuIsSet_) {
+        val[utility::conversions::to_string_t("systemReservedCpu")] = ModelBase::toJson(systemReservedCpu_);
+    }
+    if(kubeReservedPidIsSet_) {
+        val[utility::conversions::to_string_t("kubeReservedPid")] = ModelBase::toJson(kubeReservedPid_);
+    }
+    if(systemReservedPidIsSet_) {
+        val[utility::conversions::to_string_t("systemReservedPid")] = ModelBase::toJson(systemReservedPid_);
+    }
+    if(kubeReservedStorageIsSet_) {
+        val[utility::conversions::to_string_t("kubeReservedStorage")] = ModelBase::toJson(kubeReservedStorage_);
+    }
+    if(systemReservedStorageIsSet_) {
+        val[utility::conversions::to_string_t("systemReservedStorage")] = ModelBase::toJson(systemReservedStorage_);
+    }
     if(initNodePasswordIsSet_) {
         val[utility::conversions::to_string_t("init-node-password")] = ModelBase::toJson(initNodePassword_);
     }
     if(securityReinforcementTypeIsSet_) {
         val[utility::conversions::to_string_t("securityReinforcementType")] = ModelBase::toJson(securityReinforcementType_);
+    }
+    if(serverMetadataHttpTokensIsSet_) {
+        val[utility::conversions::to_string_t("serverMetadataHttpTokens")] = ModelBase::toJson(serverMetadataHttpTokens_);
     }
 
     return val;
@@ -236,6 +286,15 @@ bool NodeExtendParam::fromJson(const web::json::value& val)
             setDockerBaseSize(refVal);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("containerBaseSize"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("containerBaseSize"));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setContainerBaseSize(refVal);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t("offloadNode"))) {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("offloadNode"));
         if(!fieldValue.is_null())
@@ -308,6 +367,24 @@ bool NodeExtendParam::fromJson(const web::json::value& val)
             setChargingMode(refVal);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("marketType"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("marketType"));
+        if(!fieldValue.is_null())
+        {
+            std::string refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setMarketType(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("spotPrice"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("spotPrice"));
+        if(!fieldValue.is_null())
+        {
+            std::string refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setSpotPrice(refVal);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t("agency_name"))) {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("agency_name"));
         if(!fieldValue.is_null())
@@ -335,6 +412,60 @@ bool NodeExtendParam::fromJson(const web::json::value& val)
             setSystemReservedMem(refVal);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("kubeReservedCpu"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("kubeReservedCpu"));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setKubeReservedCpu(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("systemReservedCpu"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("systemReservedCpu"));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setSystemReservedCpu(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("kubeReservedPid"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("kubeReservedPid"));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setKubeReservedPid(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("systemReservedPid"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("systemReservedPid"));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setSystemReservedPid(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("kubeReservedStorage"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("kubeReservedStorage"));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setKubeReservedStorage(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("systemReservedStorage"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("systemReservedStorage"));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setSystemReservedStorage(refVal);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t("init-node-password"))) {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("init-node-password"));
         if(!fieldValue.is_null())
@@ -351,6 +482,15 @@ bool NodeExtendParam::fromJson(const web::json::value& val)
             std::string refVal;
             ok &= ModelBase::fromJson(fieldValue, refVal);
             setSecurityReinforcementType(refVal);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("serverMetadataHttpTokens"))) {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("serverMetadataHttpTokens"));
+        if(!fieldValue.is_null())
+        {
+            std::string refVal;
+            ok &= ModelBase::fromJson(fieldValue, refVal);
+            setServerMetadataHttpTokens(refVal);
         }
     }
     return ok;
@@ -567,6 +707,27 @@ void NodeExtendParam::unsetdockerBaseSize()
     dockerBaseSizeIsSet_ = false;
 }
 
+int32_t NodeExtendParam::getContainerBaseSize() const
+{
+    return containerBaseSize_;
+}
+
+void NodeExtendParam::setContainerBaseSize(int32_t value)
+{
+    containerBaseSize_ = value;
+    containerBaseSizeIsSet_ = true;
+}
+
+bool NodeExtendParam::containerBaseSizeIsSet() const
+{
+    return containerBaseSizeIsSet_;
+}
+
+void NodeExtendParam::unsetcontainerBaseSize()
+{
+    containerBaseSizeIsSet_ = false;
+}
+
 std::string NodeExtendParam::getOffloadNode() const
 {
     return offloadNode_;
@@ -735,6 +896,48 @@ void NodeExtendParam::unsetchargingMode()
     chargingModeIsSet_ = false;
 }
 
+std::string NodeExtendParam::getMarketType() const
+{
+    return marketType_;
+}
+
+void NodeExtendParam::setMarketType(const std::string& value)
+{
+    marketType_ = value;
+    marketTypeIsSet_ = true;
+}
+
+bool NodeExtendParam::marketTypeIsSet() const
+{
+    return marketTypeIsSet_;
+}
+
+void NodeExtendParam::unsetmarketType()
+{
+    marketTypeIsSet_ = false;
+}
+
+std::string NodeExtendParam::getSpotPrice() const
+{
+    return spotPrice_;
+}
+
+void NodeExtendParam::setSpotPrice(const std::string& value)
+{
+    spotPrice_ = value;
+    spotPriceIsSet_ = true;
+}
+
+bool NodeExtendParam::spotPriceIsSet() const
+{
+    return spotPriceIsSet_;
+}
+
+void NodeExtendParam::unsetspotPrice()
+{
+    spotPriceIsSet_ = false;
+}
+
 std::string NodeExtendParam::getAgencyName() const
 {
     return agencyName_;
@@ -798,6 +1001,132 @@ void NodeExtendParam::unsetsystemReservedMem()
     systemReservedMemIsSet_ = false;
 }
 
+int32_t NodeExtendParam::getKubeReservedCpu() const
+{
+    return kubeReservedCpu_;
+}
+
+void NodeExtendParam::setKubeReservedCpu(int32_t value)
+{
+    kubeReservedCpu_ = value;
+    kubeReservedCpuIsSet_ = true;
+}
+
+bool NodeExtendParam::kubeReservedCpuIsSet() const
+{
+    return kubeReservedCpuIsSet_;
+}
+
+void NodeExtendParam::unsetkubeReservedCpu()
+{
+    kubeReservedCpuIsSet_ = false;
+}
+
+int32_t NodeExtendParam::getSystemReservedCpu() const
+{
+    return systemReservedCpu_;
+}
+
+void NodeExtendParam::setSystemReservedCpu(int32_t value)
+{
+    systemReservedCpu_ = value;
+    systemReservedCpuIsSet_ = true;
+}
+
+bool NodeExtendParam::systemReservedCpuIsSet() const
+{
+    return systemReservedCpuIsSet_;
+}
+
+void NodeExtendParam::unsetsystemReservedCpu()
+{
+    systemReservedCpuIsSet_ = false;
+}
+
+int32_t NodeExtendParam::getKubeReservedPid() const
+{
+    return kubeReservedPid_;
+}
+
+void NodeExtendParam::setKubeReservedPid(int32_t value)
+{
+    kubeReservedPid_ = value;
+    kubeReservedPidIsSet_ = true;
+}
+
+bool NodeExtendParam::kubeReservedPidIsSet() const
+{
+    return kubeReservedPidIsSet_;
+}
+
+void NodeExtendParam::unsetkubeReservedPid()
+{
+    kubeReservedPidIsSet_ = false;
+}
+
+int32_t NodeExtendParam::getSystemReservedPid() const
+{
+    return systemReservedPid_;
+}
+
+void NodeExtendParam::setSystemReservedPid(int32_t value)
+{
+    systemReservedPid_ = value;
+    systemReservedPidIsSet_ = true;
+}
+
+bool NodeExtendParam::systemReservedPidIsSet() const
+{
+    return systemReservedPidIsSet_;
+}
+
+void NodeExtendParam::unsetsystemReservedPid()
+{
+    systemReservedPidIsSet_ = false;
+}
+
+int32_t NodeExtendParam::getKubeReservedStorage() const
+{
+    return kubeReservedStorage_;
+}
+
+void NodeExtendParam::setKubeReservedStorage(int32_t value)
+{
+    kubeReservedStorage_ = value;
+    kubeReservedStorageIsSet_ = true;
+}
+
+bool NodeExtendParam::kubeReservedStorageIsSet() const
+{
+    return kubeReservedStorageIsSet_;
+}
+
+void NodeExtendParam::unsetkubeReservedStorage()
+{
+    kubeReservedStorageIsSet_ = false;
+}
+
+int32_t NodeExtendParam::getSystemReservedStorage() const
+{
+    return systemReservedStorage_;
+}
+
+void NodeExtendParam::setSystemReservedStorage(int32_t value)
+{
+    systemReservedStorage_ = value;
+    systemReservedStorageIsSet_ = true;
+}
+
+bool NodeExtendParam::systemReservedStorageIsSet() const
+{
+    return systemReservedStorageIsSet_;
+}
+
+void NodeExtendParam::unsetsystemReservedStorage()
+{
+    systemReservedStorageIsSet_ = false;
+}
+
 std::string NodeExtendParam::getInitNodePassword() const
 {
     return initNodePassword_;
@@ -838,6 +1167,27 @@ bool NodeExtendParam::securityReinforcementTypeIsSet() const
 void NodeExtendParam::unsetsecurityReinforcementType()
 {
     securityReinforcementTypeIsSet_ = false;
+}
+
+std::string NodeExtendParam::getServerMetadataHttpTokens() const
+{
+    return serverMetadataHttpTokens_;
+}
+
+void NodeExtendParam::setServerMetadataHttpTokens(const std::string& value)
+{
+    serverMetadataHttpTokens_ = value;
+    serverMetadataHttpTokensIsSet_ = true;
+}
+
+bool NodeExtendParam::serverMetadataHttpTokensIsSet() const
+{
+    return serverMetadataHttpTokensIsSet_;
+}
+
+void NodeExtendParam::unsetserverMetadataHttpTokens()
+{
+    serverMetadataHttpTokensIsSet_ = false;
 }
 
 }

@@ -25,6 +25,9 @@
 #include <huaweicloud/vod/v1/model/CreateAssetByFileUploadResponse.h>
 #include <huaweicloud/vod/v1/model/CreateAssetCategoryRequest.h>
 #include <huaweicloud/vod/v1/model/CreateAssetCategoryResponse.h>
+#include <huaweicloud/vod/v1/model/CreateAssetEditTaskReq.h>
+#include <huaweicloud/vod/v1/model/CreateAssetEditTaskRequest.h>
+#include <huaweicloud/vod/v1/model/CreateAssetEditTaskResponse.h>
 #include <huaweicloud/vod/v1/model/CreateAssetProcessTaskRequest.h>
 #include <huaweicloud/vod/v1/model/CreateAssetProcessTaskResponse.h>
 #include <huaweicloud/vod/v1/model/CreateAssetReviewTaskRequest.h>
@@ -66,6 +69,8 @@
 #include <huaweicloud/vod/v1/model/CreateWatermarkTemplateResponse.h>
 #include <huaweicloud/vod/v1/model/DeleteAssetCategoryRequest.h>
 #include <huaweicloud/vod/v1/model/DeleteAssetCategoryResponse.h>
+#include <huaweicloud/vod/v1/model/DeleteAssetEditTaskRequest.h>
+#include <huaweicloud/vod/v1/model/DeleteAssetEditTaskResponse.h>
 #include <huaweicloud/vod/v1/model/DeleteAssetsRequest.h>
 #include <huaweicloud/vod/v1/model/DeleteAssetsResponse.h>
 #include <huaweicloud/vod/v1/model/DeleteDyAssetRequest.h>
@@ -74,6 +79,8 @@
 #include <huaweicloud/vod/v1/model/DeleteTemplateGroupCollectionResponse.h>
 #include <huaweicloud/vod/v1/model/DeleteTemplateGroupRequest.h>
 #include <huaweicloud/vod/v1/model/DeleteTemplateGroupResponse.h>
+#include <huaweicloud/vod/v1/model/DeleteThumbnailsRequest.h>
+#include <huaweicloud/vod/v1/model/DeleteThumbnailsResponse.h>
 #include <huaweicloud/vod/v1/model/DeleteTranscodeProductReq.h>
 #include <huaweicloud/vod/v1/model/DeleteTranscodeProductRequest.h>
 #include <huaweicloud/vod/v1/model/DeleteTranscodeProductResponse.h>
@@ -86,14 +93,26 @@
 #include <huaweicloud/vod/v1/model/ListAssetCategoryResponse.h>
 #include <huaweicloud/vod/v1/model/ListAssetDailySummaryLogRequest.h>
 #include <huaweicloud/vod/v1/model/ListAssetDailySummaryLogResponse.h>
+#include <huaweicloud/vod/v1/model/ListAssetEditTaskRequest.h>
+#include <huaweicloud/vod/v1/model/ListAssetEditTaskResponse.h>
 #include <huaweicloud/vod/v1/model/ListAssetListRequest.h>
 #include <huaweicloud/vod/v1/model/ListAssetListResponse.h>
+#include <huaweicloud/vod/v1/model/ListAssetTaskInfoRequest.h>
+#include <huaweicloud/vod/v1/model/ListAssetTaskInfoResponse.h>
+#include <huaweicloud/vod/v1/model/ListCategoryInfoRequest.h>
+#include <huaweicloud/vod/v1/model/ListCategoryInfoResponse.h>
+#include <huaweicloud/vod/v1/model/ListCdnStatisticsRequest.h>
+#include <huaweicloud/vod/v1/model/ListCdnStatisticsResponse.h>
 #include <huaweicloud/vod/v1/model/ListDomainLogsRequest.h>
 #include <huaweicloud/vod/v1/model/ListDomainLogsResponse.h>
 #include <huaweicloud/vod/v1/model/ListTemplateGroupCollectionRequest.h>
 #include <huaweicloud/vod/v1/model/ListTemplateGroupCollectionResponse.h>
 #include <huaweicloud/vod/v1/model/ListTemplateGroupRequest.h>
 #include <huaweicloud/vod/v1/model/ListTemplateGroupResponse.h>
+#include <huaweicloud/vod/v1/model/ListThumbnailDetailsRequest.h>
+#include <huaweicloud/vod/v1/model/ListThumbnailDetailsResponse.h>
+#include <huaweicloud/vod/v1/model/ListThumbnailInfoRequest.h>
+#include <huaweicloud/vod/v1/model/ListThumbnailInfoResponse.h>
 #include <huaweicloud/vod/v1/model/ListTopStatisticsRequest.h>
 #include <huaweicloud/vod/v1/model/ListTopStatisticsResponse.h>
 #include <huaweicloud/vod/v1/model/ListTranscodeTemplateRequest.h>
@@ -112,6 +131,7 @@
 #include <huaweicloud/vod/v1/model/PublishAssetReq.h>
 #include <huaweicloud/vod/v1/model/PublishAssetsRequest.h>
 #include <huaweicloud/vod/v1/model/PublishAssetsResponse.h>
+#include <huaweicloud/vod/v1/model/QueryCategoryInfoRsp.h>
 #include <huaweicloud/vod/v1/model/QueryCategoryRsp.h>
 #include <huaweicloud/vod/v1/model/RefreshAssetRequest.h>
 #include <huaweicloud/vod/v1/model/RefreshAssetResponse.h>
@@ -273,6 +293,14 @@ public:
     std::shared_ptr<CreateAssetCategoryResponse> createAssetCategory(
         CreateAssetCategoryRequest &request
     );
+    // 创建编辑任务
+    //
+    // 创建编辑任务
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<CreateAssetEditTaskResponse> createAssetEditTask(
+        CreateAssetEditTaskRequest &request
+    );
     // 媒资处理
     //
     // 实现视频转码、截图、加密等处理。既可以同时启动多种操作，也可以只启动一种操作。
@@ -413,6 +441,14 @@ public:
     std::shared_ptr<DeleteAssetCategoryResponse> deleteAssetCategory(
         DeleteAssetCategoryRequest &request
     );
+    // 取消编辑任务
+    //
+    // 取消编辑任务，仅支持取消等待中的任务。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<DeleteAssetEditTaskResponse> deleteAssetEditTask(
+        DeleteAssetEditTaskRequest &request
+    );
     // 删除媒资
     //
     // 删除媒资。
@@ -445,6 +481,14 @@ public:
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<DeleteTemplateGroupCollectionResponse> deleteTemplateGroupCollection(
         DeleteTemplateGroupCollectionRequest &request
+    );
+    // 删除媒资下的多个截图
+    //
+    // 删除媒资对应的截图，支持批量删除单个媒资下的多个截图结果，一次最多能删除十个。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<DeleteThumbnailsResponse> deleteThumbnails(
+        DeleteThumbnailsRequest &request
     );
     // 删除转码产物
     //
@@ -490,6 +534,14 @@ public:
     std::shared_ptr<ListAssetDailySummaryLogResponse> listAssetDailySummaryLog(
         ListAssetDailySummaryLogRequest &request
     );
+    // 查询编辑任务
+    //
+    // 查询编辑任务
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ListAssetEditTaskResponse> listAssetEditTask(
+        ListAssetEditTaskRequest &request
+    );
     // 查询媒资列表
     //
     // 查询媒资列表，列表中的每一条记录包含媒资的概要信息。
@@ -497,6 +549,32 @@ public:
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<ListAssetListResponse> listAssetList(
         ListAssetListRequest &request
+    );
+    // 查询媒资任务信息
+    //
+    // ## 典型场景 ##
+    //   查询媒资任务信息
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ListAssetTaskInfoResponse> listAssetTaskInfo(
+        ListAssetTaskInfoRequest &request
+    );
+    // 查询指定分类信息
+    //
+    // ## 典型场景 ##
+    //   查询指定分类信息，及其子分类（即下一级分类）的列表。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ListCategoryInfoResponse> listCategoryInfo(
+        ListCategoryInfoRequest &request
+    );
+    // 查询CDN统计信息
+    //
+    // 查询CDN的统计数据，包括流量、峰值带宽、请求总数、请求命中率、流量命中率。查询存在1小时误差。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ListCdnStatisticsResponse> listCdnStatistics(
+        ListCdnStatisticsRequest &request
     );
     // 查询域名播放日志
     //
@@ -521,6 +599,22 @@ public:
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<ListTemplateGroupCollectionResponse> listTemplateGroupCollection(
         ListTemplateGroupCollectionRequest &request
+    );
+    // 查询截图详情
+    //
+    // 查询截图结果
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ListThumbnailDetailsResponse> listThumbnailDetails(
+        ListThumbnailDetailsRequest &request
+    );
+    // 查询截图任务结果列表
+    //
+    // 查询截图任务结果列表
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ListThumbnailInfoResponse> listThumbnailInfo(
+        ListThumbnailInfoRequest &request
     );
     // 查询TopN媒资信息
     //

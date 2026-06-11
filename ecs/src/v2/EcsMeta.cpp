@@ -49,6 +49,15 @@ HttpRequestDef EcsMeta::genRequestDefForAttachServerVolume() {
     return reqDefBuilder;
 }
 
+HttpRequestDef EcsMeta::genRequestDefForBatchAddServerGroupMember() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef EcsMeta::genRequestDefForBatchAddServerNics() {
     HttpRequestDef reqDefBuilder;
     FieldDef bodyParam;
@@ -68,6 +77,15 @@ HttpRequestDef EcsMeta::genRequestDefForBatchAttachSharableVolumes() {
 }
 
 HttpRequestDef EcsMeta::genRequestDefForBatchCreateServerTags() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef EcsMeta::genRequestDefForBatchDeleteServerGroupMember() {
     HttpRequestDef reqDefBuilder;
     FieldDef bodyParam;
     reqDefBuilder.withRequestField(bodyParam.
@@ -968,6 +986,12 @@ HttpRequestDef EcsMeta::genRequestDefForShowAppendableVolumeQuota() {
 
 HttpRequestDef EcsMeta::genRequestDefForShowFlavorCapacity() {
     HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Count")
+                  .withJsonTag("count")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("RegionIds")
+                  .withJsonTag("region_ids")
+                  .withLocationType(Query_));
     return reqDefBuilder;
 }
 
@@ -982,6 +1006,11 @@ HttpRequestDef EcsMeta::genRequestDefForShowRecycleBin() {
 }
 
 HttpRequestDef EcsMeta::genRequestDefForShowResetPasswordFlag() {
+    HttpRequestDef reqDefBuilder;
+    return reqDefBuilder;
+}
+
+HttpRequestDef EcsMeta::genRequestDefForShowSerialConsoleActions() {
     HttpRequestDef reqDefBuilder;
     return reqDefBuilder;
 }
@@ -1068,6 +1097,15 @@ HttpRequestDef EcsMeta::genRequestDefForUpdateScheduledEvent() {
         withJsonTag("X-Request-Id").
         withKindName("std::string").
         withLocationType(Header_));
+    return reqDefBuilder;
+}
+
+HttpRequestDef EcsMeta::genRequestDefForUpdateSerialConsoleOptions() {
+    HttpRequestDef reqDefBuilder;
+    FieldDef bodyParam;
+    reqDefBuilder.withRequestField(bodyParam.
+        withName("Body").
+        withLocationType(Body_));
     return reqDefBuilder;
 }
 

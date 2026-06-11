@@ -20,6 +20,7 @@ public:
     static HttpRequestDef genRequestDefForBatchDeleteBackup();
     static HttpRequestDef genRequestDefForBatchTagAction();
     static HttpRequestDef genRequestDefForBatchUpgradeDatabaseVersion();
+    static HttpRequestDef genRequestDefForBindPublicGateway();
     static HttpRequestDef genRequestDefForCancelEip();
     static HttpRequestDef genRequestDefForCancelScheduledTask();
     static HttpRequestDef genRequestDefForChangeOpsWindow();
@@ -39,6 +40,7 @@ public:
     static HttpRequestDef genRequestDefForDeleteDatabaseRole();
     static HttpRequestDef genRequestDefForDeleteDatabaseUser();
     static HttpRequestDef genRequestDefForDeleteInstance();
+    static HttpRequestDef genRequestDefForDeleteIp();
     static HttpRequestDef genRequestDefForDeleteKillOpRuleList();
     static HttpRequestDef genRequestDefForDeleteLtsConfig();
     static HttpRequestDef genRequestDefForDeleteManualBackup();
@@ -124,6 +126,7 @@ public:
     static HttpRequestDef genRequestDefForSwitchSlowlogDesensitization();
     static HttpRequestDef genRequestDefForSwitchSsl();
     static HttpRequestDef genRequestDefForSwitchoverReplicaSet();
+    static HttpRequestDef genRequestDefForUnbindPublicGateway();
     static HttpRequestDef genRequestDefForUpdateBackupDownloadPolicy();
     static HttpRequestDef genRequestDefForUpdateClientNetwork();
     static HttpRequestDef genRequestDefForUpdateConfigurationParameter();

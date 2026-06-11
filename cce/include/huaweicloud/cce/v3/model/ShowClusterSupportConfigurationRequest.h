@@ -39,16 +39,7 @@ public:
     /// ShowClusterSupportConfigurationRequest members
 
     /// <summary>
-    /// 集群ID，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
-    /// </summary>
-
-    std::string getClusterId() const;
-    bool clusterIdIsSet() const;
-    void unsetclusterId();
-    void setClusterId(const std::string& value);
-
-    /// <summary>
-    /// 集群类型，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
+    /// **参数解释**： 该参数用于过滤集群架构 **约束限制**： 不涉及 **取值范围**： - ARM64: 仅获取鲲鹏集群支持的配置项  **默认取值**： 不涉及
     /// </summary>
 
     std::string getClusterType() const;
@@ -57,7 +48,7 @@ public:
     void setClusterType(const std::string& value);
 
     /// <summary>
-    /// 集群版本，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
+    /// **参数解释**： 该参数用于获取指定集群版本支持的配置项 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
     /// </summary>
 
     std::string getClusterVersion() const;
@@ -66,7 +57,16 @@ public:
     void setClusterVersion(const std::string& value);
 
     /// <summary>
-    /// 集群网络类型，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
+    /// **参数解释**： 该参数用于获取指定集群支持的配置项 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
+    /// </summary>
+
+    std::string getClusterID() const;
+    bool clusterIDIsSet() const;
+    void unsetclusterID();
+    void setClusterID(const std::string& value);
+
+    /// <summary>
+    /// **参数解释**： 该参数用于过滤掉集群网络模型相关配置项 **约束限制**： 不涉及 **取值范围**： - eni: 过滤掉云原生网络2.0模型相关配置  **默认取值**： 不涉及
     /// </summary>
 
     std::string getNetworkMode() const;
@@ -76,12 +76,12 @@ public:
 
 
 protected:
-    std::string clusterId_;
-    bool clusterIdIsSet_;
     std::string clusterType_;
     bool clusterTypeIsSet_;
     std::string clusterVersion_;
     bool clusterVersionIsSet_;
+    std::string clusterID_;
+    bool clusterIDIsSet_;
     std::string networkMode_;
     bool networkModeIsSet_;
 

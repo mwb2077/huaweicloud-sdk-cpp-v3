@@ -57,7 +57,7 @@ public:
     void setName(const std::string& value);
 
     /// <summary>
-    /// 风险规则类型
+    /// 风险规则类型 - LOGIN：登录  - OPERATE：操作
     /// </summary>
 
     std::string getType() const;
@@ -75,7 +75,7 @@ public:
     void setFeature(const std::string& value);
 
     /// <summary>
-    /// 风险规则状态。 - ON: 开启 - OFF: 关闭
+    /// 风险规则状态。 - ON：开启 - OFF：关闭
     /// </summary>
 
     std::string getStatus() const;
@@ -93,7 +93,7 @@ public:
     void setRank(int32_t value);
 
     /// <summary>
-    /// 风险级别 - LOW - MEDIUM - HIGH - NO_RISK
+    /// 风险级别 - LOW：低 - MEDIUM：中 - HIGH：高 - NO_RISK：无风险
     /// </summary>
 
     std::string getRiskLevel() const;
@@ -102,7 +102,7 @@ public:
     void setRiskLevel(const std::string& value);
 
     /// <summary>
-    /// 规则类型
+    /// 规则类型 - SYSTEM：系统  - CUSTOMIZE：自定义
     /// </summary>
 
     std::string getRuleType() const;

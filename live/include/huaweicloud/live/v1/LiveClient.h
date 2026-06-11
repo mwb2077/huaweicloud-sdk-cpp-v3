@@ -10,6 +10,9 @@
 #include <huaweicloud/live/v1/model/BatchShowIpBelongsRequest.h>
 #include <huaweicloud/live/v1/model/BatchShowIpBelongsResponse.h>
 #include <huaweicloud/live/v1/model/CallbackUrl.h>
+#include <huaweicloud/live/v1/model/CheckDomainVerificationInfo.h>
+#include <huaweicloud/live/v1/model/CheckDomainVerificationRequest.h>
+#include <huaweicloud/live/v1/model/CheckDomainVerificationResponse.h>
 #include <huaweicloud/live/v1/model/CreateDomainMappingRequest.h>
 #include <huaweicloud/live/v1/model/CreateDomainMappingResponse.h>
 #include <huaweicloud/live/v1/model/CreateDomainRequest.h>
@@ -19,6 +22,8 @@
 #include <huaweicloud/live/v1/model/CreateFlowsRequest.h>
 #include <huaweicloud/live/v1/model/CreateFlowsRequestBody.h>
 #include <huaweicloud/live/v1/model/CreateFlowsResponse.h>
+#include <huaweicloud/live/v1/model/CreatePullTaskRequest.h>
+#include <huaweicloud/live/v1/model/CreatePullTaskResponse.h>
 #include <huaweicloud/live/v1/model/CreateRecordCallbackConfigRequest.h>
 #include <huaweicloud/live/v1/model/CreateRecordCallbackConfigResponse.h>
 #include <huaweicloud/live/v1/model/CreateRecordIndexRequest.h>
@@ -38,6 +43,10 @@
 #include <huaweicloud/live/v1/model/CreateUrlAuthchainReq.h>
 #include <huaweicloud/live/v1/model/CreateUrlAuthchainRequest.h>
 #include <huaweicloud/live/v1/model/CreateUrlAuthchainResponse.h>
+#include <huaweicloud/live/v1/model/CreateWatermarkRuleRequest.h>
+#include <huaweicloud/live/v1/model/CreateWatermarkRuleResponse.h>
+#include <huaweicloud/live/v1/model/CreateWatermarkTemplateRequest.h>
+#include <huaweicloud/live/v1/model/CreateWatermarkTemplateResponse.h>
 #include <huaweicloud/live/v1/model/DeleteDomainKeyChainRequest.h>
 #include <huaweicloud/live/v1/model/DeleteDomainKeyChainResponse.h>
 #include <huaweicloud/live/v1/model/DeleteDomainMappingRequest.h>
@@ -50,6 +59,8 @@
 #include <huaweicloud/live/v1/model/DeleteFlowResponse.h>
 #include <huaweicloud/live/v1/model/DeletePublishTemplateRequest.h>
 #include <huaweicloud/live/v1/model/DeletePublishTemplateResponse.h>
+#include <huaweicloud/live/v1/model/DeletePullTaskRequest.h>
+#include <huaweicloud/live/v1/model/DeletePullTaskResponse.h>
 #include <huaweicloud/live/v1/model/DeleteRecordCallbackConfigRequest.h>
 #include <huaweicloud/live/v1/model/DeleteRecordCallbackConfigResponse.h>
 #include <huaweicloud/live/v1/model/DeleteRecordRuleRequest.h>
@@ -64,8 +75,13 @@
 #include <huaweicloud/live/v1/model/DeleteStreamForbiddenResponse.h>
 #include <huaweicloud/live/v1/model/DeleteTranscodingsTemplateRequest.h>
 #include <huaweicloud/live/v1/model/DeleteTranscodingsTemplateResponse.h>
+#include <huaweicloud/live/v1/model/DeleteWatermarkRuleRequest.h>
+#include <huaweicloud/live/v1/model/DeleteWatermarkRuleResponse.h>
+#include <huaweicloud/live/v1/model/DeleteWatermarkTemplateRequest.h>
+#include <huaweicloud/live/v1/model/DeleteWatermarkTemplateResponse.h>
 #include <huaweicloud/live/v1/model/DomainIpv6SwitchReq.h>
 #include <huaweicloud/live/v1/model/DomainMapping.h>
+#include <huaweicloud/live/v1/model/DomainStreamBackupInfo.h>
 #include <huaweicloud/live/v1/model/GeoBlockingConfigInfo.h>
 #include <huaweicloud/live/v1/model/IPAuthInfo.h>
 #include <huaweicloud/live/v1/model/KeyChainInfo.h>
@@ -85,6 +101,8 @@
 #include <huaweicloud/live/v1/model/ListLiveStreamsOnlineResponse.h>
 #include <huaweicloud/live/v1/model/ListPublishTemplateRequest.h>
 #include <huaweicloud/live/v1/model/ListPublishTemplateResponse.h>
+#include <huaweicloud/live/v1/model/ListPullTasksRequest.h>
+#include <huaweicloud/live/v1/model/ListPullTasksResponse.h>
 #include <huaweicloud/live/v1/model/ListRecordCallbackConfigsRequest.h>
 #include <huaweicloud/live/v1/model/ListRecordCallbackConfigsResponse.h>
 #include <huaweicloud/live/v1/model/ListRecordContentsRequest.h>
@@ -97,10 +115,17 @@
 #include <huaweicloud/live/v1/model/ListSnapshotConfigsResponse.h>
 #include <huaweicloud/live/v1/model/ListStreamForbiddenRequest.h>
 #include <huaweicloud/live/v1/model/ListStreamForbiddenResponse.h>
+#include <huaweicloud/live/v1/model/ListWatermarkRuleRequest.h>
+#include <huaweicloud/live/v1/model/ListWatermarkRuleResponse.h>
+#include <huaweicloud/live/v1/model/ListWatermarkTemplateRequest.h>
+#include <huaweicloud/live/v1/model/ListWatermarkTemplateResponse.h>
 #include <huaweicloud/live/v1/model/LiveDomainCreateReq.h>
 #include <huaweicloud/live/v1/model/LiveDomainModifyReq.h>
+#include <huaweicloud/live/v1/model/LivePullStreamTask.h>
 #include <huaweicloud/live/v1/model/LiveSnapshotConfig.h>
 #include <huaweicloud/live/v1/model/ModifyDelayConfig.h>
+#include <huaweicloud/live/v1/model/ModifyDomainStreamBackupRequest.h>
+#include <huaweicloud/live/v1/model/ModifyDomainStreamBackupResponse.h>
 #include <huaweicloud/live/v1/model/ModifyFlowOutputRequest.h>
 #include <huaweicloud/live/v1/model/ModifyFlowOutputResponse.h>
 #include <huaweicloud/live/v1/model/ModifyFlowSourcesRequest.h>
@@ -111,7 +136,11 @@
 #include <huaweicloud/live/v1/model/ModifyFlowStopRequest.h>
 #include <huaweicloud/live/v1/model/ModifyFlowStopResponse.h>
 #include <huaweicloud/live/v1/model/ModifyHlsConfig.h>
+#include <huaweicloud/live/v1/model/ModifyLivePullStreamTask.h>
 #include <huaweicloud/live/v1/model/ModifyPullSourcesConfig.h>
+#include <huaweicloud/live/v1/model/ModifyPullTaskRequest.h>
+#include <huaweicloud/live/v1/model/ModifyPullTaskResponse.h>
+#include <huaweicloud/live/v1/model/ModifyWatermarkRule.h>
 #include <huaweicloud/live/v1/model/RecordCallbackConfigRequest.h>
 #include <huaweicloud/live/v1/model/RecordControlInfo.h>
 #include <huaweicloud/live/v1/model/RecordIndexRequestBody.h>
@@ -126,6 +155,10 @@
 #include <huaweicloud/live/v1/model/ShowDomainKeyChainResponse.h>
 #include <huaweicloud/live/v1/model/ShowDomainRequest.h>
 #include <huaweicloud/live/v1/model/ShowDomainResponse.h>
+#include <huaweicloud/live/v1/model/ShowDomainStreamBackupRequest.h>
+#include <huaweicloud/live/v1/model/ShowDomainStreamBackupResponse.h>
+#include <huaweicloud/live/v1/model/ShowDomainVerificationRequest.h>
+#include <huaweicloud/live/v1/model/ShowDomainVerificationResponse.h>
 #include <huaweicloud/live/v1/model/ShowFlowDetailRequest.h>
 #include <huaweicloud/live/v1/model/ShowFlowDetailResponse.h>
 #include <huaweicloud/live/v1/model/ShowOutputInfoRequest.h>
@@ -140,6 +173,10 @@
 #include <huaweicloud/live/v1/model/ShowRefererChainResponse.h>
 #include <huaweicloud/live/v1/model/ShowTranscodingsTemplateRequest.h>
 #include <huaweicloud/live/v1/model/ShowTranscodingsTemplateResponse.h>
+#include <huaweicloud/live/v1/model/ShowWatermarkRuleRequest.h>
+#include <huaweicloud/live/v1/model/ShowWatermarkRuleResponse.h>
+#include <huaweicloud/live/v1/model/ShowWatermarkTemplateRequest.h>
+#include <huaweicloud/live/v1/model/ShowWatermarkTemplateResponse.h>
 #include <huaweicloud/live/v1/model/StreamForbiddenOnceSetting.h>
 #include <huaweicloud/live/v1/model/StreamForbiddenSetting.h>
 #include <huaweicloud/live/v1/model/StreamTranscodingTemplate.h>
@@ -172,6 +209,12 @@
 #include <huaweicloud/live/v1/model/UpdateStreamForbiddenResponse.h>
 #include <huaweicloud/live/v1/model/UpdateTranscodingsTemplateRequest.h>
 #include <huaweicloud/live/v1/model/UpdateTranscodingsTemplateResponse.h>
+#include <huaweicloud/live/v1/model/UpdateWatermarkRuleRequest.h>
+#include <huaweicloud/live/v1/model/UpdateWatermarkRuleResponse.h>
+#include <huaweicloud/live/v1/model/UpdateWatermarkTemplateRequest.h>
+#include <huaweicloud/live/v1/model/UpdateWatermarkTemplateResponse.h>
+#include <huaweicloud/live/v1/model/WatermarkRule.h>
+#include <huaweicloud/live/v1/model/WatermarkTemplate.h>
 #include <string>
 #include <vector>
 #include <cpprest/details/basic_types.h>
@@ -186,6 +229,8 @@
 #include <huaweicloud/live/v1/model/DeleteDomainHttpsCertRequest.h>
 #include <huaweicloud/live/v1/model/DeleteDomainHttpsCertResponse.h>
 #include <huaweicloud/live/v1/model/DomainHttpsCertInfo.h>
+#include <huaweicloud/live/v1/model/ShowCertificateInfoRequest.h>
+#include <huaweicloud/live/v1/model/ShowCertificateInfoResponse.h>
 #include <huaweicloud/live/v1/model/ShowDomainHttpsCertRequest.h>
 #include <huaweicloud/live/v1/model/ShowDomainHttpsCertResponse.h>
 #include <huaweicloud/live/v1/model/UpdateDomainHttpsCertRequest.h>
@@ -273,6 +318,14 @@ public:
     std::shared_ptr<BatchShowIpBelongsResponse> batchShowIpBelongs(
         BatchShowIpBelongsRequest &request
     );
+    // 域名归属权认证
+    //
+    // 域名归属权认证，确保创建的域名对应的主域名有归属权。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<CheckDomainVerificationResponse> checkDomainVerification(
+        CheckDomainVerificationRequest &request
+    );
     // 创建直播域名
     //
     // 可单独创建直播播放域名或推流域名，每个租户最多可配置64条域名记录。
@@ -304,6 +357,14 @@ public:
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<CreateFlowsResponse> createFlows(
         CreateFlowsRequest &request
+    );
+    // 创建直播拉流转推任务
+    //
+    // 根据租户指定的拉流源以及拉流任务信息创建直播拉流转推任务
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<CreatePullTaskResponse> createPullTask(
+        CreatePullTaskRequest &request
     );
     // 创建录制回调配置
     //
@@ -377,6 +438,22 @@ public:
     std::shared_ptr<CreateUrlAuthchainResponse> createUrlAuthchain(
         CreateUrlAuthchainRequest &request
     );
+    // 创建水印规则
+    //
+    // 创建水印规则接口，必须先创建水印模板
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<CreateWatermarkRuleResponse> createWatermarkRule(
+        CreateWatermarkRuleRequest &request
+    );
+    // 创建水印模板
+    //
+    // 创建水印模板接口，需要绑定水印规则才生效
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<CreateWatermarkTemplateResponse> createWatermarkTemplate(
+        CreateWatermarkTemplateRequest &request
+    );
     // 删除直播域名
     //
     // 删除域名。只有在域名停用（off）状态时才能删除。
@@ -424,6 +501,14 @@ public:
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<DeletePublishTemplateResponse> deletePublishTemplate(
         DeletePublishTemplateRequest &request
+    );
+    // 删除直播拉流转推任务
+    //
+    // 停止并删除直播拉流转推任务。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<DeletePullTaskResponse> deletePullTask(
+        DeletePullTaskRequest &request
     );
     // 删除录制回调配置
     //
@@ -480,6 +565,22 @@ public:
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<DeleteTranscodingsTemplateResponse> deleteTranscodingsTemplate(
         DeleteTranscodingsTemplateRequest &request
+    );
+    // 删除水印规则
+    //
+    // 删除水印规则接口
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<DeleteWatermarkRuleResponse> deleteWatermarkRule(
+        DeleteWatermarkRuleRequest &request
+    );
+    // 删除水印模板
+    //
+    // 删除水印模板接口
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<DeleteWatermarkTemplateResponse> deleteWatermarkTemplate(
+        DeleteWatermarkTemplateRequest &request
     );
     // 查询播放域名延时配置
     //
@@ -548,6 +649,14 @@ public:
     std::shared_ptr<ListPublishTemplateResponse> listPublishTemplate(
         ListPublishTemplateRequest &request
     );
+    // 查询直播拉流转推任务
+    //
+    // 查询直播拉流转推任务。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ListPullTasksResponse> listPullTasks(
+        ListPullTasksRequest &request
+    );
     // 查询录制回调配置列表
     //
     // 查询录制回调配置列表接口。通过指定条件，查询满足条件的配置列表。
@@ -596,6 +705,30 @@ public:
     std::shared_ptr<ListStreamForbiddenResponse> listStreamForbidden(
         ListStreamForbiddenRequest &request
     );
+    // 查询水印规则列表
+    //
+    // 查询水印规则列表接口，通过指定条件，查询满足条件的水印规则列表。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ListWatermarkRuleResponse> listWatermarkRule(
+        ListWatermarkRuleRequest &request
+    );
+    // 查询水印模板列表
+    //
+    // 查询水印模板列表接口，通过指定条件，查询满足条件的水印模板列表。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ListWatermarkTemplateResponse> listWatermarkTemplate(
+        ListWatermarkTemplateRequest &request
+    );
+    // 设置域名主备流功能开关
+    //
+    // 设置域名主备流功能开关，可支持同一路流推多个，按照先后顺序定优先级，客户可进行流优先级切换
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ModifyDomainStreamBackupResponse> modifyDomainStreamBackup(
+        ModifyDomainStreamBackupRequest &request
+    );
     // 更新转推输出
     //
     // 更新转推输出
@@ -628,6 +761,14 @@ public:
     std::shared_ptr<ModifyFlowStopResponse> modifyFlowStop(
         ModifyFlowStopRequest &request
     );
+    // 修改直播拉流转推任务
+    //
+    // 修改直播拉流转推任务，仅当source_type为PullVodPushLive的任务生效
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ModifyPullTaskResponse> modifyPullTask(
+        ModifyPullTaskRequest &request
+    );
     // 提交录制控制命令
     //
     // 对单条流的实时录制控制接口。
@@ -659,6 +800,22 @@ public:
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<ShowDomainKeyChainResponse> showDomainKeyChain(
         ShowDomainKeyChainRequest &request
+    );
+    // 查询域名主备流功能开关
+    //
+    // 查询域名主备流功能开关，可支持同一路流推多个，按照先后顺序定优先级，客户可进行流优先级切换
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ShowDomainStreamBackupResponse> showDomainStreamBackup(
+        ShowDomainStreamBackupRequest &request
+    );
+    // 查询域名归属权验证信息
+    //
+    // 查询域名归属权验证信息。
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ShowDomainVerificationResponse> showDomainVerification(
+        ShowDomainVerificationRequest &request
     );
     // 获取流详情
     //
@@ -715,6 +872,22 @@ public:
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<ShowTranscodingsTemplateResponse> showTranscodingsTemplate(
         ShowTranscodingsTemplateRequest &request
+    );
+    // 查询水印规则配置
+    //
+    // 查询水印模板规则接口
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ShowWatermarkRuleResponse> showWatermarkRule(
+        ShowWatermarkRuleRequest &request
+    );
+    // 查询水印模板配置
+    //
+    // 查询水印模板详情接口
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ShowWatermarkTemplateResponse> showWatermarkTemplate(
+        ShowWatermarkTemplateRequest &request
     );
     // 修改播放域名延时配置
     //
@@ -831,6 +1004,22 @@ public:
     std::shared_ptr<UpdateTranscodingsTemplateResponse> updateTranscodingsTemplate(
         UpdateTranscodingsTemplateRequest &request
     );
+    // 修改水印规则
+    //
+    // 修改水印规则接口，修改后实时生效，只能修改Location
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<UpdateWatermarkRuleResponse> updateWatermarkRule(
+        UpdateWatermarkRuleRequest &request
+    );
+    // 修改水印模板
+    //
+    // 修改水印模板接口，修改后实时生效
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<UpdateWatermarkTemplateResponse> updateWatermarkTemplate(
+        UpdateWatermarkTemplateRequest &request
+    );
 
     // 维度配置信息查询
     //
@@ -856,6 +1045,14 @@ public:
     // Please refer to HUAWEI cloud API Explorer for details.
     std::shared_ptr<DeleteDomainHttpsCertResponse> deleteDomainHttpsCert(
         DeleteDomainHttpsCertRequest &request
+    );
+    // 查询HTTPS证书信息
+    //
+    // 根据项目ID、域名等信息查询HTTPS证书信息
+    // 
+    // Please refer to HUAWEI cloud API Explorer for details.
+    std::shared_ptr<ShowCertificateInfoResponse> showCertificateInfo(
+        ShowCertificateInfoRequest &request
     );
     // 查询指定域名的https证书配置
     //

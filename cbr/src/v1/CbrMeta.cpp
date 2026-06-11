@@ -343,6 +343,20 @@ HttpRequestDef CbrMeta::genRequestDefForListExternalVault() {
     return reqDefBuilder;
 }
 
+HttpRequestDef CbrMeta::genRequestDefForListFeatures() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
+                  .withLocationType(Query_));
+    reqDefBuilder.withResponseField(FieldDef().
+                withName("Body").
+                withLocationType(Body_));
+    return reqDefBuilder;
+}
+
 HttpRequestDef CbrMeta::genRequestDefForListOpLogs() {
     HttpRequestDef reqDefBuilder;
     reqDefBuilder.withRequestField(FieldDef().withName("EndTime")
@@ -489,7 +503,7 @@ HttpRequestDef CbrMeta::genRequestDefForMigrateDomain() {
     reqDefBuilder.withRequestField(bodyParam.
         withName("Body").
         withLocationType(Body_));
-    reqDefBuilder.WithResponseField(FieldDef().
+    reqDefBuilder.withResponseField(FieldDef().
                 withName("Body").
                 withLocationType(Body_));
     return reqDefBuilder;
@@ -566,6 +580,20 @@ HttpRequestDef CbrMeta::genRequestDefForShowCheckpoint() {
 
 HttpRequestDef CbrMeta::genRequestDefForShowDomain() {
     HttpRequestDef reqDefBuilder;
+    return reqDefBuilder;
+}
+
+HttpRequestDef CbrMeta::genRequestDefForShowFeature() {
+    HttpRequestDef reqDefBuilder;
+    reqDefBuilder.withRequestField(FieldDef().withName("Limit")
+                  .withJsonTag("limit")
+                  .withLocationType(Query_));
+    reqDefBuilder.withRequestField(FieldDef().withName("Offset")
+                  .withJsonTag("offset")
+                  .withLocationType(Query_));
+    reqDefBuilder.withResponseField(FieldDef().
+                withName("Body").
+                withLocationType(Body_));
     return reqDefBuilder;
 }
 
